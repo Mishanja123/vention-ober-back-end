@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 
 const sequelize = require("../../config/database");
 
-const Adress = sequelize.define("adress", {
+const Adress = sequelize.define("address", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,

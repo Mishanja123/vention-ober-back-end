@@ -2,7 +2,6 @@ const express = require("express");
 const sequelize = require("./config/database");
 const User = require("./app/models/user");
 const UserAddress = require("./app/models/user_address");
-const adress = require("./app/models/address");
 const UserCreditCard = require("./app/models/user_credit_card");
 const CreditCard = require("./app/models/credit_card");
 const Order = require("./app/models/order");
@@ -11,7 +10,7 @@ const Table = require("./app/models/table");
 const OrderDish = require("./app/models/order_dish");
 const Dish = require("./app/models/dish");
 const Payment = require("./app/models/payment");
-const Adress = require("./app/models/address");
+const Address = require("./app/models/address");
 
 const app = express();
 const PORT = 3000;
@@ -20,8 +19,6 @@ async function connect() {
   try {
     await sequelize.authenticate();
     console.log("Success");
-
-    await sequelize.sync({ force: false });
   } catch (err) {
     console.log("Unable ", err);
   }
@@ -31,8 +28,8 @@ connect();
 
 User.hasOne(UserAddress);
 UserAddress.hasMany(User);
-UserAddress.hasMany(Adress);
-Adress.hasOne(UserAddress);
+UserAddress.hasMany(Address);
+Address.hasOne(UserAddress);
 User.hasOne(UserCreditCard);
 UserCreditCard.hasMany(User);
 UserCreditCard.hasMany(CreditCard);
@@ -54,6 +51,11 @@ TableReservation.hasOne(User);
 TableReservation.hasMany(Table);
 Table.hasOne(TableReservation);
 
-app.listen(PORT, () => {
-  console.log("Server is running on port " + PORT);
-});
+sequelize
+  .sync()
+  .then(
+    app.listen(PORT, () => {
+      console.log("Server is running on port " + PORT);
+    })
+  )
+  .catch((err) => console.log(err));

@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 
 const sequelize = require("../../config/database");
 
-const UserAddress = sequelize.define("user_adress", {
+const UserAddress = sequelize.define("user_address", {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,

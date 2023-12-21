@@ -37,13 +37,6 @@ const Dish = sequelize.define("dish", {
     type: Sequelize.BIGINT,
     allowNull: false,
   },
-  create_date: {
-    type: Sequelize.DATE,
-    allowNull: false,
-  },
-  updated_date: {
-    type: Sequelize.DATE,
-  },
 });
 
 module.exports = Dish;

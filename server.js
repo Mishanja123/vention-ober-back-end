@@ -11,6 +11,7 @@ const OrderDish = require("./app/models/order_dish");
 const Dish = require("./app/models/dish");
 const Payment = require("./app/models/payment");
 const Address = require("./app/models/address");
+const dishData = require("./data/menuData/dishMoreInfo.json");
 
 const app = express();
 const PORT = 3000;
@@ -51,8 +52,25 @@ TableReservation.hasOne(User);
 TableReservation.hasMany(Table);
 Table.hasOne(TableReservation);
 
+//to add all data to db type in terminal:
+//curl -X POST -H "Content-Type: application/json" http://localhost:3000/createTestDish
+app.post("/createTestDish", async (req, res) => {
+  try {
+    dishData.forEach(async (dish) => {
+      await Dish.create({ ...dish, category: "chefs_pick" });
+    });
+
+    // Create the test dish in the database
+
+    res.status(201).json({ message: "Success" });
+  } catch (error) {
+    console.error("Error creating test dish:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);

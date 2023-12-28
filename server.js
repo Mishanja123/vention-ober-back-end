@@ -12,9 +12,13 @@ const Dish = require("./app/models/dish");
 const Payment = require("./app/models/payment");
 const Address = require("./app/models/address");
 const dishData = require("./data/menuData/dishMoreInfo.json");
+const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = 3000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 async function connect() {
   try {
@@ -56,9 +60,11 @@ Table.hasOne(TableReservation);
 //curl -X POST -H "Content-Type: application/json" http://localhost:3000/createTestDish
 app.post("/createTestDish", async (req, res) => {
   try {
-    dishData.forEach(async (dish) => {
-      await Dish.create({ ...dish, category: "chefs_pick" });
-    });
+    await Promise.all(
+      dishData.map(async (dish) => {
+        await Dish.create({ ...dish, category: "chefs_pick" });
+      })
+    );
 
     // Create the test dish in the database
 
@@ -69,11 +75,27 @@ app.post("/createTestDish", async (req, res) => {
   }
 });
 
+const authRoutes = require("./app/routes/auth");
+
+app.use(authRoutes);
+
 sequelize
-  .sync({ force: true })
+  .sync()
   .then(
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);
     })
   )
+  //if you have no user created in db -> uncomment
+
+  // .then(() => {
+  // User.create({
+  //   first_name: "Rost",
+  //   last_name: "Test",
+  //   email: "test@gmail.com",
+  //   phone: "111111111",
+  //   password: "qwerty",
+  //   role: "user",
+  // });
+  // })
   .catch((err) => console.log(err));

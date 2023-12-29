@@ -1,18 +1,18 @@
-const express = require("express");
-const sequelize = require("./config/database");
-const User = require("./app/models/user");
-const UserAddress = require("./app/models/user_address");
-const UserCreditCard = require("./app/models/user_credit_card");
-const CreditCard = require("./app/models/credit_card");
-const Order = require("./app/models/order");
-const TableReservation = require("./app/models/table_reservation");
-const Table = require("./app/models/table");
-const OrderDish = require("./app/models/order_dish");
-const Dish = require("./app/models/dish");
-const Payment = require("./app/models/payment");
-const Address = require("./app/models/address");
-const dishData = require("./data/menuData/dishMoreInfo.json");
-const bodyParser = require("body-parser");
+import express, { Request, Response } from "express";
+import bodyParser from "body-parser";
+import sequelize from "./config/database";
+import User from "./app/models/user";
+import UserAddress from "./app/models/user_address";
+import UserCreditCard from "./app/models/user_credit_card";
+import CreditCard from "./app/models/credit_card";
+import Order from "./app/models/order";
+import TableReservation from "./app/models/table_reservation";
+import Table from "./app/models/table";
+import OrderDish from "./app/models/order_dish";
+import Dish from "./app/models/dish";
+import Payment from "./app/models/payment";
+import Address from "./app/models/address";
+import dishData from "./data/menuData/dishMoreInfo.json";
 
 const app = express();
 const PORT = 3000;
@@ -58,15 +58,13 @@ Table.hasOne(TableReservation);
 
 //to add all data to db type in terminal:
 //curl -X POST -H "Content-Type: application/json" http://localhost:3000/createTestDish
-app.post("/createTestDish", async (req, res) => {
+app.post("/createTestDish", async (req: Request, res: Response) => {
   try {
     await Promise.all(
       dishData.map(async (dish) => {
         await Dish.create({ ...dish, category: "chefs_pick" });
       })
     );
-
-    // Create the test dish in the database
 
     res.status(201).json({ message: "Success" });
   } catch (error) {
@@ -75,27 +73,29 @@ app.post("/createTestDish", async (req, res) => {
   }
 });
 
-const authRoutes = require("./app/routes/auth");
-
+import authRoutes from "./app/routes/auth";
 app.use(authRoutes);
 
-sequelize
-  .sync()
-  .then(
+const startServer = async () => {
+  try {
+    await sequelize.sync({ force: true });
+    console.log("Database synchronization successful");
+
+    await User.create({
+      first_name: "Rosty",
+      last_name: "Bez",
+      email: "test@gmail.com",
+      phone: "47844994",
+      password: "qwerty",
+      role: "user",
+    });
+    // Now you can start your server
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);
-    })
-  )
-  //if you have no user created in db -> uncomment
+    });
+  } catch (error) {
+    console.error("Error synchronizing database:", error);
+  }
+};
 
-  // .then(() => {
-  // User.create({
-  //   first_name: "Rost",
-  //   last_name: "Test",
-  //   email: "test@gmail.com",
-  //   phone: "111111111",
-  //   password: "qwerty",
-  //   role: "user",
-  // });
-  // })
-  .catch((err) => console.log(err));
+startServer();

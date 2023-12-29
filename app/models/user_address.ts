@@ -1,14 +1,33 @@
-const Sequelize = require("sequelize");
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../../config/database";
 
-const sequelize = require("../../config/database");
+interface UserAddressAttributes {
+  id: number;
+}
 
-const UserAddress = sequelize.define("user_address", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
+interface UserAddressCreationAttributes
+  extends Optional<UserAddressAttributes, "id"> {}
+
+class UserAddress
+  extends Model<UserAddressAttributes, UserAddressCreationAttributes>
+  implements UserAddressAttributes
+{
+  public id!: number;
+}
+
+UserAddress.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
   },
-});
+  {
+    sequelize,
+    modelName: "UserAddress",
+  }
+);
 
-module.exports = UserAddress;
+export default UserAddress;

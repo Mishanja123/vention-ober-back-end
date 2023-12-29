@@ -1,30 +1,57 @@
-const Sequelize = require("sequelize");
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../../config/database";
 
-const sequelize = require("../../config/database");
+interface TableReservationAttributes {
+  id: number;
+  guests: number;
+  reservation_date: Date;
+  reservation_time: Date;
+  with_preorder: boolean;
+}
 
-const TableReservation = sequelize.define("table_reservation", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  guests: {
-    type: Sequelize.BIGINT,
-    allowNull: false,
-  },
-  reservation_date: {
-    type: Sequelize.DATE,
-    allowNull: false,
-  },
-  reservation_time: {
-    type: Sequelize.DATE,
-    allowNull: false,
-  },
-  with_preorder: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-  },
-});
+interface TableReservationCreationAttributes
+  extends Optional<TableReservationAttributes, "id"> {}
 
-module.exports = TableReservation;
+class TableReservation
+  extends Model<TableReservationAttributes, TableReservationCreationAttributes>
+  implements TableReservationAttributes
+{
+  public id!: number;
+  public guests!: number;
+  public reservation_date!: Date;
+  public reservation_time!: Date;
+  public with_preorder!: boolean;
+}
+
+TableReservation.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    guests: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    reservation_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    reservation_time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    with_preorder: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    modelName: "TableReservation",
+  }
+);
+
+export default TableReservation;

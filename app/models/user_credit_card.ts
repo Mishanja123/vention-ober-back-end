@@ -1,14 +1,33 @@
-const Sequelize = require("sequelize");
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../../config/database";
 
-const sequelize = require("../../config/database");
+interface UserCreditCardAttributes {
+  id: number;
+}
 
-const UserCreditCard = sequelize.define("userCreditCard", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
+interface UserCreditCardCreationAttributes
+  extends Optional<UserCreditCardAttributes, "id"> {}
+
+class UserCreditCard
+  extends Model<UserCreditCardAttributes, UserCreditCardCreationAttributes>
+  implements UserCreditCardAttributes
+{
+  public id!: number;
+}
+
+UserCreditCard.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
   },
-});
+  {
+    sequelize,
+    modelName: "UserCreditCard",
+  }
+);
 
-module.exports = UserCreditCard;
+export default UserCreditCard;

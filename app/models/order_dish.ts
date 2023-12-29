@@ -1,21 +1,44 @@
-const Sequelize = require("sequelize");
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../../config/database";
 
-const sequelize = require("../../config/database");
+interface OrderDishAttributes {
+  id: number;
+  quantity: number;
+  subtotal: number;
+}
 
-const OrderDish = sequelize.define("order_dish", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  quantity: {
-    type: Sequelize.BIGINT,
-    allowNull: false,
-  },
-  subtotal: {
-    type: Sequelize.DECIMAL(10, 2),
-  },
-});
+interface OrderDishCreationAttributes
+  extends Optional<OrderDishAttributes, "id"> {}
 
-module.exports = OrderDish;
+class OrderDish
+  extends Model<OrderDishAttributes, OrderDishCreationAttributes>
+  implements OrderDishAttributes
+{
+  public id!: number;
+  public quantity!: number;
+  public subtotal!: number;
+}
+
+OrderDish.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    quantity: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    subtotal: {
+      type: DataTypes.DECIMAL(10, 2),
+    },
+  },
+  {
+    sequelize,
+    modelName: "OrderDish",
+  }
+);
+
+export default OrderDish;

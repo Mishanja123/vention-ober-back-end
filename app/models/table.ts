@@ -1,22 +1,44 @@
-const Sequelize = require("sequelize");
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../../config/database";
 
-const sequelize = require("../../config/database");
+interface TableAttributes {
+  id: number;
+  status: "free" | "reserved";
+  seats: "4" | "6" | "8";
+}
 
-const Table = sequelize.define("table", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  status: {
-    type: Sequelize.ENUM("free", "reserved"),
-    allowNull: false,
-  },
-  seats: {
-    type: Sequelize.ENUM("4", "6", "8"),
-    allowNull: false,
-  },
-});
+interface TableCreationAttributes extends Optional<TableAttributes, "id"> {}
 
-module.exports = Table;
+class Table
+  extends Model<TableAttributes, TableCreationAttributes>
+  implements TableAttributes
+{
+  public id!: number;
+  public status!: "free" | "reserved";
+  public seats!: "4" | "6" | "8";
+}
+
+Table.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    status: {
+      type: DataTypes.ENUM("free", "reserved"),
+      allowNull: false,
+    },
+    seats: {
+      type: DataTypes.ENUM("4", "6", "8"),
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    modelName: "Table",
+  }
+);
+
+export default Table;

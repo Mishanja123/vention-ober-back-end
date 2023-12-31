@@ -74,7 +74,10 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
 });
 
 import authRoutes from "./app/routes/auth";
-app.use(authRoutes);
+import dishRouter from "./app/routes/dish";
+
+app.use("/api/auth", authRoutes);
+app.use("/api/dishes", dishRouter);
 
 const startServer = async () => {
   try {
@@ -87,7 +90,7 @@ const startServer = async () => {
       email: "test@gmail.com",
       phone: "47844994",
       password: "qwerty",
-      role: "user",
+      role: "user"
     });
     // Now you can start your server
     app.listen(PORT, () => {

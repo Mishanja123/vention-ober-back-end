@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const generateAccessToken = (userId: string) => {
+export const generateAccessToken = (userId: number) => {
   const payload = { userId };
   const secret: string | undefined = process.env.TOKEN_SECRET;
   if (!secret) throw new Error("Secret is not defined");

@@ -1,15 +1,11 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
-export const authenticateToken = (
-  req: any,
-  res: Response,
-  next: NextFunction
-) => {
+export const validateToken = (req: any, res: Response, next: NextFunction) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = authHeader && authHeader.split(" ")[1]; //check if bearer
 
-  if (token == null) return res.sendStatus(401);
+  if (token == null) return res.sendStatus(401); //return key-value
 
   jwt.verify(
     token,

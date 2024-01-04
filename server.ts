@@ -17,7 +17,12 @@ import Address from "./app/models/address";
 import dishData from "./data/menuData/dishMoreInfo.json";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+  })
+);
 app.use(cookieParser());
 const PORT = 3000;
 
@@ -88,16 +93,6 @@ const startServer = async () => {
     await sequelize.sync({ force: false });
     console.log("Database synchronization successful");
 
-<<<<<<< Updated upstream
-    await User.create({
-      first_name: "Rosty",
-      last_name: "Bez",
-      email: "test@gmail.com",
-      phone: "47844994",
-      password: "qwerty",
-      role: "user"
-    });
-=======
     // await User.create({
     //   first_name: "Rosty",
     //   last_name: "Bez",
@@ -106,7 +101,6 @@ const startServer = async () => {
     //   password: "qwerty",
     //   role: "user",
     // });
->>>>>>> Stashed changes
     // Now you can start your server
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);

@@ -51,7 +51,7 @@ export const postLogin = async (
 ) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ where: { email: email } });
+    const user = await User.findOne({ where: { email: email } }); //move logic to services
 
     if (!user) {
       return res
@@ -60,14 +60,17 @@ export const postLogin = async (
     }
     const doMatch = await bcrypt.compare(password, user.password);
     if (!doMatch) {
-      res.status(401).json({ message: "Wrong password" });
+      return res.status(401).json({ message: "wrong-password" }); //for i18n - create key value pairs
     } else {
-      const accessToken = generateAccessToken(user.id.toString());
-      const refreshToken = generateRefreshToken(user.id.toString());
-      res
+      const accessToken = generateAccessToken(user.id);
+      const refreshToken = generateRefreshToken(user.id);
+      return res
         .status(201)
         .header("Authorization", `Bearer ${accessToken}`)
-        .cookie("refreshToken", refreshToken)
+        .cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          maxAge: 7 * 24 * 60 * 60 * 1000,
+        })
         .json({
           message: `Name ${user.first_name}`,
         });

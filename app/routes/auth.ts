@@ -3,8 +3,8 @@ import { postLogin, postSignup } from "../controllers/auth";
 
 const router = express.Router();
 
-router.post("/api/auth/sign-up", postSignup);
+router.post("/sign-up", postSignup);
 
-router.post("/api/auth/login", postLogin);
+router.post("/login", postLogin);
 
 export default router;

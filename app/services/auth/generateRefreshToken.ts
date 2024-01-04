@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const generateRefreshToken = (userId: string) => {
+export const generateRefreshToken = (userId: number) => {
   const payload = { userId };
   const secret: string | undefined = process.env.TOKEN_SECRET;
 

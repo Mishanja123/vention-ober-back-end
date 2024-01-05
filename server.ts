@@ -13,11 +13,15 @@ import Dish from "./app/models/dish";
 import Payment from "./app/models/payment";
 import Address from "./app/models/address";
 import dishData from "./data/menuData/dishMoreInfo.json";
+import menuList from "./data/menuData/menuData.json";
+import { registerRoutes } from "./app/utils/registerRoutes";
+const cors = require("cors");
 
 const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 async function connect() {
@@ -62,22 +66,27 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
   try {
     await Promise.all(
       dishData.map(async (dish) => {
-        await Dish.create({ ...dish, category: "chefs_pick" });
+        await Dish.create({
+          ...dish,
+          category: dish.category as "sunrise_specials" | "chefs_pick" | "culinary_classics" | "bar_bliss",
+        });
       })
     );
 
     res.status(201).json({ message: "Success" });
   } catch (error) {
-    console.error("Error creating test dish:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 import authRoutes from "./app/routes/auth";
-import dishRouter from "./app/routes/dish";
+// import dishRouter from "./app/routes/dish";
 
 app.use("/api/auth", authRoutes);
-app.use("/api/dishes", dishRouter);
+// app.use("/api/dishes", dishRouter);
+
+// Register routes using the registerRoutes function
+registerRoutes(app);
 
 const startServer = async () => {
   try {

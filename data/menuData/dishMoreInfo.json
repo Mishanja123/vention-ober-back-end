@@ -5,6 +5,7 @@
     "price": 27.5,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
+    "category": "sunrise_specials",
     "ingredients": [
       {
         "title": "Avocado",
@@ -26,6 +27,8 @@
     "price": 42.53,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
+    "category": "chefs_pick",
+
     "ingredients": [
       {
         "title": "Eggs",
@@ -47,6 +50,8 @@
     "price": 49.69,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
+    "category": "culinary_classics",
+
     "ingredients": [
       {
         "title": "Greek yogurt",
@@ -68,6 +73,8 @@
     "price": 13.27,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
+    "category": "bar_bliss",
+    
     "ingredients": [
       {
         "title": "Pancake mix",
@@ -89,6 +96,8 @@
     "price": 49.84,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 340,
+    "category": "chefs_pick",
+
     "ingredients": [
       {
         "title": "Quinoa",
@@ -114,6 +123,8 @@
     "price": 22.82,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
+    "category": "culinary_classics",
+
     "ingredients": [
       {
         "title": "Flour tortilla",
@@ -139,6 +150,8 @@
     "price": 28.75,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 270,
+    "category": "culinary_classics",
+    
     "ingredients": [
       {
         "title": "Frozen mango chunks",
@@ -164,6 +177,7 @@
     "price": 23.13,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 190,
+    "category": "culinary_classics",
     "ingredients": [
       {
         "title": "Bagel",
@@ -185,6 +199,8 @@
     "price": 38.67,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 270,
+    "category": "chefs_pick",
+
     "ingredients": [
       {
         "title": "Chia seeds",
@@ -210,6 +226,7 @@
     "price": 25.49,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 200,
+    "category": "chefs_pick",
     "ingredients": [
       {
         "title": "Sliced bread",
@@ -235,6 +252,7 @@
     "price": 47.23,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 370,
+    "category": "culinary_classics",
     "ingredients": [
       {
         "title": "Fettuccine pasta",
@@ -264,6 +282,7 @@
     "price": 37.17,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 430,
+    "category": "bar_bliss",
     "ingredients": [
       {
         "title": "Lasagna noodles",
@@ -289,6 +308,8 @@
     "price": 40.0,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
+    "category": "sunrise_specials",
+
     "ingredients": [
       {
         "title": "Spaghetti",
@@ -314,6 +335,8 @@
     "price": 43.64,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 340,
+    "category": "sunrise_specials",
+
     "ingredients": [
       {
         "title": "Romaine lettuce",
@@ -335,6 +358,8 @@
     "price": 11.97,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 350,
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Linguine pasta",
@@ -356,6 +381,8 @@
     "price": 41.51,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 350,
+    "category": "chefs_pick",
+
     "ingredients": [
       {
         "title": "Egg noodles",
@@ -377,6 +404,8 @@
     "price": 20.31,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 400,
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Pizza dough",
@@ -398,6 +427,8 @@
     "price": 10.02,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
+    "category": "sunrise_specials",
+
     "ingredients": [
       {
         "title": "Salmon fillet",
@@ -423,6 +454,7 @@
     "price": 22.59,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
+    "category": "sunrise_specials",
     "ingredients": [
       {
         "title": "Arborio rice",
@@ -444,6 +476,8 @@
     "price": 12.37,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Beef patty",
@@ -469,6 +503,8 @@
     "price": 30.01,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 350,
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Pizza dough",
@@ -494,6 +530,8 @@
     "price": 26.97,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 350,
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Chicken wings",
@@ -519,6 +557,8 @@
     "price": 11.31,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 340,
+    "category": "chefs_pick",
+
     "ingredients": [
       {
         "title": "Tortilla chips",
@@ -544,6 +584,8 @@
     "price": 26.45,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 230,
+    "category": "culinary_classics",
+
     "ingredients": [
       {
         "title": "Spinach",
@@ -569,6 +611,8 @@
     "price": 15.89,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
+    "category": "culinary_classics",
+
     "ingredients": [
       {
         "title": "Shrimp",
@@ -594,6 +638,8 @@
     "price": 6.28,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
+    "category": "culinary_classics",
+
     "ingredients": [
       {
         "title": "Onion rings",
@@ -615,6 +661,8 @@
     "price": 44.2,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Pulled pork",
@@ -640,6 +688,8 @@
     "price": 8.1,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Calamari rings",
@@ -665,6 +715,8 @@
     "price": 43.98,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 100,
+    "category": "sunrise_specials",
+
     "ingredients": [
       {
         "title": "Dry vermouth",
@@ -690,6 +742,7 @@
     "price": 30.92,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 90,
+    "category": "sunrise_specials",
     "ingredients": [
       {
         "title": "Vodka",

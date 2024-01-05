@@ -1,22 +1,14 @@
-import { Request, Response, NextFunction } from "express";
-import Dish from "../../models/dish";
+import { createHttpError } from "./../../helpers/createHttpError";
+import Dishes from "../../services/dishesRequests";
+import { ControllerFunction } from "../../types/ControllerFunction";
 
-export const getSpecificDish = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getSpecificDish: ControllerFunction = async (req, res, next) => {
   const { dishId } = req.params;
-  
-  try {
-    const dish = await Dish.findByPk(dishId);
+  const dish = await Dishes.getById(dishId);
 
-    if (!dish) {
-      return res.status(404).json({ error: "Dish not found" });
-    }
-
-    res.status(200).json({ dish });
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
+  if (!dish) {
+    throw createHttpError(404, "Dish not found");
   }
+
+  res.status(200).json({ dish });
 };

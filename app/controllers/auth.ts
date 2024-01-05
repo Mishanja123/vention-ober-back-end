@@ -1,5 +1,11 @@
 import User from "../models/user";
 import { Request, Response, NextFunction } from "express";
+import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+import { generateAccessToken } from "../services/auth/generateAccessToken";
+import { generateRefreshToken } from "../services/auth/generateRefreshToken";
+
+dotenv.config();
 
 export const postSignup = async (
   req: Request,
@@ -7,24 +13,28 @@ export const postSignup = async (
   next: NextFunction
 ) => {
   try {
+    console.log(req.body);
     const { first_name, last_name, email, phone, password } = req.body;
     const user = await User.findOne({ where: { email: email } });
 
     if (user) {
-      return res.status(422).json({ message: "Email already exists" });
+      return res.status(409).json({ message: "Email already exists" });
     }
 
+    const hashedPassword = await bcrypt.hash(password, 12);
     await User.create({
       first_name,
       last_name,
       email,
       phone,
-      password,
+      password: hashedPassword,
       role: "user",
     });
-    res.status(200).json({ message: "Signup successful" });
+    res.status(201).json({
+      message: `Signup successful`,
+    });
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error " + err });
   }
 };
 
@@ -41,15 +51,30 @@ export const postLogin = async (
 ) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ where: { email: email } });
+    const user = await User.findOne({ where: { email: email } }); //move logic to services
+
     if (!user) {
       return res
-        .status(422)
+        .status(401)
         .json({ message: "User with provided email doesn't exist" });
     }
-    res.status(200).json({
-      message: `Name: ${user.first_name}, Surname: ${user.last_name}, Email: ${user.email}, Phone: ${user.phone}, Role: ${user.role}`,
-    });
+    const doMatch = await bcrypt.compare(password, user.password);
+    if (!doMatch) {
+      return res.status(401).json({ message: "wrong-password" }); //for i18n - create key value pairs
+    } else {
+      const accessToken = generateAccessToken(user.id);
+      const refreshToken = generateRefreshToken(user.id);
+      return res
+        .status(201)
+        .header("Authorization", `Bearer ${accessToken}`)
+        .cookie("refreshToken", refreshToken, {
+          httpOnly: true,
+          maxAge: 7 * 24 * 60 * 60 * 1000,
+        })
+        .json({
+          message: `Name ${user.first_name}`,
+        });
+    }
   } catch (error) {
     res.status(500).json({ message: "Server error " + error });
   }

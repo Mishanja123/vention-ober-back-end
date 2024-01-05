@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import sequelize from "./config/database";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 import User from "./app/models/user";
 import UserAddress from "./app/models/user_address";
 import UserCreditCard from "./app/models/user_credit_card";
@@ -15,6 +17,13 @@ import Address from "./app/models/address";
 import dishData from "./data/menuData/dishMoreInfo.json";
 
 const app = express();
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+  })
+);
+app.use(cookieParser());
 const PORT = 3000;
 
 app.use(bodyParser.json());
@@ -81,17 +90,17 @@ app.use("/api/dishes", dishRouter);
 
 const startServer = async () => {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("Database synchronization successful");
 
-    await User.create({
-      first_name: "Rosty",
-      last_name: "Bez",
-      email: "test@gmail.com",
-      phone: "47844994",
-      password: "qwerty",
-      role: "user"
-    });
+    // await User.create({
+    //   first_name: "Rosty",
+    //   last_name: "Bez",
+    //   email: "test@gmail.com",
+    //   phone: "47844994",
+    //   password: "qwerty",
+    //   role: "user",
+    // });
     // Now you can start your server
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);

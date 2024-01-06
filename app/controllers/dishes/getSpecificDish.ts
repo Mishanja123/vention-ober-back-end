@@ -1,4 +1,4 @@
-import { createHttpError } from "./../../helpers/createHttpError";
+import createHttpError from "./../../helpers/createHttpError";
 import Dishes from "../../services/dishesRequests";
 import { ControllerFunction } from "../../types/ControllerFunction";
 

@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import bodyParser from "body-parser";
 import sequelize from "./config/database";
 import cors from "cors";
@@ -15,22 +15,22 @@ import Dish from "./app/models/dish";
 import Payment from "./app/models/payment";
 import Address from "./app/models/address";
 import dishData from "./data/menuData/dishMoreInfo.json";
-import menuList from "./data/menuData/menuData.json";
 import { registerRoutes } from "./app/utils/registerRoutes";
-const cors = require("cors");
 
+require("dotenv").config();
 const app = express();
+
 app.use(
   cors({
+    exposedHeaders: "Authorization",
     credentials: true,
-    origin: true,
+    origin: true
   })
 );
 app.use(cookieParser());
 const PORT = 3000;
 
 app.use(bodyParser.json());
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 async function connect() {
@@ -77,7 +77,11 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
       dishData.map(async (dish) => {
         await Dish.create({
           ...dish,
-          category: dish.category as "sunrise_specials" | "chefs_pick" | "culinary_classics" | "bar_bliss",
+          category: dish.category as
+            | "sunrise_specials"
+            | "chefs_pick"
+            | "culinary_classics"
+            | "bar_bliss"
         });
       })
     );
@@ -89,6 +93,7 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
 });
 
 import authRoutes from "./app/routes/auth";
+import createHttpError, { HttpError } from "./app/helpers/createHttpError";
 // import dishRouter from "./app/routes/dish";
 
 app.use("/api/auth", authRoutes);
@@ -96,6 +101,16 @@ app.use("/api/auth", authRoutes);
 
 // Register routes using the registerRoutes function
 registerRoutes(app);
+
+// Error handler
+app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
+  if (err) {
+    res.status(err.status).json({ error: err.message });
+  } else {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 const startServer = async () => {
   try {

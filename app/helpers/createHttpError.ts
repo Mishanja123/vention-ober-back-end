@@ -1,4 +1,4 @@
-interface HttpError extends Error {
+export interface HttpError extends Error {
   status: number;
 }
 
@@ -11,7 +11,7 @@ const messages: Record<number, string> = {
   500: "Internal Server Error",
 };
 
-export const createHttpError = (
+const createHttpError = (
   status: number,
   message: string = messages[status]
 ): HttpError => {

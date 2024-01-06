@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from "express";
+import { ControllerFunction } from "../types/ControllerFunction";
 
-interface ControllerFunction {
-  (req: Request, res: Response, next: NextFunction): Promise<void>;
-}
+
 
 interface MiddlewareFunction {
   (controller: ControllerFunction): (req: Request, res: Response, next: NextFunction) => Promise<void>;

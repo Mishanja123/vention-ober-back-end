@@ -6,6 +6,8 @@ import { generateAccessToken } from "../services/auth/generateAccessToken";
 import { generateRefreshToken } from "../services/auth/generateRefreshToken";
 import { ControllerFunction } from "../types/ControllerFunction";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import UserCredentials from "../models/user_credentials";
+import UserCredentialsAttributes from "../models/user_credentials";
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ export const postSignup = async (
   try {
     console.log(req.body);
     const { first_name, last_name, email, phone, password } = req.body;
+
     const user = await User.findOne({ where: { email: email } });
 
     if (user) {
@@ -24,13 +27,22 @@ export const postSignup = async (
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
+
+    const userCredentials = await UserCredentials.create(
+      {
+        password: hashedPassword,
+        role: "user"
+      } as UserCredentialsAttributes,
+      { fields: ["password", "role"] }
+    );
+
+    // Create User record with reference to UserCredentials
     await User.create({
       first_name,
       last_name,
       email,
       phone,
-      password: hashedPassword,
-      role: "user"
+      userCredentialsId: userCredentials.id
     });
     res.status(201).json({
       message: `Signup successful`
@@ -46,6 +58,7 @@ export const postSignup = async (
 //     "phone" : "57809812121",
 //     "password" : "qwerty1"
 
+// -------------------------------------------------------------------------------
 export const postLogin = async (
   req: Request,
   res: Response,
@@ -53,34 +66,55 @@ export const postLogin = async (
 ) => {
   try {
     const { email, password } = req.body;
+
     const user = await User.findOne({ where: { email: email } });
+
     if (!user) {
-      return res
-        .status(401)
-        .json({ message: "User with provided email doesn't exist" });
+      return res.status(401).json({
+        message: "User with provided email doesn't exist",
+      });
     }
-    const doMatch = await bcrypt.compare(password, user.password);
+
+    const userCredentials = await UserCredentials.findOne({
+      where: { id: user.userCredentialsId },
+    });
+
+    if (!userCredentials) {
+      return res.status(401).json({
+        message: "User credentials not found",
+      });
+    }
+
+    const doMatch = await bcrypt.compare(password, userCredentials.password);
+
     if (!doMatch) {
-      return res.status(401).json({ message: "wrong-password" });
+      return res.status(401).json({
+        message: "Wrong password",
+      });
     } else {
+      
       const accessToken = generateAccessToken(user.id);
       const refreshToken = generateRefreshToken(user.id);
+
       return res
         .status(200)
         .header("Authorization", `Bearer ${accessToken}`)
         .cookie("refreshToken", refreshToken, {
           httpOnly: true,
-          maxAge: 7 * 24 * 60 * 60 * 1000
+          maxAge: 7 * 24 * 60 * 60 * 1000,
         })
         .json({
-          message: `Name ${user.first_name}`
+          message: `Name ${user.first_name}`,
         });
     }
   } catch (error) {
-    res.status(500).json({ message: "Server error " + error });
+    res.status(500).json({
+      message: "Server error " + error,
+    });
   }
 };
 
+// ----------------------------------------------------------------------------------
 export const currentUser: ControllerFunction = async (req, res) => {
   try {
     const { first_name, email } = req.user!;
@@ -106,13 +140,13 @@ export const refreshTokens = (
   }
 
   try {
-    const { id } = jwt.verify(
+    const { userId } = jwt.verify(
       refreshToken,
       process.env.TOKEN_SECRET as string
     ) as JwtPayload;
 
-    const newAccessToken = generateAccessToken(id);
-    const newRefreshToken = generateRefreshToken(id);
+    const newAccessToken = generateAccessToken(userId);
+    const newRefreshToken = generateRefreshToken(userId);
 
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,

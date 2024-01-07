@@ -14,6 +14,8 @@ import OrderDish from "./app/models/order_dish";
 import Dish from "./app/models/dish";
 import Payment from "./app/models/payment";
 import Address from "./app/models/address";
+import UserCredentials from "./app/models/user_credentials";
+
 import dishData from "./data/menuData/dishMoreInfo.json";
 import { registerRoutes } from "./app/utils/registerRoutes";
 
@@ -68,7 +70,7 @@ User.hasMany(TableReservation);
 TableReservation.hasOne(User);
 TableReservation.hasMany(Table);
 Table.hasOne(TableReservation);
-
+User.hasOne(UserCredentials, { foreignKey: "id", onDelete: 'CASCADE' });
 //to add all data to db type in terminal:
 //curl -X POST -H "Content-Type: application/json" http://localhost:3000/createTestDish
 app.post("/createTestDish", async (req: Request, res: Response) => {

@@ -8,8 +8,7 @@ interface UserAttributes {
   last_name: string;
   email: string;
   phone: string;
-  password: string;
-  role: "user" | "admin";
+  userCredentialsId: number;
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
@@ -24,8 +23,7 @@ class User
   public last_name!: string;
   public email!: string;
   public phone!: string;
-  public password!: string;
-  public role!: "user" | "admin";
+  public userCredentialsId!: number;
 }
 
 User.init(
@@ -34,40 +32,41 @@ User.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     avatar: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     first_name: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING(50),
-      allowNull: false,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     phone: {
       type: DataTypes.STRING(16),
       allowNull: false,
-      unique: true,
+      unique: true
     },
-    password: {
-      type: DataTypes.STRING,
+    userCredentialsId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    role: {
-      type: DataTypes.ENUM("user", "admin"),
-    },
+      references: {
+        model: "UserCredentials",
+        key: "id"
+      }
+    }
   },
   {
     sequelize,
-    modelName: "User",
+    modelName: "User"
   }
 );
 

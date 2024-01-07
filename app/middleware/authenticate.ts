@@ -5,7 +5,6 @@ import { ControllerFunction } from "../types/ControllerFunction";
 
 const authenticate: ControllerFunction = async (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log("🚀 : authHeader", authHeader)
 
   if (!authHeader) {
     return next(createHttpError(401, "Access Denied. No token provided."));
@@ -16,12 +15,16 @@ const authenticate: ControllerFunction = async (req, res, next) => {
   if (!token || !bearer || bearer.toLowerCase() !== "bearer") {
     return next(createHttpError(401, "Invalid authorization header format."));
   }
+
   try {
-    const { id } = jwt.verify(
+    const { userId } = jwt.verify(
       token,
       process.env.TOKEN_SECRET as string
     ) as JwtPayload;
-    const user = await User.findOne(id);
+
+    const user = await User.findOne({
+      where: { id: userId }
+    });
 
     if (!user) {
       return next(createHttpError(404, "Invalid user."));

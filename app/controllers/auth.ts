@@ -4,6 +4,10 @@ import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import { generateAccessToken } from "../services/auth/generateAccessToken";
 import { generateRefreshToken } from "../services/auth/generateRefreshToken";
+import { ControllerFunction } from "../types/ControllerFunction";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import UserCredentials from "../models/user_credentials";
+import UserCredentialsAttributes from "../models/user_credentials";
 
 dotenv.config();
 
@@ -15,6 +19,7 @@ export const postSignup = async (
   try {
     console.log(req.body);
     const { first_name, last_name, email, phone, password } = req.body;
+
     const user = await User.findOne({ where: { email: email } });
 
     if (user) {
@@ -22,16 +27,25 @@ export const postSignup = async (
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
+
+    const userCredentials = await UserCredentials.create(
+      {
+        password: hashedPassword,
+        role: "user"
+      } as UserCredentialsAttributes,
+      { fields: ["password", "role"] }
+    );
+
+    // Create User record with reference to UserCredentials
     await User.create({
       first_name,
       last_name,
       email,
       phone,
-      password: hashedPassword,
-      role: "user",
+      userCredentialsId: userCredentials.id
     });
     res.status(201).json({
-      message: `Signup successful`,
+      message: `Signup successful`
     });
   } catch (err) {
     res.status(500).json({ message: "Server error " + err });
@@ -44,6 +58,7 @@ export const postSignup = async (
 //     "phone" : "57809812121",
 //     "password" : "qwerty1"
 
+// -------------------------------------------------------------------------------
 export const postLogin = async (
   req: Request,
   res: Response,
@@ -51,21 +66,38 @@ export const postLogin = async (
 ) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ where: { email: email } }); //move logic to services
+
+    const user = await User.findOne({ where: { email: email } });
 
     if (!user) {
-      return res
-        .status(401)
-        .json({ message: "User with provided email doesn't exist" });
+      return res.status(401).json({
+        message: "User with provided email doesn't exist",
+      });
     }
-    const doMatch = await bcrypt.compare(password, user.password);
+
+    const userCredentials = await UserCredentials.findOne({
+      where: { id: user.userCredentialsId },
+    });
+
+    if (!userCredentials) {
+      return res.status(401).json({
+        message: "User credentials not found",
+      });
+    }
+
+    const doMatch = await bcrypt.compare(password, userCredentials.password);
+
     if (!doMatch) {
-      return res.status(401).json({ message: "wrong-password" }); //for i18n - create key value pairs
+      return res.status(401).json({
+        message: "Wrong password",
+      });
     } else {
+      
       const accessToken = generateAccessToken(user.id);
       const refreshToken = generateRefreshToken(user.id);
+
       return res
-        .status(201)
+        .status(200)
         .header("Authorization", `Bearer ${accessToken}`)
         .cookie("refreshToken", refreshToken, {
           httpOnly: true,
@@ -76,6 +108,66 @@ export const postLogin = async (
         });
     }
   } catch (error) {
-    res.status(500).json({ message: "Server error " + error });
+    res.status(500).json({
+      message: "Server error " + error,
+    });
+  }
+};
+
+// ----------------------------------------------------------------------------------
+export const currentUser: ControllerFunction = async (req, res) => {
+  try {
+    const { first_name, email } = req.user!;
+
+    res.status(200).json({
+      first_name,
+      email
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const refreshTokens = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const refreshToken = req.cookies["refreshToken"];
+
+  if (!refreshToken) {
+    return res.status(403).json("Forbidden");
+  }
+
+  try {
+    const { userId } = jwt.verify(
+      refreshToken,
+      process.env.TOKEN_SECRET as string
+    ) as JwtPayload;
+
+    const newAccessToken = generateAccessToken(userId);
+    const newRefreshToken = generateRefreshToken(userId);
+
+    res.cookie("refreshToken", newRefreshToken, {
+      httpOnly: true,
+      sameSite: "strict"
+    });
+
+    res
+      .header("Authorization", `Bearer ${newAccessToken}`)
+      .json({ message: "Token refreshed successfully." });
+  } catch (error) {
+    return res.status(400).json({ message: "Invalid refresh token." });
+  }
+};
+
+export const logout = (req: Request, res: Response, next: NextFunction) => {
+  try {
+    res.clearCookie("refreshToken", { path: "/" });
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.error("Logout Error:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };

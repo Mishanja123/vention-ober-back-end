@@ -1,7 +1,5 @@
 import jwt, { Secret } from "jsonwebtoken";
-import dotenv from "dotenv";
 
-dotenv.config();
 
 export const generateRefreshToken = (userId: number) => {
   const payload = { userId };

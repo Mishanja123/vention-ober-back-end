@@ -9,7 +9,8 @@ export function router(app: Express) {
       "/api/dishes/recommendation-carousel",
       dishController.getRecommendationCarousel
     )
-    .get("/api/dishes/:dishId", dishController.getSpecificDish);
+    .get("/api/dishes/:dishId", dishController.getSpecificDish)
+    .post("/api/matched-dishes", dishController.getMatchedDishes);
 }
 
 export default router;

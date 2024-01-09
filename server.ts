@@ -26,7 +26,7 @@ app.use(
   cors({
     exposedHeaders: "Authorization",
     credentials: true,
-    origin: true
+    origin: true,
   })
 );
 app.use(cookieParser());
@@ -70,7 +70,8 @@ User.hasMany(TableReservation);
 TableReservation.hasOne(User);
 TableReservation.hasMany(Table);
 Table.hasOne(TableReservation);
-User.hasOne(UserCredentials, { foreignKey: "id", onDelete: 'CASCADE' });
+User.hasOne(UserCredentials, { foreignKey: "id", onDelete: "CASCADE" });
+
 //to add all data to db type in terminal:
 //curl -X POST -H "Content-Type: application/json" http://localhost:3000/createTestDish
 app.post("/createTestDish", async (req: Request, res: Response) => {
@@ -83,7 +84,7 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
             | "sunrise_specials"
             | "chefs_pick"
             | "culinary_classics"
-            | "bar_bliss"
+            | "bar_bliss",
         });
       })
     );
@@ -118,16 +119,6 @@ const startServer = async () => {
   try {
     await sequelize.sync({ force: false });
     console.log("Database synchronization successful");
-
-    // await User.create({
-    //   first_name: "Rosty",
-    //   last_name: "Bez",
-    //   email: "test@gmail.com",
-    //   phone: "47844994",
-    //   password: "qwerty",
-    //   role: "user",
-    // });
-    // Now you can start your server
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);
     });

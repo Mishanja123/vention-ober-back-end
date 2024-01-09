@@ -31,7 +31,7 @@ export const postSignup = async (
     const userCredentials = await UserCredentials.create(
       {
         password: hashedPassword,
-        role: "user"
+        role: "user",
       } as UserCredentialsAttributes,
       { fields: ["password", "role"] }
     );
@@ -42,10 +42,10 @@ export const postSignup = async (
       last_name,
       email,
       phone,
-      userCredentialsId: userCredentials.id
+      userCredentialsId: userCredentials.id,
     });
     res.status(201).json({
-      message: `Signup successful`
+      message: `Signup successful`,
     });
   } catch (err) {
     res.status(500).json({ message: "Server error " + err });
@@ -92,7 +92,6 @@ export const postLogin = async (
         message: "Wrong password",
       });
     } else {
-      
       const accessToken = generateAccessToken(user.id);
       const refreshToken = generateRefreshToken(user.id);
 
@@ -102,6 +101,8 @@ export const postLogin = async (
         .cookie("refreshToken", refreshToken, {
           httpOnly: true,
           maxAge: 7 * 24 * 60 * 60 * 1000,
+          secure: true,
+          sameSite: "none",
         })
         .json({
           message: `Name ${user.first_name}`,
@@ -121,7 +122,7 @@ export const currentUser: ControllerFunction = async (req, res) => {
 
     res.status(200).json({
       first_name,
-      email
+      email,
     });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
@@ -150,7 +151,7 @@ export const refreshTokens = (
 
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
-      sameSite: "strict"
+      sameSite: "strict",
     });
 
     res

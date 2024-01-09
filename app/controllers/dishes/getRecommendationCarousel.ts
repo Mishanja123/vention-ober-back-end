@@ -1,20 +1,12 @@
-import { Request, Response, NextFunction } from "express";
-import Dish from "../../models/dish";
+import { ControllerFunction } from "./../../types/ControllerFunction";
+import Dishes from "../../services/dishesRequests";
 
 
-export const getRecommendationCarousel = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+export const getRecommendationCarousel: ControllerFunction = async (
+  req,
+  res,
+  next
 ) => {
-  try {
-    const dishes = await Dish.findAll({
-      limit: 5,
-      order: [["createdAt", "DESC"]]
-    });
-
-    res.status(200).json({ dishes });
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+  const dishes = await Dishes.getRecent();
+  res.status(200).json({ dishes });
 };

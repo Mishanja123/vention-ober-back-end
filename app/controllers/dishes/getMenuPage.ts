@@ -1,17 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import Dish from "../../models/dish";
+import { ControllerFunction } from "./../../types/ControllerFunction";
+import Dishes from "../../services/dishesRequests";
 
 
-
-export const getMenuPage = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const dishes = await Dish.findAll();
-    res.status(200).json({ dishes });
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+export const getMenuPage: ControllerFunction = async (req, res, next) => {
+  const dishes = await Dishes.getAll();
+  res.status(200).json({ dishes });
 };

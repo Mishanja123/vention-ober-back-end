@@ -1,4 +1,5 @@
 import * as dishesRouter from "./dish";
+import * as usersRouter from "./users";
 import { Express } from "express";
 
 interface Routes {
@@ -7,6 +8,7 @@ interface Routes {
 
 const routes: Routes = {
   dishesRouter,
+  usersRouter,
 };
 
 export { routes };

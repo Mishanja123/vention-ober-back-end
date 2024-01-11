@@ -5,7 +5,7 @@
     "price": 27.5,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
-    "category": "sunrise_specials",
+    "category": "bar_bliss",
     "ingredients": [
       {
         "title": "Avocado",
@@ -27,7 +27,7 @@
     "price": 42.53,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
-    "category": "chefs_pick",
+    "category": "bar_bliss",
 
     "ingredients": [
       {
@@ -50,7 +50,7 @@
     "price": 49.69,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 300,
-    "category": "culinary_classics",
+    "category": "bar_bliss",
 
     "ingredients": [
       {
@@ -74,7 +74,7 @@
     "photo_path": "https://placehold.co/400",
     "weight_grams": 250,
     "category": "bar_bliss",
-    
+
     "ingredients": [
       {
         "title": "Pancake mix",
@@ -150,8 +150,8 @@
     "price": 28.75,
     "photo_path": "https://placehold.co/400",
     "weight_grams": 270,
-    "category": "culinary_classics",
-    
+    "category": "bar_bliss",
+
     "ingredients": [
       {
         "title": "Frozen mango chunks",

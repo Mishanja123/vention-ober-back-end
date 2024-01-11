@@ -4,6 +4,8 @@ import authenticate from "../middleware/authenticate";
 
 export function router(app: Express) {
   app.get("/api/users", authenticate, userController.getAllUsers);
+
+  app.patch("/api/users/:id", userController.updateUser);
 }
 
 export default router;

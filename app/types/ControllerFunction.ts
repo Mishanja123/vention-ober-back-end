@@ -7,3 +7,5 @@ export interface AuthenticatedRequest extends Request {
 export interface ControllerFunction {
   (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void>;
 }
+
+

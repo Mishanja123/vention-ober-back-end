@@ -1,4 +1,4 @@
-import jwt, { Secret } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 
 export const generateRefreshToken = (userId: number) => {

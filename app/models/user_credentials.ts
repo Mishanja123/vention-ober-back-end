@@ -1,42 +1,27 @@
-// userCredentials.ts
-import { DataTypes, Model } from "sequelize";
+// user_credentials.ts
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface UserCredentialsAttributes {
-  id: number;
-  password: string;
-  role: "user" | "admin";
-}
-
-class UserCredentials
-  extends Model<UserCredentialsAttributes>
-  implements UserCredentialsAttributes
-{
-  public id!: number;
-  public password!: string;
-  public role!: "user" | "admin";
-}
-
-UserCredentials.init(
+const UserCredentials = sequelize.define(
+  "UserCredentials",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     role: {
       type: DataTypes.ENUM("user", "admin"),
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
-    sequelize,
-    modelName: "UserCredentials"
+    modelName: "UserCredentials",
   }
 );
 

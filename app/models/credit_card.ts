@@ -1,33 +1,8 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface CreditCardAttributes {
-  id: number;
-  title: string;
-  card_number: string;
-  expire_month: number;
-  expire_year: number;
-  card_code: number;
-  name_on_card: string;
-}
-
-interface CreditCardCreationAttributes
-  extends Optional<CreditCardAttributes, "id"> {}
-
-class CreditCard
-  extends Model<CreditCardAttributes, CreditCardCreationAttributes>
-  implements CreditCardAttributes
-{
-  public id!: number;
-  public title!: string;
-  public card_number!: string;
-  public expire_month!: number;
-  public expire_year!: number;
-  public card_code!: number;
-  public name_on_card!: string;
-}
-
-CreditCard.init(
+const CreditCard = sequelize.define(
+  "CreditCard",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -61,7 +36,6 @@ CreditCard.init(
     },
   },
   {
-    sequelize,
     modelName: "CreditCard",
   }
 );

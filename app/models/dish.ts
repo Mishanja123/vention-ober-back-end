@@ -1,62 +1,29 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-export interface DishAttributes {
-  id: number;
-  title: string;
-  price: number;
-  photo_path: string | null;
-  ingredients: any;
-  category:
-    | "sunrise_specials"
-    | "culinary_classics"
-    | "bar_bliss"
-    | "chefs_pick";
-  weight_grams: number;
-}
-
-interface DishCreationAttributes
-  extends Optional<DishAttributes, "id" | "photo_path"> {}
-
-class Dish
-  extends Model<DishAttributes, DishCreationAttributes>
-  implements DishAttributes
-{
-  public id!: number;
-  public title!: string;
-  public price!: number;
-  public photo_path!: string | null;
-  public ingredients!: any;
-  public category!:
-    | "sunrise_specials"
-    | "culinary_classics"
-    | "bar_bliss"
-    | "chefs_pick";
-  public weight_grams!: number;
-}
-
-Dish.init(
+const Dish = sequelize.define(
+  "Dish",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     price: {
       type: DataTypes.DECIMAL,
-      allowNull: false
+      allowNull: false,
     },
     photo_path: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     ingredients: {
       type: DataTypes.JSONB,
-      allowNull: false
+      allowNull: false,
     },
     category: {
       type: DataTypes.ENUM(
@@ -65,16 +32,15 @@ Dish.init(
         "bar_bliss",
         "chefs_pick"
       ),
-      allowNull: false
+      allowNull: false,
     },
     weight_grams: {
       type: DataTypes.BIGINT,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
-    sequelize,
-    modelName: "Dish"
+    modelName: "Dish",
   }
 );
 

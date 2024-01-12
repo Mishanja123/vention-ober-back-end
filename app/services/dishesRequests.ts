@@ -1,4 +1,4 @@
-import Dish, { DishAttributes } from "../models/dish";
+import Dish from "../models/dish";
 import { Op } from "sequelize";
 import createHttpError from "../helpers/createHttpError";
 
@@ -8,7 +8,7 @@ const Dishes = {
   getRecent: async () =>
     await Dish.findAll({
       limit: 5,
-      order: [["createdAt", "DESC"]]
+      order: [["createdAt", "DESC"]],
     }),
 
   getById: async (dishId: string) => await Dish.findByPk(dishId),
@@ -16,15 +16,15 @@ const Dishes = {
     await Dish.findAll({
       where: {
         title: {
-          [Op.iLike]: `${dishQuery}%`
-        }
-      }
+          [Op.iLike]: `${dishQuery}%`,
+        },
+      },
     }),
-  postDish: async (dish: DishAttributes) => {
+  postDish: async (dish: any) => {
     return await Dish.create({ ...dish });
   },
 
-  updateDish: async (dishId: string, updatedData: Partial<Dish>) => {
+  updateDish: async (dishId: string, updatedData: Partial<typeof Dish>) => {
     const dish = await Dish.findByPk(dishId);
 
     if (!dish) {
@@ -36,7 +36,7 @@ const Dishes = {
     await dish.save();
 
     return dish;
-  }
+  },
 };
 
 export default Dishes;

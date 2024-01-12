@@ -1,8 +1,15 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
+import User from "./user";
 
-const Cart = sequelize.define(
-  "Cart",
+class Cart extends Model {
+  public id!: number;
+  public userId!: number;
+  public productId!: number;
+  public quantity!: number;
+}
+
+Cart.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -10,12 +17,26 @@ const Cart = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
   },
   {
+    sequelize,
     modelName: "Cart",
   }
 );
 
-// Cart.hasOne(User, { foreignKey: "cartId" });
+Cart.belongsTo(User, { foreignKey: "userId" });
 
 export default Cart;

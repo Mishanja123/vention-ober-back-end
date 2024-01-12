@@ -91,10 +91,8 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
 
 import authRoutes from "./app/routes/auth";
 import createHttpError, { HttpError } from "./app/helpers/createHttpError";
-// import dishRouter from "./app/routes/dish";
 
 app.use("/api/auth", authRoutes);
-// app.use("/api/dishes", dishRouter);
 
 // Register routes using the registerRoutes function
 registerRoutes(app);

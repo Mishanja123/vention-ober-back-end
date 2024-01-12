@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
-import User from "./user";
 
 const Cart = sequelize.define(
   "Cart",

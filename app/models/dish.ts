@@ -1,12 +1,12 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../../config/database";
 
-interface DishAttributes {
+export interface DishAttributes {
   id: number;
   title: string;
   price: number;
   photo_path: string | null;
-  ingredients: any; // You may want to replace 'any' with a more specific type for ingredients
+  ingredients: any;
   category:
     | "sunrise_specials"
     | "culinary_classics"
@@ -41,22 +41,22 @@ Dish.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     price: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: false
     },
     photo_path: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     ingredients: {
       type: DataTypes.JSONB,
-      allowNull: false,
+      allowNull: false
     },
     category: {
       type: DataTypes.ENUM(
@@ -65,16 +65,16 @@ Dish.init(
         "bar_bliss",
         "chefs_pick"
       ),
-      allowNull: false,
+      allowNull: false
     },
     weight_grams: {
       type: DataTypes.BIGINT,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     sequelize,
-    modelName: "Dish",
+    modelName: "Dish"
   }
 );
 

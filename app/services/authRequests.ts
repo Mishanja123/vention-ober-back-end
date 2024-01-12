@@ -1,7 +1,6 @@
 import User from "../models/user";
 import UserCredentials from "../models/user_credentials";
 import bcrypt from "bcryptjs";
-import UserCredentialsAttributes from "../models/user_credentials";
 import createHttpError from "../helpers/createHttpError";
 
 interface Data {
@@ -27,8 +26,8 @@ const Authentication = {
     const userCredentials = await UserCredentials.create(
       {
         password: hashedPassword,
-        role: "user"
-      } as UserCredentialsAttributes,
+        role: "user",
+      },
       { fields: ["password", "role"] }
     );
 
@@ -37,7 +36,7 @@ const Authentication = {
       last_name,
       email,
       phone,
-      userCredentialsId: userCredentials.id
+      userCredentialsId: userCredentials.dataValues.id,
     });
 
     return "Signup successful";
@@ -53,21 +52,24 @@ const Authentication = {
     }
 
     const userCredentials = await UserCredentials.findOne({
-      where: { id: user.userCredentialsId }
+      where: { id: user.dataValues.userCredentialsId },
     });
 
     if (!userCredentials) {
       throw createHttpError(401, "User credentials not found");
     }
 
-    const doMatch = await bcrypt.compare(password, userCredentials.password);
+    const doMatch = await bcrypt.compare(
+      password,
+      userCredentials.dataValues.password
+    );
 
     if (!doMatch) {
       throw createHttpError(401, "Wrong password or email");
     }
 
     return user;
-  }
+  },
 };
 
 export default Authentication;

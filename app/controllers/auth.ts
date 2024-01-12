@@ -7,7 +7,7 @@ import { generateRefreshToken } from "../services/auth/generateRefreshToken";
 import { ControllerFunction } from "../types/ControllerFunction";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import UserCredentials from "../models/user_credentials";
-import UserCredentialsAttributes from "../models/user_credentials";
+import Cart from "../models/cart";
 
 dotenv.config();
 
@@ -21,7 +21,6 @@ export const postSignup = async (
     const { first_name, last_name, email, phone, password } = req.body;
 
     const user = await User.findOne({ where: { email: email } });
-
     if (user) {
       return res.status(409).json({ message: "Email already exists" });
     }
@@ -32,18 +31,20 @@ export const postSignup = async (
       {
         password: hashedPassword,
         role: "user",
-      } as UserCredentialsAttributes,
+      },
       { fields: ["password", "role"] }
     );
-
-    // Create User record with reference to UserCredentials
-    await User.create({
+    console.log(userCredentials);
+    const newUser = await User.create({
       first_name,
       last_name,
       email,
       phone,
-      userCredentialsId: userCredentials.id,
+      userCredentialsId: userCredentials.dataValues.id,
     });
+    //@ts-ignore
+    await newUser.createCart();
+
     res.status(201).json({
       message: `Signup successful`,
     });
@@ -68,7 +69,7 @@ export const postLogin = async (
     const { email, password } = req.body;
 
     const user = await User.findOne({ where: { email: email } });
-
+    console.log(user);
     if (!user) {
       return res.status(401).json({
         message: "User with provided email doesn't exist",
@@ -76,7 +77,7 @@ export const postLogin = async (
     }
 
     const userCredentials = await UserCredentials.findOne({
-      where: { id: user.userCredentialsId },
+      where: { id: user.dataValues.userCredentialsId },
     });
 
     if (!userCredentials) {
@@ -85,16 +86,20 @@ export const postLogin = async (
       });
     }
 
-    const doMatch = await bcrypt.compare(password, userCredentials.password);
+    const doMatch = await bcrypt.compare(
+      password,
+      userCredentials.dataValues.password
+    );
 
     if (!doMatch) {
       return res.status(401).json({
         message: "Wrong password",
       });
     } else {
-      const accessToken = generateAccessToken(user.id);
-      const refreshToken = generateRefreshToken(user.id);
-
+      const accessToken = generateAccessToken(user.dataValues.id);
+      const refreshToken = generateRefreshToken(user.dataValues.id);
+      //@ts-ignore
+      console.log(await user.getCart());
       return res
         .status(200)
         .header("Authorization", `Bearer ${accessToken}`)
@@ -105,7 +110,7 @@ export const postLogin = async (
           sameSite: "none",
         })
         .json({
-          message: `Name ${user.first_name}`,
+          message: `Name ${user.dataValues.first_name}`,
         });
     }
   } catch (error) {

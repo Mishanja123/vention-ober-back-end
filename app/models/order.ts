@@ -1,32 +1,8 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface OrderAttributes {
-  id: number;
-  type: "reservation" | "reservation_with_preorder" | "take_away" | "delivery";
-  status: "active" | "paid" | "will_be_paid" | "completed" | "canceled";
-  user_address_id: string;
-  order_date: Date;
-}
-
-interface OrderCreationAttributes extends Optional<OrderAttributes, "id"> {}
-
-class Order
-  extends Model<OrderAttributes, OrderCreationAttributes>
-  implements OrderAttributes
-{
-  public id!: number;
-  public type!:
-    | "reservation"
-    | "reservation_with_preorder"
-    | "take_away"
-    | "delivery";
-  public status!: "active" | "paid" | "will_be_paid" | "completed" | "canceled";
-  public user_address_id!: string;
-  public order_date!: Date;
-}
-
-Order.init(
+const Order = sequelize.define(
+  "Order",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -62,7 +38,6 @@ Order.init(
     },
   },
   {
-    sequelize,
     modelName: "Order",
   }
 );

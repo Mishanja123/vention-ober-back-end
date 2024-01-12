@@ -1,72 +1,48 @@
-import { DataTypes, Model, Optional } from "sequelize";
+// user.ts
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface UserAttributes {
-  id: number;
-  avatar?: string | null;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  userCredentialsId: number;
-}
-
-interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
-
-class User
-  extends Model<UserAttributes, UserCreationAttributes>
-  implements UserAttributes
-{
-  public id!: number;
-  public avatar!: string | null;
-  public first_name!: string;
-  public last_name!: string;
-  public email!: string;
-  public phone!: string;
-  public userCredentialsId!: number;
-}
-
-User.init(
+const User = sequelize.define(
+  "User",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     avatar: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
     first_name: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     phone: {
       type: DataTypes.STRING(16),
       allowNull: false,
-      unique: true
+      unique: true,
     },
     userCredentialsId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: "UserCredentials",
-        key: "id"
-      }
-    }
+        key: "id",
+      },
+    },
   },
   {
-    sequelize,
-    modelName: "User"
+    modelName: "User",
   }
 );
 

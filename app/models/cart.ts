@@ -1,8 +1,9 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
+import User from "./user";
 
-const UserAddress = sequelize.define(
-  "UserAddress",
+const Cart = sequelize.define(
+  "Cart",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,8 +13,10 @@ const UserAddress = sequelize.define(
     },
   },
   {
-    modelName: "UserAddress",
+    modelName: "Cart",
   }
 );
 
-export default UserAddress;
+// Cart.hasOne(User, { foreignKey: "cartId" });
+
+export default Cart;

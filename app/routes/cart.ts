@@ -1,6 +1,6 @@
+import * as cartController from "../controllers/cart/cartControllers";
 import { Express } from "express";
 import authenticate from "../middleware/authenticate";
-import * as cartController from "../controllers/cart/cartControllers";
 
 export function router(app: Express) {
   app

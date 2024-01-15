@@ -6,11 +6,12 @@ import { generateRefreshToken } from "../../utils/auth/generateRefreshToken";
 
 export const getRefreshTokens: ControllerFunction = async (req, res, next) => {
   const refreshToken = req.cookies["refreshToken"];
-  console.log("🚀 : refreshToken", refreshToken)
+  console.log("🚀 : refreshToken", refreshToken);
 
   if (!refreshToken) {
     throw createHttpError(403);
   }
+  const COOKIEAGE = 7 * 24 * 60 * 60 * 1000;
 
   const { userId } = jwt.verify(
     refreshToken,
@@ -22,7 +23,8 @@ export const getRefreshTokens: ControllerFunction = async (req, res, next) => {
 
   res.cookie("refreshToken", newRefreshToken, {
     httpOnly: true,
-    sameSite: "strict"
+    sameSite: "strict",
+    maxAge: COOKIEAGE
   });
 
   res

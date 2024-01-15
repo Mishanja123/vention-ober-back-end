@@ -9,14 +9,16 @@ export const postSingIn: ControllerFunction = async (req, res, next) => {
   const accessToken = generateAccessToken(user.dataValues.id);
   const refreshToken = generateRefreshToken(user.dataValues.id);
 
+  const COOKIEAGE = 7 * 24 * 60 * 60 * 1000;
+
   res
     .status(200)
     .header("Authorization", `Bearer ${accessToken}`)
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      maxAge: COOKIEAGE
     })
     .json({
-      message: `Name ${user.dataValues.first_name}`,
+      message: `Name ${user.dataValues.first_name}`
     });
 };

@@ -3,7 +3,7 @@ import UserCredentials from "../models/user_credentials";
 import bcrypt from "bcryptjs";
 import createHttpError from "../helpers/createHttpError";
 
-interface Data {
+interface UserData {
   first_name: string;
   last_name: string;
   email: string;
@@ -12,7 +12,7 @@ interface Data {
 }
 
 const Authentication = {
-  createUser: async (data: Data) => {
+  createUser: async (data: UserData) => {
     const { first_name, last_name, email, phone, password } = data;
 
     const user = await User.findOne({ where: { email: email } });
@@ -44,14 +44,13 @@ const Authentication = {
 
     return "Signup successful";
   },
-  loginUser: async (data: Pick<Data, "email" | "password">) => {
+  loginUser: async (data: Pick<UserData, "email" | "password">) => {
     const { email, password } = data;
 
     const user = await User.findOne({ where: { email: email } });
-    2;
 
     if (!user) {
-      throw createHttpError(401, "User with provided email doesn't exist");
+      throw createHttpError(401, "Invalid credentials");
     }
 
     const userCredentials = await UserCredentials.findOne({

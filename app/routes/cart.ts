@@ -1,18 +1,17 @@
-import express from "express";
-import {
-  getCart,
-  addToCart,
-  removeFromCart,
-  clearCart,
-  updateCart,
-} from "../controllers/cart";
+import * as cartController from "../controllers/cart/cartControllers";
+import { Express } from "express";
+import authenticate from "../middleware/authenticate";
 
-const router = express.Router();
-
-router.get("/api/cart", getCart);
-router.post("/api/cart/add", addToCart);
-router.delete("/api/cart/remove", removeFromCart);
-router.delete("/api/cart/clear", clearCart);
-router.put("/api/cart/update", updateCart);
+export function router(app: Express) {
+  app
+    .get("/api/cart", authenticate, cartController.getCartItems)
+    .post("/api/cart/add", authenticate, cartController.addToCart)
+    .patch("/api/cart/update", authenticate, cartController.updateCartItem)
+    .delete(
+      "/api/cart/remove/:dishId",
+      authenticate,
+      cartController.removeFromCart
+    );
+}
 
 export default router;

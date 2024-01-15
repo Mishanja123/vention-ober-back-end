@@ -24,7 +24,7 @@ app.use(
   cors({
     exposedHeaders: "Authorization",
     credentials: true,
-    origin: true,
+    origin: true
   })
 );
 app.use(cookieParser());
@@ -50,7 +50,7 @@ UserAddress.hasMany(Address);
 Address.hasOne(UserAddress);
 User.hasMany(Order);
 Order.hasOne(User);
-Order.hasOne(TableReservation);
+Order.hasOne(TableReservation, { onDelete: 'CASCADE' });
 TableReservation.belongsTo(Order);
 Order.hasMany(OrderDish);
 OrderDish.hasOne(Order);
@@ -60,7 +60,7 @@ Payment.belongsTo(Order);
 Dish.belongsTo(OrderDish);
 User.hasMany(TableReservation);
 TableReservation.hasOne(User);
-TableReservation.hasMany(Table);
+TableReservation.hasMany(Table, { onDelete: "CASCADE" });
 Table.hasOne(TableReservation);
 User.hasOne(UserCredentials, { foreignKey: "id", onDelete: "CASCADE" });
 User.hasOne(Cart);
@@ -78,7 +78,7 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
             | "sunrise_specials"
             | "chefs_pick"
             | "culinary_classics"
-            | "bar_bliss",
+            | "bar_bliss"
         });
       })
     );
@@ -109,7 +109,7 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
 
 const startServer = async () => {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     console.log("Database synchronization successful");
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);

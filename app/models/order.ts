@@ -33,7 +33,7 @@ const Order = sequelize.define(
       type: DataTypes.STRING,
     },
     order_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },

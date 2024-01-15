@@ -26,18 +26,21 @@ const Authentication = {
     const userCredentials = await UserCredentials.create(
       {
         password: hashedPassword,
-        role: "user",
+        role: "user"
       },
       { fields: ["password", "role"] }
     );
 
-    await User.create({
+    const userCreated = await User.create({
       first_name,
       last_name,
       email,
       phone,
-      userCredentialsId: userCredentials.dataValues.id,
+      userCredentialsId: userCredentials.dataValues.id
     });
+
+    // @ts-ignore
+    await userCreated.createCart();
 
     return "Signup successful";
   },
@@ -52,7 +55,7 @@ const Authentication = {
     }
 
     const userCredentials = await UserCredentials.findOne({
-      where: { id: user.dataValues.userCredentialsId },
+      where: { id: user.dataValues.userCredentialsId }
     });
 
     if (!userCredentials) {
@@ -69,7 +72,7 @@ const Authentication = {
     }
 
     return user;
-  },
+  }
 };
 
 export default Authentication;

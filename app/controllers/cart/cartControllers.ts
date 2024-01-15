@@ -14,8 +14,8 @@ export const getCartItems: ControllerFunction = async (req, res, next) => {
 export const addToCart: ControllerFunction = async (req, res, next) => {
   try {
     const { productId, quantity } = req.body;
-    const userId = req.user.id;
-    await CartService.addToCart(userId, productId, quantity);
+
+    await CartService.addToCart(productId, quantity);
     res.status(201).json({ message: "Item added to the cart successfully" });
   } catch (error) {
     next(error);

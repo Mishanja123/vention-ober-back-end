@@ -5,7 +5,7 @@ import User from "./user";
 class Cart extends Model {
   public id!: number;
   public userId!: number;
-  public productId!: number;
+  public dishId!: number;
   public quantity!: number;
 }
 
@@ -21,7 +21,7 @@ Cart.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    productId: {
+    dishId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

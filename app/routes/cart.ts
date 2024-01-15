@@ -8,7 +8,7 @@ export function router(app: Express) {
     .post("/api/cart/add", authenticate, cartController.addToCart)
     .patch("/api/cart/update", authenticate, cartController.updateCartItem)
     .delete(
-      "/api/cart/remove/:productId",
+      "/api/cart/remove/:dishId",
       authenticate,
       cartController.removeFromCart
     );

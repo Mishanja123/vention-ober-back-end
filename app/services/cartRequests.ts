@@ -6,29 +6,26 @@ class CartService {
     return await Cart.findAll({ where: { userId } });
   }
 
-  static async addToCart(userId: number, productId: number, quantity: number) {
-    // Проверяем, существует ли уже товар в корзине пользователя
+  static async addToCart(dishId: number, quantity: number) {
     const existingCartItem = await Cart.findOne({
-      where: { userId, productId },
+      where: { userId, dishId },
     });
 
     if (existingCartItem) {
-      // Если существует, обновляем количество
       await existingCartItem.update({
         quantity: existingCartItem.quantity + quantity,
       });
     } else {
-      // Иначе, создаем новую запись
-      await Cart.create({ userId, productId, quantity });
+      await Cart.create({ userId, dishId, quantity });
     }
   }
 
   static async updateCartItem(
     userId: number,
-    productId: number,
+    dishId: number,
     quantity: number
   ) {
-    const cartItem = await Cart.findOne({ where: { userId, productId } });
+    const cartItem = await Cart.findOne({ where: { userId, dishId } });
 
     if (!cartItem) {
       throw createHttpError(404, "Cart item not found");
@@ -37,8 +34,8 @@ class CartService {
     await cartItem.update({ quantity });
   }
 
-  static async removeFromCart(userId: number, productId: string) {
-    const cartItem = await Cart.findOne({ where: { userId, productId } });
+  static async removeFromCart(userId: number, dishId: string) {
+    const cartItem = await Cart.findOne({ where: { userId, dishId } });
 
     if (!cartItem) {
       throw createHttpError(404, "Cart item not found");

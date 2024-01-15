@@ -15,5 +15,5 @@ export const postPayment: ControllerFunction = async (req, res, next) => {
     userId
   );
 
-  res.status(201).json(result)
+  res.status(201).json(result);
 };

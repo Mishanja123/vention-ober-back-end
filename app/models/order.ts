@@ -8,7 +8,7 @@ const Order = sequelize.define(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     type: {
       type: DataTypes.ENUM(
@@ -17,7 +17,7 @@ const Order = sequelize.define(
         "take_away",
         "delivery"
       ),
-      allowNull: false,
+      allowNull: false
     },
     status: {
       type: DataTypes.ENUM(
@@ -27,18 +27,21 @@ const Order = sequelize.define(
         "completed",
         "canceled"
       ),
-      allowNull: false,
+      allowNull: false
     },
     user_address_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
+    },
+    payment_id: {
+      type: DataTypes.STRING
     },
     order_date: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
-    modelName: "Order",
+    modelName: "Order"
   }
 );
 

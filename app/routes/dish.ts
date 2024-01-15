@@ -4,7 +4,7 @@ import authenticate from "../middleware/authenticate";
 
 export function router(app: Express) {
   app
-    .get("/api/dishes", authenticate, dishController.getMenuPage)
+    .get("/api/dishes", dishController.getMenuPage)
     .get(
       "/api/dishes/recommendation-carousel",
       dishController.getRecommendationCarousel

@@ -1,4 +1,3 @@
-import createHttpError from "../helpers/createHttpError";
 import TableReservation from "../models/table_reservation";
 import Order from "../models/order";
 import { AuthenticatedRequest } from "../types/ControllerFunction";
@@ -81,12 +80,22 @@ const Orders = {
   },
   deleteOrder: async (id: string) => {
     const existedOrder = await Order.findOne({
-      where: { UserId: id }
+      where: { id: id }
     });
 
     if (existedOrder) {
       await existedOrder.destroy();
       return "Order deleted successfully";
+    } else {
+      return "Order not found";
+    }
+  },
+  getOrder: async (id: string) => {
+    const existedOrder = await Order.findOne({
+      where: { id: id }
+    });
+    if (existedOrder) {
+      return existedOrder;
     } else {
       return "Order not found";
     }

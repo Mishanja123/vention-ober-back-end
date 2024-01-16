@@ -8,27 +8,27 @@ const TableReservation = sequelize.define(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     guests: {
       type: DataTypes.BIGINT,
-      allowNull: false,
+      allowNull: false
     },
     reservation_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false
     },
     reservation_time: {
-      type: DataTypes.DATE,
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false
     },
     with_preorder: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
-    modelName: "TableReservation",
+    modelName: "TableReservation"
   }
 );
 

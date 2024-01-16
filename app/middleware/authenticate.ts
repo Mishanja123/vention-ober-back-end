@@ -1,4 +1,4 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt, { JwtPayload, TokenExpiredError } from "jsonwebtoken";
 import createHttpError from "../helpers/createHttpError";
 import User from "../models/user";
 import { ControllerFunction } from "../types/ControllerFunction";
@@ -22,6 +22,10 @@ const authenticate: ControllerFunction = async (req, res, next) => {
       process.env.TOKEN_SECRET as string
     ) as JwtPayload;
 
+    if (!userId) {
+      return next(createHttpError(401, "Invalid token"));
+    }
+
     const user = await User.findOne({
       where: { id: userId }
     });
@@ -33,6 +37,11 @@ const authenticate: ControllerFunction = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
+    if (error instanceof TokenExpiredError) {
+      return next(createHttpError(401, "Token has expired."));
+    }
+
+    console.log("🚀 : error", error);
     next(error);
   }
 };

@@ -30,7 +30,7 @@ const User = sequelize.define(
     phone: {
       type: DataTypes.STRING(16),
       allowNull: false,
-      unique: true,
+      // unique: true,
     },
     userCredentialsId: {
       type: DataTypes.INTEGER,

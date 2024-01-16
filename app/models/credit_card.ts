@@ -8,35 +8,39 @@ const CreditCard = sequelize.define(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     card_number: {
       type: DataTypes.STRING(16),
-      allowNull: false,
+      allowNull: false
     },
     expire_month: {
       type: DataTypes.SMALLINT,
-      allowNull: false,
+      allowNull: false
     },
     expire_year: {
       type: DataTypes.SMALLINT,
-      allowNull: false,
+      allowNull: false
     },
     card_code: {
       type: DataTypes.BIGINT,
-      allowNull: false,
+      allowNull: false
     },
     name_on_card: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
+    user_id: {
+      type: DataTypes.SMALLINT,
+      allowNull: false
+    }
   },
   {
-    modelName: "CreditCard",
+    modelName: "CreditCard"
   }
 );
 

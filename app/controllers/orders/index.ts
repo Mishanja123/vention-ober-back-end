@@ -1,10 +1,12 @@
 import { errorHandlerMiddleware } from "./../../middleware/errorHandlerMiddleware ";
-import { getAllOrders } from "./getAllOrders";
-import { updateOrder } from "./updateOrder";
-import { deleteOrderById } from "./deleteOrderById";
+import { postReservation } from "./postReservation";
+import { postOrder } from "./postOrder";
+import { deleteOrder } from "./deleteOrder";
+import { getOrder } from "./getOrder";
 
 export default {
-  getAllOrders: errorHandlerMiddleware(getAllOrders),
-  updateOrder: errorHandlerMiddleware(updateOrder),
-  deleteOrderById: errorHandlerMiddleware(deleteOrderById),
+  postReservation: errorHandlerMiddleware(postReservation),
+  postOrder: errorHandlerMiddleware(postOrder),
+  deleteOrder: errorHandlerMiddleware(deleteOrder),
+  getOrder: errorHandlerMiddleware(getOrder)
 };

@@ -1,17 +1,14 @@
-import express from "express";
-import auth from "../controllers/auth";
+import authController from "../controllers/auth";
+import { Express } from "express";
 import authenticate from "../middleware/authenticate";
 
-const router = express.Router();
-
-router.post("/sign-up", auth.postSingUp);
-
-router.post("/login", auth.postSingIn);
-
-router.get("/current-user", authenticate, auth.getCurrentUser);
-
-router.get("/refresh", auth.getRefreshTokens);
-
-router.get("/logout", auth.postLogOut);
+export function router(app: Express) {
+  app
+    .post("/api/auth/sign-up", authController.postSingUp)
+    .post("/api/auth/login", authController.postSingIn)
+    .get("/api/auth/current-user", authenticate, authController.getCurrentUser)
+    .get("/api/auth/refresh", authController.getRefreshTokens)
+    .get("/api/auth/logout", authController.postLogOut);
+}
 
 export default router;

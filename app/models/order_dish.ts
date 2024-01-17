@@ -1,25 +1,8 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface OrderDishAttributes {
-  id: number;
-  quantity: number;
-  subtotal: number;
-}
-
-interface OrderDishCreationAttributes
-  extends Optional<OrderDishAttributes, "id"> {}
-
-class OrderDish
-  extends Model<OrderDishAttributes, OrderDishCreationAttributes>
-  implements OrderDishAttributes
-{
-  public id!: number;
-  public quantity!: number;
-  public subtotal!: number;
-}
-
-OrderDish.init(
+const OrderDish = sequelize.define(
+  "OrderDish",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -36,7 +19,6 @@ OrderDish.init(
     },
   },
   {
-    sequelize,
     modelName: "OrderDish",
   }
 );

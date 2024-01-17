@@ -1,23 +1,17 @@
 import express from "express";
-import {
-  currentUser,
-  postLogin,
-  postSignup,
-  refreshTokens,
-  logout
-} from "../controllers/auth";
+import auth from "../controllers/auth";
 import authenticate from "../middleware/authenticate";
 
 const router = express.Router();
 
-router.post("/sign-up", postSignup);
+router.post("/sign-up", auth.postSingUp);
 
-router.post("/login", postLogin);
+router.post("/login", auth.postSingIn);
 
-router.get("/current-user", authenticate, currentUser);
+router.get("/current-user", authenticate, auth.getCurrentUser);
 
-router.get("/refresh", refreshTokens);
+router.get("/refresh", auth.getRefreshTokens);
 
-router.get("/logout", logout);
+router.get("/logout", auth.postLogOut);
 
 export default router;

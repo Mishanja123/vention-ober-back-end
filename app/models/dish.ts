@@ -1,41 +1,8 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface DishAttributes {
-  id: number;
-  title: string;
-  price: number;
-  photo_path: string | null;
-  ingredients: any; // You may want to replace 'any' with a more specific type for ingredients
-  category:
-    | "sunrise_specials"
-    | "culinary_classics"
-    | "bar_bliss"
-    | "chefs_pick";
-  weight_grams: number;
-}
-
-interface DishCreationAttributes
-  extends Optional<DishAttributes, "id" | "photo_path"> {}
-
-class Dish
-  extends Model<DishAttributes, DishCreationAttributes>
-  implements DishAttributes
-{
-  public id!: number;
-  public title!: string;
-  public price!: number;
-  public photo_path!: string | null;
-  public ingredients!: any;
-  public category!:
-    | "sunrise_specials"
-    | "culinary_classics"
-    | "bar_bliss"
-    | "chefs_pick";
-  public weight_grams!: number;
-}
-
-Dish.init(
+const Dish = sequelize.define(
+  "Dish",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -73,7 +40,6 @@ Dish.init(
     },
   },
   {
-    sequelize,
     modelName: "Dish",
   }
 );

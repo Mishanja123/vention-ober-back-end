@@ -1,24 +1,8 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface PaymentAttributes {
-  id: number;
-  type: "offline" | "online";
-  status: "pending" | "failed" | "succeed";
-}
-
-interface PaymentCreationAttributes extends Optional<PaymentAttributes, "id"> {}
-
-class Payment
-  extends Model<PaymentAttributes, PaymentCreationAttributes>
-  implements PaymentAttributes
-{
-  public id!: number;
-  public type!: "offline" | "online";
-  public status!: "pending" | "failed" | "succeed";
-}
-
-Payment.init(
+const Payment = sequelize.define(
+  "Payment",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -36,7 +20,6 @@ Payment.init(
     },
   },
   {
-    sequelize,
     modelName: "Payment",
   }
 );

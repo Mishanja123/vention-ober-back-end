@@ -1,21 +1,8 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-interface UserAddressAttributes {
-  id: number;
-}
-
-interface UserAddressCreationAttributes
-  extends Optional<UserAddressAttributes, "id"> {}
-
-class UserAddress
-  extends Model<UserAddressAttributes, UserAddressCreationAttributes>
-  implements UserAddressAttributes
-{
-  public id!: number;
-}
-
-UserAddress.init(
+const UserAddress = sequelize.define(
+  "UserAddress",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -25,7 +12,6 @@ UserAddress.init(
     },
   },
   {
-    sequelize,
     modelName: "UserAddress",
   }
 );

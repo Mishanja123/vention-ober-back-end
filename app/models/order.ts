@@ -1,5 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
+import User from "./user";
+import TableReservation from "./table_reservation";
+import Payment from "./payment";
 
 const Order = sequelize.define(
   "Order",
@@ -44,5 +47,6 @@ const Order = sequelize.define(
     modelName: "Order"
   }
 );
+
 
 export default Order;

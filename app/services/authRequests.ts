@@ -40,7 +40,13 @@ const Authentication = {
     });
 
     // @ts-ignore
-    await userCreated.createCart();
+    await userCreated.createCart({
+      // @ts-ignore
+      userId: userCreated.id,
+      total: 0,
+      subTotal: 0,
+      dishes: []
+    });
 
     return "Signup successful";
   },

@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
+import TableReservation from "./table_reservation";
 
 const Table = sequelize.define(
   "Table",
@@ -23,5 +24,8 @@ const Table = sequelize.define(
     modelName: "Table",
   }
 );
+
+
+
 
 export default Table;

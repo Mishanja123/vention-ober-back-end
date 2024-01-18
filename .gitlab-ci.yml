@@ -1,0 +1,17 @@
+variables:
+  IMAGE_NAME: obar-backend
+  IMAGE_TAG: latest
+  ECR_REGISTRY: public.ecr.aws/m4g5m4m1
+
+build_image:
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_REGISTRY
+  script:
+    - docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG .
+    - docker push $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG

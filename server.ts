@@ -76,7 +76,7 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
 
 const startServer = async () => {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("Database synchronization successful");
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);

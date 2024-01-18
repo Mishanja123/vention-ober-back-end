@@ -1,8 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
-import User from "./user";
-import Table from "./table";
-import Order from "./order";
 
 const TableReservation = sequelize.define(
   "TableReservation",

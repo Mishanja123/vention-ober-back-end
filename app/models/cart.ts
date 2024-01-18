@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 import User from "./user";
-import Dish from "./dish";
 
 interface DishData {
   id: number;

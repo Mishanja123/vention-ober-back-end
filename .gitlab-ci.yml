@@ -1,7 +1,7 @@
 variables:
   IMAGE_NAME: obar-backend
   IMAGE_TAG: latest
-  ECR_REGISTRY: public.ecr.aws/m4g5m4m1/obar-backend
+  ECR_REGISTRY: 510481412586.dkr.ecr.eu-central-1.amazonaws.com
 
 build_image:
   stage: build

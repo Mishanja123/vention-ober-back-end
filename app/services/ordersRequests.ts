@@ -56,7 +56,6 @@ const Orders = {
 
     // @ts-ignore
     await reservation.createTable({
-      status: "reserved",
       seats: guestExpected
     });
 

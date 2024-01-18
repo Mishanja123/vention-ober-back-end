@@ -1,7 +1,7 @@
 variables:
   IMAGE_NAME: obar-backend
   IMAGE_TAG: latest
-  ECR_REGISTRY: public.ecr.aws/m4g5m4m1/obar-backend
+  ECR_REGISTRY: 510481412586.dkr.ecr.eu-central-1.amazonaws.com
 
 build_image:
   stage: build
@@ -13,5 +13,5 @@ build_image:
   before_script:
     - echo $AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY | docker login --username AWS --password-stdin $ECR_REGISTRY
   script:
-    - docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG .
-    - docker push $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
+    - docker build -t $ECR_REGISTRY/$IMAGE_NAME:$CI_PIPELINE_IID .
+    - docker push $ECR_REGISTRY/$IMAGE_NAME:$CI_PIPELINE_IID

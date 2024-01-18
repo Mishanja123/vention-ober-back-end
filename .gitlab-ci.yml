@@ -11,7 +11,7 @@ build_image:
   variables:
     DOCKER_TLS_CERTDIR: "/certs"
   before_script:
-    - echo $AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY | docker login --username AWS --password-stdin $ECR_REGISTRY
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $ECR_REGISTRY
   script:
     - docker build -t $ECR_REGISTRY/$IMAGE_NAME:$CI_PIPELINE_IID .
     - docker push $ECR_REGISTRY/$IMAGE_NAME:$CI_PIPELINE_IID

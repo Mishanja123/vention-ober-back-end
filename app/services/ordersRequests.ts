@@ -1,6 +1,7 @@
 import TableReservation from "../models/table_reservation";
 import Order from "../models/order";
 import { AuthenticatedRequest } from "../types/ControllerFunction";
+import Cart from "../models/cart";
 
 interface ReservationData {
   reservation_date: Date;
@@ -39,12 +40,18 @@ const Orders = {
       ? "reservation_with_preorder"
       : "reservation";
 
+    const existedCart = await Cart.findOne({
+      where: { userId: req.user.id }
+    });
+
     // @ts-ignore
     const table = await reservation.createOrder({
       UserId: req.user.id,
       type: orderType,
       status: "active",
-      order_date: reservation_date + " " + reservation_time
+      order_date: reservation_date + " " + reservation_time,
+      dishes: existedCart?.dishes,
+      guests: guests
     });
 
     // @ts-ignore
@@ -52,6 +59,7 @@ const Orders = {
       status: "reserved",
       seats: guestExpected
     });
+
     return table;
   },
   postOrder: async ({ order_date, type, time, req }: OrderType) => {
@@ -59,24 +67,19 @@ const Orders = {
       where: { UserId: req.user.id }
     });
 
-    if (existedOrder) {
-      const updatedOrder = await existedOrder.update({
-        order_date: order_date + " " + time,
-        type,
-        status: "active"
-      });
+    const existedCart = await Cart.findOne({
+      where: { userId: req.user.id }
+    });
 
-      return updatedOrder;
-    } else {
-      const newOrder = await Order.create({
-        order_date: order_date + " " + time,
-        type,
-        UserId: req.user.id,
-        status: "active"
-      });
+    const newOrder = await Order.create({
+      order_date: order_date + " " + time,
+      type,
+      UserId: req.user.id,
+      status: "active",
+      dishes: existedCart?.dishes
+    });
 
-      return newOrder;
-    }
+    return newOrder;
   },
   deleteOrder: async (id: string) => {
     const existedOrder = await Order.findOne({
@@ -99,6 +102,11 @@ const Orders = {
     } else {
       return "Order not found";
     }
+  },
+  getAllOrders: async (userId: number) => {
+    return await Order.findAll({
+      where: { UserId: userId }
+    });
   }
 };
 

@@ -1,8 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
-import User from "./user";
-import TableReservation from "./table_reservation";
-import Payment from "./payment";
 
 const Order = sequelize.define(
   "Order",
@@ -41,12 +38,20 @@ const Order = sequelize.define(
     order_date: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    guests: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    dishes: {
+      type: DataTypes.ARRAY(DataTypes.JSONB),
+      allowNull: true,
+      defaultValue: []
     }
   },
   {
     modelName: "Order"
   }
 );
-
 
 export default Order;

@@ -1,4 +1,3 @@
-// user_credentials.ts
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 

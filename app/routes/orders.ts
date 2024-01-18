@@ -10,6 +10,7 @@ export function router(app: Express) {
     ordersController.postReservation
   );
   app.post("/api/orders", authenticate, ordersController.postOrder);
+  app.get("/api/orders", authenticate, ordersController.getAllOrders);
   app.delete("/api/orders/:id", authenticate, ordersController.deleteOrder);
   app.get("/api/orders/:id", authenticate, ordersController.getOrder);
 }

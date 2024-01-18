@@ -1,6 +1,7 @@
 import CreditCard from "../models/credit_card";
 import Payments from "../models/payment";
 import Order from "../models/order";
+import Cart from "../models/cart";
 
 const Payment = {
   postCreditCard: async (
@@ -30,11 +31,12 @@ const Payment = {
   postPaymentDetails: async (
     type: string,
     dishId: string,
-    paymentId: string
+    paymentId: string,
+    userId: number
   ) => {
     try {
       const orderPaymentCard = await Order.update(
-        { paymentId: paymentId },
+        { payment_id: paymentId },
         { where: { id: dishId } }
       );
 
@@ -45,7 +47,14 @@ const Payment = {
         status: "pending"
       });
 
-
+      const userCart = await Cart.update(
+        {
+          total: 0,
+          subTotal: 0,
+          dishes: []
+        },
+        { where: { userId } }
+      );
 
       return res;
     } catch (error) {

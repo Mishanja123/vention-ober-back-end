@@ -1,7 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
-import User from "./user";
-import Address from "./address";
 
 const UserAddress = sequelize.define(
   "UserAddress",

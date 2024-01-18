@@ -7,10 +7,8 @@ export const postPaymentDetails: ControllerFunction = async (
   next
 ) => {
   const { type, dishId, paymentId } = req.body;
-  console.log("🚀 : paymentId", paymentId)
-  console.log("🚀 : dishId", dishId)
-  console.log("🚀 : type", type)
-  const result = await Payment.postPaymentDetails(type, dishId, paymentId);
+  const { id } = req.user;
+  const result = await Payment.postPaymentDetails(type, dishId, paymentId, id);
 
   res.status(201).json(result);
 };

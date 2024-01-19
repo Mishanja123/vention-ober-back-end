@@ -1,7 +1,15 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-type AvailableTime = '09:00' | '10:00' | '11:00' | '12:00' | '13:00' | '14:00' | '15:00' | '16:00' | '17:00' | '18:00' | '19:00' | '20:00' | '21:00';
+type AvailableTime =
+  | "09:00"
+  | "11:00"
+  | "12:00"
+  | "14:00"
+  | "16:00"
+  | "18:00"
+  | "20:00"
+  | "22:00";
 
 interface TimeSlot {
   weekDay: Date;
@@ -20,20 +28,20 @@ Table.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     timeSlots: {
       type: DataTypes.ARRAY(DataTypes.JSONB),
-      allowNull: true,
+      allowNull: true
     },
     seats: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     sequelize,
-    modelName: "Table",
+    modelName: "Table"
   }
 );
 

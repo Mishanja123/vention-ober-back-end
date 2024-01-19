@@ -28,7 +28,7 @@ build-docker-image:
     - apk add --no-cache curl jq python3 py3-pip     
   script:
     - docker build -t $APP_NAME .
-    - docker tag obar-backend:1.0 510481412586.dkr.ecr.eu-central-1.amazonaws.com/obar-backend:1.0 
+    - docker tag obar-backend:latest 510481412586.dkr.ecr.eu-central-1.amazonaws.com/obar-backend:latest 
     
 push-image-to-aws-ecr:
   stage: push-image-to-aws-ecr
@@ -44,4 +44,4 @@ push-image-to-aws-ecr:
     - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 510481412586.dkr.ecr.eu-central-1.amazonaws.com 
   script:
     - echo "Pushing image to ECR..."
-    - docker push 510481412586.dkr.ecr.eu-central-1.amazonaws.com\obar-backend:1.0    
+    - docker push 510481412586.dkr.ecr.eu-central-1.amazonaws.com\obar-backend:latest    

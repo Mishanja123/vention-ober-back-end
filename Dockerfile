@@ -19,11 +19,9 @@ USER node
 
 WORKDIR /usr/src/app
 
+RUN mkdir -p /usr/src/app/node_modules && chmod +rwx /usr/src/app/node_modules
+
 COPY package*.json ./
-
-RUN mkdir -p /usr/src/app/node_modules && chmod -R 777 /usr/src/app/node_modules
-
-RUN chown -R node /usr/src/app/node_modules
 
 RUN npm ci --production
 

@@ -35,7 +35,7 @@ push-image-to-aws-ecr:
     name: amazon/aws-cli
     entrypoint: [""]
   services:
-    - name: docker:20.10-dind
+    - name: docker:dind
   before_script:
     - apk add --no-cache curl jq python3 py3-pip
     - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $DOCKER_REGISTRY    
@@ -44,4 +44,5 @@ push-image-to-aws-ecr:
     - docker --version
   script:
     - docker info
+    - echo "Pushing image to ECR..."
     - docker push $DOCKER_REGISTRY\$APP_NAME:$TAG    

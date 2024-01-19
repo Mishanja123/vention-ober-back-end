@@ -3,7 +3,7 @@ variables:
   APP_NAME: obar-backend
   AWS_DEFAULT_REGION: eu-central-1
   TAG: latest
-  DOCKER_HOST: tcp:\\docker:2375
+  DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
   

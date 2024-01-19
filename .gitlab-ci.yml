@@ -33,10 +33,13 @@ push-image-to-aws-ecr:
   image:
     name: amazon/aws-cli
     entrypoint: [""]
+  services:
+    - name: docker:20.10-dind
   before_script:
     - amazon-linux-extras install -y docker
     - aws --version
     - docker --version
   script:
+    - docker info
     - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $DOCKER_REGISTRY
     - docker push $DOCKER_REGISTRY/$APP_NAME:$TAG

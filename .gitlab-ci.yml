@@ -1,5 +1,5 @@
 variables:
-  DOCKER_REGISTRY: public.ecr.aws/m4g5m4m1
+  DOCKER_REGISTRY: 510481412586.dkr.ecr.eu-central-1.amazonaws.com
   APP_NAME: obar-backend
   AWS_DEFAULT_REGION: eu-central-1
   TAG: latest

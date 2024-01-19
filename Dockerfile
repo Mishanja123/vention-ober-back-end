@@ -15,7 +15,8 @@ FROM node:slim
 ENV NODE_ENV production
 USER node
 
-RUN mkdir /usr/src/app && chown node:node /usr/src/app
+RUN mkdir /usr/src/app 
+RUN chown node:node /usr/src/app
 
 WORKDIR /usr/src/app
 

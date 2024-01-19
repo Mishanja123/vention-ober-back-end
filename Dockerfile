@@ -19,7 +19,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN mkdir -p /usr/src/app/node_modules && chmod -R 777 /usr/src/app/node_modules
+RUN chmod a+x /usr/src/app/node_modules
 
 RUN npm ci --production
 

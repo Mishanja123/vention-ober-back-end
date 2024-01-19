@@ -30,18 +30,18 @@ build-docker-image:
     - docker build -t $APP_NAME .
     - docker tag $APP_NAME:latest $DOCKER_REGISTRY/$APP_NAME:$TAG 
     
-# push-image-to-aws-ecr:
-#   stage: push-image-to-aws-ecr
-#   image:
-#     name: amazon/aws-cli
-#     entrypoint: [""]
-#   services:
-#     - name: docker:dind
-#   before_script:
-#     - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $DOCKER_REGISTRY    
-#     - amazon-linux-extras install -y docker
-#     - aws --version
-#     - docker --version
-#   script:
-#     - echo "Pushing image to ECR..."
-#     - docker push $DOCKER_REGISTRY\$APP_NAME:$TAG    
+push-image-to-aws-ecr:
+  stage: push-image-to-aws-ecr
+  image:
+    name: amazon/aws-cli
+    entrypoint: [""]
+  services:
+    - name: docker:dind
+  before_script:
+    - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $DOCKER_REGISTRY    
+    - amazon-linux-extras install -y docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "Pushing image to ECR..."
+    - docker push $DOCKER_REGISTRY\$APP_NAME:$TAG    

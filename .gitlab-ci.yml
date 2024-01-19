@@ -1,13 +1,14 @@
 variables:
   DOCKER_REGISTRY: public.ecr.aws/m4g5m4m1
   APP_NAME: obar-backend
+  AWS_DEFAULT_REGION: eu-central-1
   TAG: latest
-
+  
 stages:
   - build
   - build-docker-image
   - push-image-to-aws-ecr
-
+  
 build:
   stage: build
   image: node:14
@@ -22,12 +23,12 @@ build-docker-image:
   stage: build-docker-image
   image: docker:20.10
   services:
-    - docker:dind
+    - docker:dind      
   script:
     - docker info
     - docker build -t $APP_NAME .
-    - docker tag $APP_NAME:latest $DOCKER_REGISTRY/$APP_NAME:$TAG
-
+    - docker tag $APP_NAME:latest $DOCKER_REGISTRY/$APP_NAME:$TAG  
+    
 push-image-to-aws-ecr:
   stage: push-image-to-aws-ecr
   image:
@@ -36,10 +37,12 @@ push-image-to-aws-ecr:
   services:
     - name: docker:20.10-dind
   before_script:
+    - apk add --no-cache curl jq python3 py3-pip
+    - pip install awscli
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY    
     - amazon-linux-extras install -y docker
     - aws --version
     - docker --version
   script:
     - docker info
-    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $DOCKER_REGISTRY
-    - docker push $DOCKER_REGISTRY/$APP_NAME:$TAG
+    - docker push $DOCKER_REGISTRY\$APP_NAME:$TAG    

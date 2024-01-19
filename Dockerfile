@@ -1,23 +1,18 @@
 FROM node as builder
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/
 
-COPY package*.json ./
+COPY package*.json ./usr/src/app/
 
-RUN npm ci
+RUN npm install
 
-COPY . .
+COPY . ./usr/src/app/
+
+RUN chmod a+x /usr/src/app/node_modules/
 
 RUN npm run build
 
 FROM node:slim
-
-ENV NODE_ENV production
-USER node
-
-WORKDIR /usr/src/app
-
-RUN npm ci --production
 
 COPY --from=builder /usr/src/app/build ./build
 

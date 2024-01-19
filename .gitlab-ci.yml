@@ -38,7 +38,6 @@ push-image-to-aws-ecr:
     - name: docker:20.10-dind
   before_script:
     - apk add --no-cache curl jq python3 py3-pip
-    - pip install awscli
     - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY    
     - amazon-linux-extras install -y docker
     - aws --version

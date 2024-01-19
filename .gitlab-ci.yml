@@ -1,20 +1,17 @@
 variables:
-  DOCKER_REGISTRY: 510481412586.dkr.ecr.eu-central-1.amazonaws.com
+  ECR_REGISTRY: 510481412586.dkr.ecr.eu-central-1.amazonaws.com
   APP_NAME: obar-backend
   AWS_DEFAULT_REGION: eu-central-1
   TAG: latest
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ""
-  
+
 stages:
   - build
   - build-docker-image
   - push-image-to-aws-ecr
-  
+
 build:
   stage: build
-  image: node:16
+  image: node:14
   script:
     - npm install
     - npm run build
@@ -24,28 +21,17 @@ build:
 
 build-docker-image:
   stage: build-docker-image
-  image: docker:latest
+  image: docker:20.10
   services:
-    - docker:dind   
-  before_script:
-    - apk add --no-cache curl jq python3 py3-pip     
+    - docker:dind
   script:
+    - docker info
     - docker build -t $APP_NAME .
-    - docker tag obar-backend:latest 510481412586.dkr.ecr.eu-central-1.amazonaws.com/obar-backend:latest 
-    
-push-image-to-aws-ecr:
-  stage: push-image-to-aws-ecr
-  image:
-    name: amazon/aws-cli
-    entrypoint: [""]
-  services:
-    - name: docker:dind
-  before_script:   
-    - amazon-linux-extras install -y docker
-    - aws --version
-    - docker --version
-    - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 510481412586.dkr.ecr.eu-central-1.amazonaws.com 
-    
-  script:
-    - echo "Pushing image to ECR..."
-    - docker push 510481412586.dkr.ecr.eu-central-1.amazonaws.com/obar-backend:latest    
+    - docker tag $APP_NAME:$TAG $ECR_REGISTRY/$APP_NAME:$TAG
+    - apk add --no-cache python3
+    - apk add --no-cache py3-pip
+    - pip3 install awscli
+    - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+    - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+    - docker push $ECR_REGISTRY/$APP_NAME:$TAG

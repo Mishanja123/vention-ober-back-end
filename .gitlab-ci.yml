@@ -1,34 +1,42 @@
 variables:
-  DOCKER_REGISTRY: 510481412586.dkr.ecr.eu-central-1.amazonaws.com
+  DOCKER_REGISTRY: public.ecr.aws/m4g5m4m1
   APP_NAME: obar-backend
-  TAG: "$CI_COMMIT_SHORT_SHA-$CI_PIPELINE_ID"
+  TAG: latest
 
 stages:
   - build
   - build-docker-image
   - push-image-to-aws-ecr
 
-build-project:
+build:
   stage: build
+  image: node:14
   script:
     - npm install
-    - npm run build  
+    - npm run build
   artifacts:
     paths:
-      - /app/dist/  
+      - /app/dist/
+
 build-docker-image:
   stage: build-docker-image
+  image: docker:20.10
+  services:
+    - docker:dind
   script:
     - docker info
-    - docker build -t $DOCKER_REGISTRY/$APP_NAME:"$TAG" .
+    - docker build -t $APP_NAME .
+    - docker tag $APP_NAME:latest $DOCKER_REGISTRY/$APP_NAME:$TAG
 
 push-image-to-aws-ecr:
   stage: push-image-to-aws-ecr
   image:
-    name: $DOCKER_REGISTRY/$APP_NAME:"$TAG"
-  services:
-    - docker:dind
+    name: amazon/aws-cli
+    entrypoint: [""]
+  before_script:
+    - amazon-linux-extras install -y docker
+    - aws --version
+    - docker --version
   script:
-    - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $DOCKER_REGISTRY
-    - docker tag $DOCKER_REGISTRY/$APP_NAME:"$TAG" $DOCKER_REGISTRY/$APP_NAME:"$TAG"
-    - docker push $DOCKER_REGISTRY/$APP_NAME:"$TAG"
+    - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker push $DOCKER_REGISTRY/$APP_NAME:$TAG

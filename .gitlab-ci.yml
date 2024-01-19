@@ -48,4 +48,4 @@ push-image-to-aws-ecr:
     
   script:
     - echo "Pushing image to ECR..."
-    - docker push 510481412586.dkr.ecr.eu-central-1.amazonaws.com\obar-backend:latest    
+    - docker push 510481412586.dkr.ecr.eu-central-1.amazonaws.com/obar-backend:latest    

@@ -18,7 +18,7 @@ app.use(
   cors({
     exposedHeaders: "Authorization",
     credentials: true,
-    origin: true
+    origin: true,
   })
 );
 app.use(cookieParser());
@@ -27,7 +27,7 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-async function connect() {
+export async function connect() {
   try {
     await sequelize.authenticate();
     console.log("Success");
@@ -50,7 +50,7 @@ app.post("/createTestDish", async (req: Request, res: Response) => {
             | "sunrise_specials"
             | "chefs_pick"
             | "culinary_classics"
-            | "bar_bliss"
+            | "bar_bliss",
         });
       })
     );

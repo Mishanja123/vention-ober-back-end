@@ -1,30 +1,48 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-const Table = sequelize.define(
-  "Table",
+type AvailableTime =
+  | "09:00"
+  | "11:00"
+  | "12:00"
+  | "14:00"
+  | "16:00"
+  | "18:00"
+  | "20:00"
+  | "22:00";
+
+interface TimeSlot {
+  weekDay: Date;
+  availableTime: AvailableTime[];
+}
+
+class Table extends Model {
+  public id!: number;
+  public timeSlots!: TimeSlot[];
+  public seats!: number;
+}
+
+Table.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
-    status: {
-      type: DataTypes.ENUM("free", "reserved"),
-      allowNull: false,
+    timeSlots: {
+      type: DataTypes.ARRAY(DataTypes.JSONB),
+      allowNull: true
     },
     seats: {
-      type: DataTypes.ENUM("4", "6", "8"),
-      allowNull: false,
-    },
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   },
   {
-    modelName: "Table",
+    sequelize,
+    modelName: "Table"
   }
 );
-
-
-
 
 export default Table;

@@ -59,6 +59,7 @@ const Orders = {
     await reservation.createTable({
       status: "reserved",
       seats: guestExpected,
+      seats: guestExpected,
     });
 
     return table;

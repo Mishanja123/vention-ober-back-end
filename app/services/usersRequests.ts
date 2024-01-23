@@ -1,4 +1,5 @@
 import User from "../models/user";
+import UserCredentials from "../models/user_credentials";
 
 const Users = {
   getAll: async () => await User.findAll(),
@@ -10,6 +11,8 @@ const Users = {
     console.log(user);
     user?.destroy();
   },
+
+  getCredentialsById: async (id: number) => UserCredentials.findByPk(id),
 };
 
 export default Users;

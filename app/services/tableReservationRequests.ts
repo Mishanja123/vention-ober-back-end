@@ -1,3 +1,2 @@
-import Table from "../models/cart";
-import Dish from "../models/dish";
+import Table from "../models/table";
 import createHttpError from "../helpers/createHttpError";

@@ -1,7 +1,7 @@
 import Authentication from "../../services/authRequests";
 import { ControllerFunction } from "../../types/ControllerFunction";
 
-export const postSingUp: ControllerFunction = async (req, res, next) => {
+export const singUp: ControllerFunction = async (req, res, next) => {
   const result = await Authentication.createUser(req.body);
 
   res.status(201).json({

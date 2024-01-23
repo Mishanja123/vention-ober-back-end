@@ -5,41 +5,52 @@ import Cart from "../models/cart";
 import { postOrder } from "../controllers/orders/postOrder";
 
 interface ReservationData {
-  reservation_date: Date;
-  reservation_time: Date;
+  reservationDate: Date;
+  reservationTime: Date;
   guests: number;
-  with_preorder: boolean;
+  withPreorder: boolean;
   req: AuthenticatedRequest;
 }
 
 interface OrderType {
-  order_date: string;
+  orderDate: string;
   type: string;
   req: AuthenticatedRequest;
   time: string;
 }
 
+enum OrderTypes {
+  withPreorder = "with_preorder",
+  ReservationWithPreorder = "reservation_with_preorder",
+  Reservation = "reservation",
+}
+
+enum OrderStatus {
+  Active = "active",
+  Reserved = "reserved",
+}
+
 const Orders = {
   postTableReservation: async ({
-    reservation_date,
-    reservation_time,
+    reservationDate,
+    reservationTime,
     guests,
-    with_preorder,
+    withPreorder,
     req,
   }: ReservationData) => {
     const reservation = await TableReservation.create({
-      reservation_date,
-      reservation_time,
+      reservationDate,
+      reservationTime,
       guests,
-      with_preorder,
+      withPreorder,
       userId: req.user.id,
     });
 
     const guestExpected = guests <= 4 ? "4" : guests <= 6 ? "6" : "8";
 
-    const orderType = with_preorder
-      ? "reservation_with_preorder"
-      : "reservation";
+    const orderType = OrderTypes.withPreorder
+      ? OrderTypes.ReservationWithPreorder
+      : OrderTypes.Reservation;
 
     const existedCart = await Cart.findOne({
       where: { userId: req.user.id },
@@ -49,35 +60,30 @@ const Orders = {
     const table = await reservation.createOrder({
       UserId: req.user.id,
       type: orderType,
-      status: "active",
-      order_date: reservation_date + " " + reservation_time,
+      status: OrderStatus.Active,
+      order_date: reservationDate + " " + reservationTime,
       dishes: existedCart?.dishes,
       guests: guests,
     });
 
     // @ts-ignore
     await reservation.createTable({
-      status: "reserved",
-      seats: guestExpected,
+      status: OrderStatus.Reserved,
       seats: guestExpected,
     });
 
     return table;
   },
-  postOrder: async ({ order_date, type, time, req }: OrderType) => {
-    const existedOrder = await Order.findOne({
-      where: { userId: req.user.id },
-    });
-
+  postOrder: async ({ orderDate, type, time, req }: OrderType) => {
     const existedCart = await Cart.findOne({
       where: { userId: req.user.id },
     });
 
     const newOrder = await Order.create({
-      order_date: order_date + " " + time,
+      order_date: orderDate + " " + time,
       type,
       userId: req.user.id,
-      status: "active",
+      status: OrderStatus.Active,
       dishes: existedCart?.dishes,
     });
 
@@ -85,9 +91,7 @@ const Orders = {
   },
 
   deleteOrder: async (id: string) => {
-    const existedOrder = await Order.findOne({
-      where: { id: id },
-    });
+    const existedOrder = await Order.findByPk(id);
 
     if (existedOrder) {
       await existedOrder.destroy();
@@ -97,9 +101,7 @@ const Orders = {
     }
   },
   getOrder: async (id: string) => {
-    const existedOrder = await Order.findOne({
-      where: { id: id },
-    });
+    const existedOrder = await Order.findByPk(id);
     if (existedOrder) {
       return existedOrder;
     } else {

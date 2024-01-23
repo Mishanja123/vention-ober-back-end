@@ -3,7 +3,7 @@ import { postReservation } from "./postReservation";
 import { postOrder } from "./postOrder";
 import { deleteOrder } from "./deleteOrder";
 import { getOrder } from "./getOrder";
-import { getAllOrders } from "./getAllOrders";
+import { getAllOrdersByUserId } from "./getAllOrdersByUserId";
 import { getAllOrdersAdmin } from "./getAllOrdersAdmin";
 // import { updateOrder } from "./updateOrder";
 
@@ -12,7 +12,7 @@ export default {
   postOrder: errorHandlerMiddleware(postOrder),
   deleteOrder: errorHandlerMiddleware(deleteOrder),
   getOrder: errorHandlerMiddleware(getOrder),
-  getAllOrders: errorHandlerMiddleware(getAllOrders),
+  getAllOrdersByUserId: errorHandlerMiddleware(getAllOrdersByUserId),
   getAllOrdersAdmin: errorHandlerMiddleware(getAllOrdersAdmin),
   // updateOrder: errorHandlerMiddleware(updateOrder),
 };

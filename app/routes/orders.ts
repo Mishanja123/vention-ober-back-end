@@ -16,7 +16,7 @@ export function router(app: Express) {
   //   authenticate,
   //   ordersController.updateOrder
   // );
-  app.get("/api/orders", authenticate, ordersController.getAllOrders);
+  app.get("/api/orders", authenticate, ordersController.getAllOrdersByUserId);
   app.delete("/api/order/:id", authenticate, ordersController.deleteOrder);
   app.get("/api/order/:id", authenticate, ordersController.getOrder);
   app.get(

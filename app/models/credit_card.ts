@@ -10,31 +10,31 @@ const CreditCard = sequelize.define(
       allowNull: false,
       primaryKey: true
     },
-    title: {
+    addressTitle: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    card_number: {
+    cardNumber: {
       type: DataTypes.STRING(16),
       allowNull: false
     },
-    expire_month: {
+    month: {
       type: DataTypes.SMALLINT,
       allowNull: false
     },
-    expire_year: {
+    year: {
       type: DataTypes.SMALLINT,
       allowNull: false
     },
-    card_code: {
+    cvvNumber: {
       type: DataTypes.BIGINT,
       allowNull: false
     },
-    name_on_card: {
+    cardHolder: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    user_id: {
+    userId: {
       type: DataTypes.SMALLINT,
       allowNull: false
     }

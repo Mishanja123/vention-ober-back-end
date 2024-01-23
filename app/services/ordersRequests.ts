@@ -32,7 +32,7 @@ const Orders = {
       reservation_time,
       guests,
       with_preorder,
-      UserId: req.user.id,
+      userId: req.user.id,
     });
 
     const guestExpected = guests <= 4 ? "4" : guests <= 6 ? "6" : "8";
@@ -66,7 +66,7 @@ const Orders = {
   },
   postOrder: async ({ order_date, type, time, req }: OrderType) => {
     const existedOrder = await Order.findOne({
-      where: { UserId: req.user.id },
+      where: { userId: req.user.id },
     });
 
     const existedCart = await Cart.findOne({
@@ -76,15 +76,13 @@ const Orders = {
     const newOrder = await Order.create({
       order_date: order_date + " " + time,
       type,
-      UserId: req.user.id,
+      userId: req.user.id,
       status: "active",
       dishes: existedCart?.dishes,
     });
 
     return newOrder;
   },
-
-  repeatOrder: async ({ order_date, type, time, req }: OrderType) => {},
 
   deleteOrder: async (id: string) => {
     const existedOrder = await Order.findOne({
@@ -110,7 +108,7 @@ const Orders = {
   },
   getAllOrders: async (userId: number) => {
     return await Order.findAll({
-      where: { UserId: userId },
+      where: { userId: userId },
     });
   },
   getAllOrdersAdmin: async () => await Order.findAll(),

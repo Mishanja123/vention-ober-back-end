@@ -1,6 +1,8 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
 import { OrderHandlers } from "../../services/orderService";
 
+import orderMesseges from "../../messages/orderMessages";
+
 export const createTableReservation: ControllerFunction = async (
   req,
   res,
@@ -21,5 +23,7 @@ export const createTableReservation: ControllerFunction = async (
     req,
   });
 
-  res.status(201).json({ message: "Order successfully created" });
+  res
+    .status(201)
+    .json({ message: orderMesseges.ORDER_SUCCESS_CREATED_MESSAGE });
 };

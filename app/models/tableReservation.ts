@@ -6,7 +6,7 @@ const TableReservation = sequelize.define<ITableReservation>(
   "TableReservation",
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,

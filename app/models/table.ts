@@ -13,8 +13,9 @@ const Table = sequelize.define<ITable>(
       primaryKey: true,
     },
     timeSlots: {
-      type: DataTypes.JSONB,
+      type: DataTypes.ARRAY(DataTypes.JSONB),
       allowNull: true,
+      defaultValue: [],
     },
     seats: {
       type: DataTypes.INTEGER,

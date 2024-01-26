@@ -36,7 +36,7 @@ export const createTableReservation = async ({
     UserId: req.user.id,
     type: orderType,
     status: OrderStatus.Active,
-    order_date: reservationDate + " " + reservationTime,
+    orderDate: reservationDate + " " + reservationTime,
     dishes: existedCart?.dishes,
     guests: guests,
   });

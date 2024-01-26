@@ -2,11 +2,7 @@ import Order from "../../models/order";
 import Cart from "../../models/cart";
 
 import { IOrderType } from "../../interfaces/Order";
-
-enum OrderStatus {
-  Active = "active",
-  Reserved = "reserved",
-}
+import { OrderStatus } from "../../enums/Order";
 
 export const createNewOrder = async ({
   orderDate,

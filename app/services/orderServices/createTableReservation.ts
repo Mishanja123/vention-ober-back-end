@@ -3,17 +3,7 @@ import Cart from "../../models/cart";
 import TableReservation from "../../models/table_reservation";
 
 import { IReservationData } from "../../interfaces/Order";
-
-enum OrderTypes {
-  WithPreorder = "with_preorder",
-  ReservationWithPreorder = "reservation_with_preorder",
-  Reservation = "reservation",
-}
-
-enum OrderStatus {
-  Active = "active",
-  Reserved = "reserved",
-}
+import { OrderStatus, OrderTypes } from "../../enums/Order";
 
 export const createTableReservation = async ({
   reservationDate,

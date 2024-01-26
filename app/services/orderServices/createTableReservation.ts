@@ -1,9 +1,10 @@
 import Cart from "../../models/cart";
 
-import TableReservation from "../../models/table_reservation";
+import TableReservation from "../../models/tableReservation";
 
 import { IReservationData } from "../../interfaces/Order";
-import { OrderStatus, OrderTypes } from "../../enums/Order";
+import { OrderStatus, OrderType } from "../../enums/Order";
+import { TableStatus } from "../../enums/Table";
 
 export const createTableReservation = async ({
   reservationDate,
@@ -22,16 +23,16 @@ export const createTableReservation = async ({
 
   const guestExpected = guests <= 4 ? "4" : guests <= 6 ? "6" : "8";
 
-  const orderType = OrderTypes.WithPreorder
-    ? OrderTypes.ReservationWithPreorder
-    : OrderTypes.Reservation;
+  const orderType = OrderType.WithPreorder
+    ? OrderType.ReservationWithPreorder
+    : OrderType.Reservation;
 
   const existedCart = await Cart.findOne({
     where: { UserId: req.user.id },
   });
 
   // @ts-ignore
-  const table = await reservation.createOrder({
+  await reservation.createOrder({
     UserId: req.user.id,
     type: orderType,
     status: OrderStatus.Active,
@@ -42,7 +43,7 @@ export const createTableReservation = async ({
 
   // @ts-ignore
   await reservation.createTable({
-    status: OrderStatus.Reserved,
+    status: TableStatus.Reserved,
     seats: guestExpected,
   });
 };

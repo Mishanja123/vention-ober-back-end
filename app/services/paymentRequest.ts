@@ -1,4 +1,4 @@
-import CreditCard from "../models/credit_card";
+import CreditCard from "../models/creditCard";
 import Payments from "../models/payment";
 import Order from "../models/order";
 import Cart from "../models/cart";

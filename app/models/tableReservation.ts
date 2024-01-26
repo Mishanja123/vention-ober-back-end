@@ -1,37 +1,36 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
+import { ITableReservation } from "../interfaces/Table";
 
-const TableReservation = sequelize.define(
+const TableReservation = sequelize.define<ITableReservation>(
   "TableReservation",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     guests: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
-    reservation_date: {
+    reservationDate: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    reservation_time: {
+    reservationTime: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    with_preorder: {
+    withPreorder: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
-    modelName: "TableReservation"
+    modelName: "TableReservation",
   }
 );
-
-
 
 export default TableReservation;

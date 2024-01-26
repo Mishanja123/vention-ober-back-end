@@ -1,5 +1,5 @@
 import User from "../models/user";
-import UserCredentials from "../models/user_credentials";
+import UserCredentials from "../models/userCredentials";
 import bcrypt from "bcryptjs";
 import createHttpError from "../helpers/createHttpError";
 

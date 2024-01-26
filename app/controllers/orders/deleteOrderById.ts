@@ -1,10 +1,10 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
 
-import ordersServices from "../../services/orderServices";
+import OrderBuilder from "../../services/orderServices/orderBuilder";
 
 export const deleteOrderById: ControllerFunction = async (req, res, next) => {
   const { id } = req.params;
-  await ordersServices.deleteOrderById(id);
+  await OrderBuilder.deleteOrderById(id);
 
   res.status(200).json({ message: "Order deleted successfully" });
 };

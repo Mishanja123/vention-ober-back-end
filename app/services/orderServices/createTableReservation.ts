@@ -1,15 +1,8 @@
 import Cart from "../../models/cart";
 
 import TableReservation from "../../models/table_reservation";
-import { AuthenticatedRequest } from "../../types/ControllerFunction";
 
-export interface ReservationData {
-  reservationDate: Date;
-  reservationTime: Date;
-  guests: number;
-  withPreorder: boolean;
-  req: AuthenticatedRequest;
-}
+import { IReservationData } from "../../interfaces/Order";
 
 enum OrderTypes {
   WithPreorder = "with_preorder",
@@ -28,7 +21,7 @@ export const createTableReservation = async ({
   guests,
   withPreorder,
   req,
-}: ReservationData) => {
+}: IReservationData) => {
   const reservation = await TableReservation.create({
     reservationDate,
     reservationTime,

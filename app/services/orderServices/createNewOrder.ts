@@ -1,14 +1,7 @@
 import Order from "../../models/order";
 import Cart from "../../models/cart";
 
-import { AuthenticatedRequest } from "../../types/ControllerFunction";
-
-export interface OrderType {
-  orderDate: string;
-  type: string;
-  time: string;
-  req: AuthenticatedRequest;
-}
+import { IOrderType } from "../../interfaces/Order";
 
 enum OrderStatus {
   Active = "active",
@@ -20,7 +13,7 @@ export const createNewOrder = async ({
   type,
   time,
   req,
-}: OrderType) => {
+}: IOrderType) => {
   const existedCart = await Cart.findOne({
     where: { UserId: req.user.id },
   });

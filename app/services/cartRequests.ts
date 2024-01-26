@@ -2,7 +2,7 @@ import Cart from "../models/cart";
 import Dish from "../models/dish";
 import createHttpError from "../helpers/createHttpError";
 
-const CartService = {
+const cartService = {
   deleteAllItems: async (userId: number) => {
     // @ts-ignore
     return Cart.sequelize.transaction(async (transaction) => {
@@ -43,11 +43,11 @@ const CartService = {
             dishData: dish,
             quantity: 1,
             // @ts-ignore
-            subtotal: Number(dish.price)
+            subtotal: Number(dish.price),
           });
         }
 
-        await CartService.updateCart(cart, transaction);
+        await cartService.updateCart(cart, transaction);
 
         return cart;
       });
@@ -78,7 +78,7 @@ const CartService = {
           cart.total -= cart.dishes[existingCartItemIndex].subtotal;
           cart.dishes.splice(existingCartItemIndex, 1);
 
-          await CartService.updateCart(cart, transaction);
+          await cartService.updateCart(cart, transaction);
 
           return cart;
         } else {
@@ -120,7 +120,7 @@ const CartService = {
             // @ts-ignore
             dish.price * cart.dishes[existingCartItemIndex].quantity;
 
-          await CartService.updateCart(cart, transaction);
+          await cartService.updateCart(cart, transaction);
 
           return cart;
         } else {
@@ -133,7 +133,6 @@ const CartService = {
     }
   },
 
-  
   // updateCart to handle any cart updates
   updateCart: async (cart: any, transaction: any) => {
     cart.subTotal = cart.dishes.reduce(
@@ -146,7 +145,7 @@ const CartService = {
       { dishes: [...cart.dishes], subTotal: cart.subTotal, total: cart.total },
       { where: { id: cart.id }, transaction }
     );
-  }
+  },
 };
 
-export default CartService;
+export default cartService;

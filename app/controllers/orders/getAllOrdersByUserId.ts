@@ -1,5 +1,6 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
-import Orders from "../../services/ordersRequests";
+
+import ordersServices from "../../services/orderServices";
 
 export const getAllOrdersByUserId: ControllerFunction = async (
   req,
@@ -7,7 +8,7 @@ export const getAllOrdersByUserId: ControllerFunction = async (
   next
 ) => {
   const { id } = req.user;
-  const orders = await Orders.getAllOrders(id);
+  const orders = await ordersServices.getAllOrdersByUserId(id);
 
   res.status(200).json(orders);
 };

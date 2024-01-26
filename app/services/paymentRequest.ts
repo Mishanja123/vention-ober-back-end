@@ -3,7 +3,7 @@ import Payments from "../models/payment";
 import Order from "../models/order";
 import Cart from "../models/cart";
 
-const Payment = {
+const payment = {
   postCreditCard: async (
     addressTitle: string,
     cardNumber: string,
@@ -20,7 +20,7 @@ const Payment = {
       card_code: cvvNumber,
       expire_month: month,
       expire_year: year,
-      user_id: userId
+      user_id: userId,
     });
     return res;
   },
@@ -44,14 +44,14 @@ const Payment = {
         type,
         OrderId: dishId,
         user_card_id: paymentId,
-        status: "pending"
+        status: "pending",
       });
 
       const userCart = await Cart.update(
         {
           total: 0,
           subTotal: 0,
-          dishes: []
+          dishes: [],
         },
         { where: { userId } }
       );
@@ -61,7 +61,7 @@ const Payment = {
       console.error("Error in postPaymentDetails:", error);
       return null;
     }
-  }
+  },
 };
 
-export default Payment;
+export default payment;

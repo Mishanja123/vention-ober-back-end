@@ -7,18 +7,13 @@ export function router(app: Express) {
   app.post(
     "/api/orders/table-reservation",
     authenticate,
-    ordersController.postReservation
+    ordersController.createTableReservation
   );
-  app.post("/api/orders", authenticate, ordersController.postOrder);
-  app.post("/api/orders-repeat", authenticate, ordersController.postOrder);
-  // app.patch(
-  //   "/api/orders-update/:id",
-  //   authenticate,
-  //   ordersController.updateOrder
-  // );
+  app.post("/api/orders", authenticate, ordersController.createNewOrder);
+  app.post("/api/order-repeat", authenticate, ordersController.createNewOrder);
   app.get("/api/orders", authenticate, ordersController.getAllOrdersByUserId);
-  app.delete("/api/order/:id", authenticate, ordersController.deleteOrder);
-  app.get("/api/order/:id", authenticate, ordersController.getOrder);
+  app.get("/api/order/:id", authenticate, ordersController.getOrderById);
+  app.delete("/api/order/:id", authenticate, ordersController.deleteOrderById);
   app.get(
     "/api/orders-admin",
     authenticate,

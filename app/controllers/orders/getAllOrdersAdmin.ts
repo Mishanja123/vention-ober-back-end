@@ -1,8 +1,8 @@
 import { ControllerFunction } from "./../../types/ControllerFunction";
 
-import OrderBuilder from "../../services/orderServices/orderBuilder";
+import { OrderHandlers } from "../../services/orderService";
 
 export const getAllOrdersAdmin: ControllerFunction = async (req, res, next) => {
-  const orders = await OrderBuilder.getAllOrdersAdmin();
+  const orders = await OrderHandlers.getAllOrdersAdmin();
   res.status(200).json(orders);
 };

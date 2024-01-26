@@ -1,5 +1,5 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
-import OrderBuilder from "../../services/orderServices/orderBuilder";
+import { OrderHandlers } from "../../services/orderService";
 
 export const createTableReservation: ControllerFunction = async (
   req,
@@ -13,7 +13,7 @@ export const createTableReservation: ControllerFunction = async (
     withPreorder: withPreorder,
   } = req.body;
 
-  await OrderBuilder.createTableReservation({
+  await OrderHandlers.createTableReservation({
     reservationDate,
     reservationTime,
     guests,

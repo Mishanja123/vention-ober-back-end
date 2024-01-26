@@ -1,10 +1,10 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
 
-import OrderBuilder from "../../services/orderServices/orderBuilder";
+import { OrderHandlers } from "../../services/orderService";
 
 export const createNewOrder: ControllerFunction = async (req, res, next) => {
   const { orderDate, type, time } = req.body;
-  await OrderBuilder.createNewOrder({
+  await OrderHandlers.createNewOrder({
     orderDate,
     type,
     time,

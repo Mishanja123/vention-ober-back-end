@@ -1,13 +1,28 @@
-FROM node:16
+FROM node as builder
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json .
+COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
+RUN npm run build
+
+FROM node:slim
+
+ENV NODE_ENV production
+USER node
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm ci --production
+
+COPY --from=builder /usr/src/app/build ./build
+
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD [ "node", "build/server.js" ]

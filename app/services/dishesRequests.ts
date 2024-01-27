@@ -2,7 +2,7 @@ import Dish from "../models/dish";
 import { Op } from "sequelize";
 import createHttpError from "../helpers/createHttpError";
 
-const Dishes = {
+const dishes = {
   getAll: async () => await Dish.findAll(),
 
   getRecent: async () =>
@@ -39,4 +39,4 @@ const Dishes = {
   },
 };
 
-export default Dishes;
+export default dishes;

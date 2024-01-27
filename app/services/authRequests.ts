@@ -1,5 +1,5 @@
 import User from "../models/user";
-import UserCredentials from "../models/user_credentials";
+import UserCredentials from "../models/userCredentials";
 import bcrypt from "bcryptjs";
 import createHttpError from "../helpers/createHttpError";
 
@@ -11,7 +11,7 @@ interface UserData {
   password: string;
 }
 
-const Authentication = {
+const authentication = {
   createUser: async (data: UserData) => {
     const { first_name, last_name, email, phone, password } = data;
 
@@ -26,7 +26,7 @@ const Authentication = {
     const userCredentials = await UserCredentials.create(
       {
         password: hashedPassword,
-        role: "user"
+        role: "user",
       },
       { fields: ["password", "role"] }
     );
@@ -36,7 +36,7 @@ const Authentication = {
       last_name,
       email,
       phone,
-      userCredentialsId: userCredentials.dataValues.id
+      userCredentialsId: userCredentials.dataValues.id,
     });
 
     // @ts-ignore
@@ -45,7 +45,7 @@ const Authentication = {
       userId: userCreated.id,
       total: 0,
       subTotal: 0,
-      dishes: []
+      dishes: [],
     });
 
     return "Signup successful";
@@ -60,7 +60,7 @@ const Authentication = {
     }
 
     const userCredentials = await UserCredentials.findOne({
-      where: { id: user.dataValues.userCredentialsId }
+      where: { id: user.dataValues.userCredentialsId },
     });
 
     if (!userCredentials) {
@@ -77,7 +77,7 @@ const Authentication = {
     }
 
     return user;
-  }
+  },
 };
 
-export default Authentication;
+export default authentication;

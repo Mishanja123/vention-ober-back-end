@@ -1,11 +1,11 @@
 import User from "./user";
-import UserAddress from "./user_address";
+import UserAddress from "./userAddress";
 import Order from "./order";
-import TableReservation from "./table_reservation";
+import TableReservation from "./tableReservation";
 import Table from "./table";
 import Payment from "./payment";
 import Address from "./address";
-import UserCredentials from "./user_credentials";
+import UserCredentials from "./userCredentials";
 import Cart from "./cart";
 import Dish from "./dish";
 

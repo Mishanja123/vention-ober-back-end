@@ -1,14 +1,25 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-const Order = sequelize.define(
+export interface IOrder extends Model {
+  id: number;
+  type: string;
+  status: string;
+  userAddressId?: string;
+  paymentId?: string;
+  orderDate: string;
+  guests?: number;
+  dishes?: any[];
+}
+
+const Order = sequelize.define<IOrder>(
   "Order",
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     type: {
       type: DataTypes.ENUM(
@@ -17,7 +28,7 @@ const Order = sequelize.define(
         "take_away",
         "delivery"
       ),
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.ENUM(
@@ -27,30 +38,30 @@ const Order = sequelize.define(
         "completed",
         "canceled"
       ),
-      allowNull: false
+      allowNull: false,
     },
-    user_address_id: {
-      type: DataTypes.STRING
-    },
-    payment_id: {
-      type: DataTypes.STRING
-    },
-    order_date: {
+    userAddressId: {
       type: DataTypes.STRING,
-      allowNull: false
+    },
+    paymentId: {
+      type: DataTypes.STRING,
+    },
+    orderDate: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     guests: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: true,
     },
     dishes: {
       type: DataTypes.ARRAY(DataTypes.JSONB),
       allowNull: true,
-      defaultValue: []
-    }
+      defaultValue: [],
+    },
   },
   {
-    modelName: "Order"
+    modelName: "Order",
   }
 );
 

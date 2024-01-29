@@ -1,14 +1,14 @@
 import { errorHandlerMiddleware } from "./../../middleware/errorHandlerMiddleware ";
-import { postSingUp } from "./postSingUp";
-import { postSingIn } from "./postSingIn";
+import { postSignUp } from "./postSignUp";
+import { postSignIn } from "./postSignIn";
 import { postLogOut } from "./postLogOut";
 import { getRefreshTokens } from "./getRefreshTokens";
 import { getCurrentUser } from "./getCurrentUser";
 
 export default {
-  postSingUp: errorHandlerMiddleware(postSingUp),
-  postSingIn: errorHandlerMiddleware(postSingIn),
+  postSignUp: errorHandlerMiddleware(postSignUp),
+  postSignIn: errorHandlerMiddleware(postSignIn),
   postLogOut: errorHandlerMiddleware(postLogOut),
   getRefreshTokens: errorHandlerMiddleware(getRefreshTokens),
-  getCurrentUser: errorHandlerMiddleware(getCurrentUser)
+  getCurrentUser: errorHandlerMiddleware(getCurrentUser),
 };

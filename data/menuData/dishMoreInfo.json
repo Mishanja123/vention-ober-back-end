@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Avocado Toast with Smoked Salmon",
     "price": 27.5,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/AvocadoToastwithSmokedSalmon.webp",
     "weight_grams": 300,
     "category": "bar_bliss",
     "ingredients": [
@@ -25,7 +25,7 @@
     "id": 2,
     "title": "Spinach and Feta Omelette",
     "price": 42.53,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SpinachandFetaOmelette.jpg",
     "weight_grams": 250,
     "category": "bar_bliss",
 
@@ -48,7 +48,7 @@
     "id": 3,
     "title": "Greek Yogurt Parfait with Fresh Berries",
     "price": 49.69,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChiaSeedPuddingwithBerries.jpg",
     "weight_grams": 300,
     "category": "bar_bliss",
 
@@ -71,7 +71,7 @@
     "id": 4,
     "title": "Pancakes with Maple Syrup and Banana Slices",
     "price": 13.27,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/PancakeswithMapleSyrupBananaSlices.jpg",
     "weight_grams": 250,
     "category": "bar_bliss",
 
@@ -94,7 +94,7 @@
     "id": 5,
     "title": "Quinoa Breakfast Bowl with Almond Milk",
     "price": 49.84,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/QuinoaBreakfastBowlwithAlmondMilk.jpg",
     "weight_grams": 340,
     "category": "chefs_pick",
 
@@ -121,7 +121,7 @@
     "id": 6,
     "title": "Egg and Avocado Breakfast Burrito",
     "price": 22.82,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/EggandAvocadoBreakfastBurrito.jpeg",
     "weight_grams": 250,
     "category": "culinary_classics",
 
@@ -148,7 +148,7 @@
     "id": 7,
     "title": "Smoothie Bowl with Mango and Coconut",
     "price": 28.75,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SmoothieBowlwithMangoandCoconut.jpg",
     "weight_grams": 270,
     "category": "bar_bliss",
 
@@ -175,7 +175,7 @@
     "id": 8,
     "title": "Bagel with Cream Cheese and Smoked Turkey",
     "price": 23.13,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BagelwithCreamCheeseandSmokedTurkey.webp",
     "weight_grams": 190,
     "category": "culinary_classics",
     "ingredients": [
@@ -197,7 +197,7 @@
     "id": 9,
     "title": "Chia Seed Pudding with Mixed Berries",
     "price": 38.67,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChiaSeedPuddingwithBerries.jpg",
     "weight_grams": 270,
     "category": "chefs_pick",
 
@@ -224,7 +224,7 @@
     "id": 10,
     "title": "Cinnamon French Toast with Caramelised Apples",
     "price": 25.49,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/CinnamonFrenchToastwithCaramelisedApple.webp",
     "weight_grams": 200,
     "category": "chefs_pick",
     "ingredients": [
@@ -250,7 +250,7 @@
     "id": 11,
     "title": "Chicken Alfredo Pasta",
     "price": 47.23,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChickenAlfredoPasta.jfif",
     "weight_grams": 370,
     "category": "culinary_classics",
     "ingredients": [
@@ -280,7 +280,7 @@
     "id": 12,
     "title": "Beef Lasagna with Ricotta",
     "price": 37.17,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeefLasagnawithRicotta.jpg",
     "weight_grams": 430,
     "category": "bar_bliss",
     "ingredients": [
@@ -306,7 +306,7 @@
     "id": 13,
     "title": "Spaghetti Bolognese",
     "price": 40.0,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SpaghettiBolognese.jpg",
     "weight_grams": 300,
     "category": "sunrise_specials",
 
@@ -333,7 +333,7 @@
     "id": 14,
     "title": "Classic Caesar Salad with Grilled Chicken",
     "price": 43.64,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ClassicCaesarSaladwithGrilledChicken.jpg",
     "weight_grams": 340,
     "category": "sunrise_specials",
 
@@ -356,7 +356,7 @@
     "id": 15,
     "title": "Shrimp Scampi Linguine",
     "price": 11.97,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ShrimpScampiLinguine.jpg",
     "weight_grams": 350,
     "category": "bar_bliss",
 
@@ -379,7 +379,7 @@
     "id": 16,
     "title": "Beef Stroganoff with Egg Noodles",
     "price": 41.51,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeefStroganoffwithEggNoodles.jpg",
     "weight_grams": 350,
     "category": "chefs_pick",
 
@@ -402,7 +402,7 @@
     "id": 17,
     "title": "Vegetarian Margherita Pizza",
     "price": 20.31,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/VegetarianMargheritaPizza.jpg",
     "weight_grams": 400,
     "category": "bar_bliss",
 
@@ -425,7 +425,7 @@
     "id": 18,
     "title": "Salmon with Lemon Dill Sauce",
     "price": 10.02,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SalmonwithLemonDill.jpeg",
     "weight_grams": 300,
     "category": "sunrise_specials",
 
@@ -452,7 +452,7 @@
     "id": 19,
     "title": "Mushroom Risotto with Parmesan",
     "price": 22.59,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/MushroomRisottowithParmesan.webp",
     "weight_grams": 300,
     "category": "sunrise_specials",
     "ingredients": [
@@ -474,7 +474,7 @@
     "id": 20,
     "title": "Beef Burger with Caramelised Onions",
     "price": 12.37,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeefBurgerwithCaramelisedOnion.jpg",
     "weight_grams": 250,
     "category": "bar_bliss",
 
@@ -501,7 +501,7 @@
     "id": 21,
     "title": "Margarita Pizza Rolls",
     "price": 30.01,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/MargaritaRolls.jpg",
     "weight_grams": 350,
     "category": "bar_bliss",
 
@@ -528,7 +528,7 @@
     "id": 22,
     "title": "Buffalo Chicken Wings",
     "price": 26.97,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BuffaloWing.jpg",
     "weight_grams": 350,
     "category": "bar_bliss",
 
@@ -555,7 +555,7 @@
     "id": 23,
     "title": "Loaded Nachos with Guacamole and Salsa",
     "price": 11.31,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/LoadedNachoswithGuacamoleandSalsa.jpg",
     "weight_grams": 340,
     "category": "chefs_pick",
 
@@ -582,7 +582,7 @@
     "id": 24,
     "title": "Spinach and Artichoke Dip",
     "price": 26.45,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SpinachandArtichokeDip.webp",
     "weight_grams": 230,
     "category": "culinary_classics",
 
@@ -609,7 +609,7 @@
     "id": 25,
     "title": "Shrimp Tacos with Chipotle Mayo",
     "price": 15.89,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ShrimpTacoswithChipotleMay.jpeg",
     "weight_grams": 300,
     "category": "culinary_classics",
 
@@ -636,7 +636,7 @@
     "id": 26,
     "title": "Beer-Battered Onion Rings",
     "price": 6.28,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeerBatteredOnionRings.jpg",
     "weight_grams": 250,
     "category": "culinary_classics",
 
@@ -659,7 +659,7 @@
     "id": 27,
     "title": "BBQ Pulled Pork Sliders",
     "price": 44.2,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BBQPulledPorkSliders.jpg",
     "weight_grams": 300,
     "category": "bar_bliss",
 
@@ -686,7 +686,7 @@
     "id": 28,
     "title": "Crispy Calamari with Garlic Aioli",
     "price": 8.1,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/CrispyCalamariwithGarlicAioli.jpg",
     "weight_grams": 250,
     "category": "bar_bliss",
 
@@ -713,7 +713,7 @@
     "id": 29,
     "title": "Classic Martini with Stuffed Olives",
     "price": 43.98,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ClassicMartiniwithStuffedOlives.webp",
     "weight_grams": 100,
     "category": "sunrise_specials",
 
@@ -740,7 +740,7 @@
     "id": 30,
     "title": "Chocolate Espresso Martini",
     "price": 30.92,
-    "photo_path": "https://placehold.co/400",
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChocolateEspressoMartin.png",
     "weight_grams": 90,
     "category": "sunrise_specials",
     "ingredients": [

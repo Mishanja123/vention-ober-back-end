@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-const OrderDish = sequelize.define(
-  "OrderDish",
+const UserCredentials = sequelize.define(
+  "UserCredentials",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -10,17 +10,18 @@ const OrderDish = sequelize.define(
       allowNull: false,
       primaryKey: true,
     },
-    quantity: {
-      type: DataTypes.BIGINT,
+    password: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    subtotal: {
-      type: DataTypes.DECIMAL(10, 2),
+    role: {
+      type: DataTypes.ENUM("user", "admin"),
+      allowNull: false,
     },
   },
   {
-    modelName: "OrderDish",
+    modelName: "UserCredentials",
   }
 );
 
-export default OrderDish;
+export default UserCredentials;

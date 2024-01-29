@@ -1,21 +1,24 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
-const Table = sequelize.define(
+import { ITable } from "../interfaces/Table";
+
+const Table = sequelize.define<ITable>(
   "Table",
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,
     },
-    status: {
-      type: DataTypes.ENUM("free", "reserved"),
-      allowNull: false,
+    timeSlots: {
+      type: DataTypes.ARRAY(DataTypes.JSONB),
+      allowNull: true,
+      defaultValue: [],
     },
     seats: {
-      type: DataTypes.ENUM("4", "6", "8"),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },

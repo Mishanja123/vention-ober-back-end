@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
+import Order from "./order";
 
 const Payment = sequelize.define(
   "Payment",
@@ -23,5 +24,9 @@ const Payment = sequelize.define(
     modelName: "Payment",
   }
 );
+
+
+Payment.belongsTo(Order);
+
 
 export default Payment;

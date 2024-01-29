@@ -3,7 +3,7 @@ import { ControllerFunction } from "../../types/ControllerFunction";
 import { generateAccessToken } from "../../utils/auth/generateAccessToken";
 import { generateRefreshToken } from "../../utils/auth/generateRefreshToken";
 
-export const postSingIn: ControllerFunction = async (req, res, next) => {
+export const postSignIn: ControllerFunction = async (req, res, next) => {
   const user = await Authentication.loginUser(req.body);
 
   const accessToken = generateAccessToken(user.dataValues.id);
@@ -16,9 +16,9 @@ export const postSingIn: ControllerFunction = async (req, res, next) => {
     .header("Authorization", `Bearer ${accessToken}`)
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: COOKIEAGE
+      maxAge: COOKIEAGE,
     })
     .json({
-      message: `Name ${user.dataValues.first_name}`
+      message: `Name ${user.dataValues.first_name}`,
     });
 };

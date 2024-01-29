@@ -1,6 +1,6 @@
 import User from "../models/user";
 
-const Users = {
+const users = {
   getAll: async () => await User.findAll(),
 
   findById: async (id: number) => await User.findByPk(id),
@@ -12,4 +12,4 @@ const Users = {
   },
 };
 
-export default Users;
+export default users;

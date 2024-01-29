@@ -1,261 +1,765 @@
 [
   {
-    "id": "fd0e5c8b-de3d-4d2d-ba44-67be4bff6465",
+    "id": 1,
     "title": "Avocado Toast with Smoked Salmon",
-    "price": "$27.50",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 27.5,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/AvocadoToastwithSmokedSalmon.webpp",
+    "weight_grams": 300,
+    "category": "bar_bliss",
+    "ingredients": [
+      {
+        "title": "Avocado",
+        "is_required": true
+      },
+      {
+        "title": "Sliced bread,",
+        "is_required": true
+      },
+      {
+        "title": "Smoked salmon",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "6a1342be-9236-42f5-a8d2-1a82a35fb452",
+    "id": 2,
     "title": "Spinach and Feta Omelette",
-    "price": "$42.53",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 42.53,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SpinachandFetaOmelette.jpg",
+    "weight_grams": 250,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Eggs",
+        "is_required": true
+      },
+      {
+        "title": "Spinach",
+        "is_required": true
+      },
+      {
+        "title": "Feta cheese",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "ad22b0fa-c4f8-472b-843d-208ff2e702f7",
+    "id": 3,
     "title": "Greek Yogurt Parfait with Fresh Berries",
-    "price": "$49.69",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 49.69,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChiaSeedPuddingwithBerries.jpg",
+    "weight_grams": 300,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Greek yogurt",
+        "is_required": true
+      },
+      {
+        "title": "Granola",
+        "is_required": false
+      },
+      {
+        "title": "Mixed berries",
+        "is_required": true
+      }
+    ]
   },
   {
-    "id": "f97ce2f1-b20b-44bd-b374-9b89c82c3f34",
+    "id": 4,
     "title": "Pancakes with Maple Syrup and Banana Slices",
-    "price": "$13.27",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 13.27,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/PancakeswithMapleSyrupBananaSlices.jpg",
+    "weight_grams": 250,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Pancake mix",
+        "is_required": true
+      },
+      {
+        "title": "Maple syrup",
+        "is_required": true
+      },
+      {
+        "title": "Banana",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "13f54c4e-fb11-469d-8599-f68f2a17b4c9",
+    "id": 5,
     "title": "Quinoa Breakfast Bowl with Almond Milk",
-    "price": "$49.84",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 49.84,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/QuinoaBreakfastBowlwithAlmondMilk.jpg",
+    "weight_grams": 340,
+    "category": "chefs_pick",
+
+    "ingredients": [
+      {
+        "title": "Quinoa",
+        "is_required": true
+      },
+      {
+        "title": "Almond milk",
+        "is_required": true
+      },
+      {
+        "title": "Chopped nuts",
+        "is_required": false
+      },
+      {
+        "title": "dried fruits",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "e478b3ad-0b9a-44b2-93a6-9c3cd5980db8",
+    "id": 6,
     "title": "Egg and Avocado Breakfast Burrito",
-    "price": "$22.82",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 22.82,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/EggandAvocadoBreakfastBurrito.jpeg",
+    "weight_grams": 250,
+    "category": "culinary_classics",
+
+    "ingredients": [
+      {
+        "title": "Flour tortilla",
+        "is_required": true
+      },
+      {
+        "title": "Scrambled eggs",
+        "is_required": true
+      },
+      {
+        "title": "Avocado",
+        "is_required": true
+      },
+      {
+        "title": "corn",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "075d668d-0410-4188-9403-6a0a9bc438a8",
+    "id": 7,
     "title": "Smoothie Bowl with Mango and Coconut",
-    "price": "$28.75",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 28.75,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SmoothieBowlwithMangoandCoconut.jpg",
+    "weight_grams": 270,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Frozen mango chunks",
+        "is_required": true
+      },
+      {
+        "title": "Greek yogurt",
+        "is_required": true
+      },
+      {
+        "title": "Coconut flakes",
+        "is_required": false
+      },
+      {
+        "title": "chocolate",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "1f61104d-8955-4f5e-a413-cf0839f2fdad",
+    "id": 8,
     "title": "Bagel with Cream Cheese and Smoked Turkey",
-    "price": "$23.13",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 23.13,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BagelwithCreamCheeseandSmokedTurkey.webp",
+    "weight_grams": 190,
+    "category": "culinary_classics",
+    "ingredients": [
+      {
+        "title": "Bagel",
+        "is_required": true
+      },
+      {
+        "title": "Cream cheese",
+        "is_required": true
+      },
+      {
+        "title": "Smoked turkey slices",
+        "is_required": true
+      }
+    ]
   },
   {
-    "id": "37db7516-8189-44a7-ad9d-e0a996b17e50",
+    "id": 9,
     "title": "Chia Seed Pudding with Mixed Berries",
-    "price": "$38.67",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 38.67,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChiaSeedPuddingwithBerries.jpg",
+    "weight_grams": 270,
+    "category": "chefs_pick",
+
+    "ingredients": [
+      {
+        "title": "Chia seeds",
+        "is_required": true
+      },
+      {
+        "title": "Almond milk",
+        "is_required": true
+      },
+      {
+        "title": "Mixed berries",
+        "is_required": true
+      },
+      {
+        "title": "fruits",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "d5649eed-28c8-44fe-bc2c-ffc02a274278",
+    "id": 10,
     "title": "Cinnamon French Toast with Caramelised Apples",
-    "price": "$25.49",
-    "image": "https://via.placeholder.com/100",
-    "category": "sunrise specials"
+    "price": 25.49,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/CinnamonFrenchToastwithCaramelisedApple.webp",
+    "weight_grams": 200,
+    "category": "chefs_pick",
+    "ingredients": [
+      {
+        "title": "Sliced bread",
+        "is_required": true
+      },
+      {
+        "title": "Eggs",
+        "is_required": true
+      },
+      {
+        "title": "Cinnamon",
+        "is_required": true
+      },
+      {
+        "title": "Apples",
+        "is_required": true
+      }
+    ]
   },
   {
-    "id": "2a718f30-bce1-40ed-a6be-bfc761031182",
+    "id": 11,
     "title": "Chicken Alfredo Pasta",
-    "price": "$47.23",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 47.23,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChickenAlfredoPasta.jfif",
+    "weight_grams": 370,
+    "category": "culinary_classics",
+    "ingredients": [
+      {
+        "title": "Fettuccine pasta",
+        "is_required": true
+      },
+      {
+        "title": "Chicken breast",
+        "is_required": true
+      },
+      {
+        "title": "Alfredo sauce",
+        "is_required": true
+      },
+      {
+        "title": "mayo",
+        "is_required": false
+      },
+      {
+        "title": "corn",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "34435ea8-e57d-4650-bc02-1af26c29c3d6",
+    "id": 12,
     "title": "Beef Lasagna with Ricotta",
-    "price": "$37.17",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 37.17,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeefLasagnawithRicotta.jpg",
+    "weight_grams": 430,
+    "category": "bar_bliss",
+    "ingredients": [
+      {
+        "title": "Lasagna noodles",
+        "is_required": true
+      },
+      {
+        "title": "Ground beef",
+        "is_required": true
+      },
+      {
+        "title": "Ricotta cheese",
+        "is_required": false
+      },
+      {
+        "title": "Dandelion",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "295b7dfc-00a4-4383-a31b-04749311d102",
+    "id": 13,
     "title": "Spaghetti Bolognese",
-    "price": "$40.00",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 40.0,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SpaghettiBolognese.jpg",
+    "weight_grams": 300,
+    "category": "sunrise_specials",
+
+    "ingredients": [
+      {
+        "title": "Spaghetti",
+        "is_required": true
+      },
+      {
+        "title": "Ground beef,",
+        "is_required": true
+      },
+      {
+        "title": "Tomato sauce",
+        "is_required": true
+      },
+      {
+        "title": "parmesan",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "3a799390-28f9-4dda-ac69-e567ccb68eeb",
+    "id": 14,
     "title": "Classic Caesar Salad with Grilled Chicken",
-    "price": "$43.64",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 43.64,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ClassicCaesarSaladwithGrilledChicken.jpg",
+    "weight_grams": 340,
+    "category": "sunrise_specials",
+
+    "ingredients": [
+      {
+        "title": "Romaine lettuce",
+        "is_required": true
+      },
+      {
+        "title": "Grilled chicken breast",
+        "is_required": true
+      },
+      {
+        "title": "Caesar dressing",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "478771bb-5368-468d-9683-786b36554390",
+    "id": 15,
     "title": "Shrimp Scampi Linguine",
-    "price": "$11.97",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 11.97,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ShrimpScampiLinguine.jpg",
+    "weight_grams": 350,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Linguine pasta",
+        "is_required": true
+      },
+      {
+        "title": "Shrimp",
+        "is_required": true
+      },
+      {
+        "title": "Garlic butter sauce",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "3ca04752-0960-4581-9210-5848897551d6",
+    "id": 16,
     "title": "Beef Stroganoff with Egg Noodles",
-    "price": "$41.51",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 41.51,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeefStroganoffwithEggNoodles.jpg",
+    "weight_grams": 350,
+    "category": "chefs_pick",
+
+    "ingredients": [
+      {
+        "title": "Egg noodles",
+        "is_required": true
+      },
+      {
+        "title": "Beef strips",
+        "is_required": true
+      },
+      {
+        "title": "Sour cream",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "92c66328-6a54-479e-adc5-1bc5a5835e6e",
+    "id": 17,
     "title": "Vegetarian Margherita Pizza",
-    "price": "$20.31",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 20.31,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/VegetarianMargheritaPizza.jpg",
+    "weight_grams": 400,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Pizza dough",
+        "is_required": true
+      },
+      {
+        "title": "Tomato sauce",
+        "is_required": true
+      },
+      {
+        "title": "Fresh mozzarella",
+        "is_required": true
+      }
+    ]
   },
   {
-    "id": "32d7cf9d-6011-4dd5-8979-4fe2d5503bac",
+    "id": 18,
     "title": "Salmon with Lemon Dill Sauce",
-    "price": "$10.02",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 10.02,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SalmonwithLemonDill.jpeg",
+    "weight_grams": 300,
+    "category": "sunrise_specials",
+
+    "ingredients": [
+      {
+        "title": "Salmon fillet",
+        "is_required": true
+      },
+      {
+        "title": "Lemon dill sauce",
+        "is_required": true
+      },
+      {
+        "title": " Roasted tomato",
+        "is_required": false
+      },
+      {
+        "title": "Roasted potato",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "a7f76aee-afd3-4b6a-8253-b8523e72615d",
+    "id": 19,
     "title": "Mushroom Risotto with Parmesan",
-    "price": "$22.59",
-    "image": "https://via.placeholder.com/100",
-    "category": "culinary classics"
+    "price": 22.59,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/MushroomRisottowithParmesan.webp",
+    "weight_grams": 300,
+    "category": "sunrise_specials",
+    "ingredients": [
+      {
+        "title": "Arborio rice",
+        "is_required": true
+      },
+      {
+        "title": "Mushrooms",
+        "is_required": true
+      },
+      {
+        "title": "Parmesan cheese",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "9b8b89bf-a240-4320-bc8c-c686cca2300e",
+    "id": 20,
     "title": "Beef Burger with Caramelised Onions",
-    "price": "$12.37",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 12.37,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeefBurgerwithCaramelisedOnion.jpg",
+    "weight_grams": 250,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Beef patty",
+        "is_required": true
+      },
+      {
+        "title": "Brioche bun",
+        "is_required": true
+      },
+      {
+        "title": "Caramelised onions",
+        "is_required": false
+      },
+      {
+        "title": "Roasted tomato",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "cca33cf9-4f20-4b61-8856-cf549e4683e6",
+    "id": 21,
     "title": "Margarita Pizza Rolls",
-    "price": "$30.01",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 30.01,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/MargaritaRolls.jpg",
+    "weight_grams": 350,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Pizza dough",
+        "is_required": true
+      },
+      {
+        "title": "Marinara sauce",
+        "is_required": true
+      },
+      {
+        "title": "Mozzarella cheese",
+        "is_required": true
+      },
+      {
+        "title": "Garlic",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "a6124c83-4b74-4a48-a335-10c946a66ad4",
+    "id": 22,
     "title": "Buffalo Chicken Wings",
-    "price": "$26.97",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 26.97,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BuffaloWing.jpg",
+    "weight_grams": 350,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Chicken wings",
+        "is_required": true
+      },
+      {
+        "title": "Buffalo sauce",
+        "is_required": true
+      },
+      {
+        "title": "Garlic",
+        "is_required": false
+      },
+      {
+        "title": "Blue cheese dressing",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "abe115cb-7db5-4821-85c5-63bd186924f4",
+    "id": 23,
     "title": "Loaded Nachos with Guacamole and Salsa",
-    "price": "$11.31",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 11.31,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/LoadedNachoswithGuacamoleandSalsa.jpg",
+    "weight_grams": 340,
+    "category": "chefs_pick",
+
+    "ingredients": [
+      {
+        "title": "Tortilla chips",
+        "is_required": true
+      },
+      {
+        "title": "Cheddar cheese",
+        "is_required": true
+      },
+      {
+        "title": "Guacamole",
+        "is_required": false
+      },
+      {
+        "title": "Salsa",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "b0ea555d-ffa5-44b2-ba76-daf7627880aa",
+    "id": 24,
     "title": "Spinach and Artichoke Dip",
-    "price": "$26.45",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 26.45,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/SpinachandArtichokeDip.webp",
+    "weight_grams": 230,
+    "category": "culinary_classics",
+
+    "ingredients": [
+      {
+        "title": "Spinach",
+        "is_required": true
+      },
+      {
+        "title": "Artichoke hearts",
+        "is_required": true
+      },
+      {
+        "title": "Cream cheese",
+        "is_required": true
+      },
+      {
+        "title": "Garlic",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "b1887060-69c3-4e76-8563-fda5835dea6c",
+    "id": 25,
     "title": "Shrimp Tacos with Chipotle Mayo",
-    "price": "$15.89",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 15.89,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ShrimpTacoswithChipotleMay.jpeg",
+    "weight_grams": 300,
+    "category": "culinary_classics",
+
+    "ingredients": [
+      {
+        "title": "Shrimp",
+        "is_required": true
+      },
+      {
+        "title": "Corn tortillas",
+        "is_required": true
+      },
+      {
+        "title": "Cabbage slaw",
+        "is_required": true
+      },
+      {
+        "title": "Chipotle mayo",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "fd9a5420-da1b-4091-b50c-f18433ac5564",
+    "id": 26,
     "title": "Beer-Battered Onion Rings",
-    "price": "$6.28",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 6.28,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BeerBatteredOnionRings.jpg",
+    "weight_grams": 250,
+    "category": "culinary_classics",
+
+    "ingredients": [
+      {
+        "title": "Onion rings",
+        "is_required": true
+      },
+      {
+        "title": " Beer batter",
+        "is_required": true
+      },
+      {
+        "title": "Sriracha mayo",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "96301df2-2401-4cc7-b5e7-1b5d2d0ba6b5",
+    "id": 27,
     "title": "BBQ Pulled Pork Sliders",
-    "price": "$44.20",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 44.2,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/BBQPulledPorkSliders.jpg",
+    "weight_grams": 300,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Pulled pork",
+        "is_required": true
+      },
+      {
+        "title": "Mini slider buns",
+        "is_required": true
+      },
+      {
+        "title": "Garlic",
+        "is_required": false
+      },
+      {
+        "title": "BBQ sauce",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "87b4e543-dede-4678-bbbc-e65032680f76",
+    "id": 28,
     "title": "Crispy Calamari with Garlic Aioli",
-    "price": "$8.10",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 8.1,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/CrispyCalamariwithGarlicAioli.jpg",
+    "weight_grams": 250,
+    "category": "bar_bliss",
+
+    "ingredients": [
+      {
+        "title": "Calamari rings",
+        "is_required": true
+      },
+      {
+        "title": "Panko breadcrumbs",
+        "is_required": true
+      },
+      {
+        "title": "Garlic",
+        "is_required": false
+      },
+      {
+        "title": "Garlic aioli",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "6f31d0bb-5a74-463e-8383-33c13d2bf09f",
+    "id": 29,
     "title": "Classic Martini with Stuffed Olives",
-    "price": "$43.98",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 43.98,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ClassicMartiniwithStuffedOlives.webp",
+    "weight_grams": 100,
+    "category": "sunrise_specials",
+
+    "ingredients": [
+      {
+        "title": "Dry vermouth",
+        "is_required": true
+      },
+      {
+        "title": "Stuffed olives for garnish",
+        "is_required": false
+      },
+      {
+        "title": "gin",
+        "is_required": true
+      },
+      {
+        "title": "vodka",
+        "is_required": false
+      }
+    ]
   },
   {
-    "id": "8f604b59-a2ca-432c-8929-cb66c29dcc2b",
+    "id": 30,
     "title": "Chocolate Espresso Martini",
-    "price": "$30.92",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
-  },
-  {
-    "id": "c0012dab-d159-4553-be07-102e9076b468",
-    "title": "Shrimp Tacos with Chipotle Mayo",
-    "price": "$15.89",
-    "image": "https://via.placeholder.com/100",
-    "category": "chefs picks"
-  },
-  {
-    "id": "3315881a-8cd9-4d10-ae2f-45cc425cf4ba",
-    "title": "Classic Martini with Stuffed Olives",
-    "price": "$43.98",
-    "image": "https://via.placeholder.com/100",
-    "category": "chefs picks"
-  },
-  {
-    "id": "00a619b6-f665-45c4-9fec-6cde54f1b166",
-    "title": "Mushroom Risotto with Parmesan",
-    "price": "$22.59",
-    "image": "https://via.placeholder.com/100",
-    "category": "chefs picks"
-  },
-  {
-    "id": "79628396-1b76-459c-adf7-5dc5fa394fac",
-    "title": "Spinach and Feta Omelette",
-    "price": "$42.53",
-    "image": "https://via.placeholder.com/100",
-    "category": "chefs picks"
-  },
-  {
-    "id": "cb07453c-e1bb-462b-b705-77ec92d66dda",
-    "title": "Greek Yogurt Parfait with Fresh Berries",
-    "price": "$49.69",
-    "image": "https://via.placeholder.com/100",
-    "category": "chefs picks"
-  },
-  {
-    "id": "eb44492c-47dd-480e-aa7c-1d312af98a47",
-    "title": "Vegetarian Margherita Pizza",
-    "price": "$20.31",
-    "image": "https://via.placeholder.com/100",
-    "category": "chefs picks"
-  },
-  {
-    "id": "557e9d70-bd09-48b4-87f8-5e2629cdcd8d",
-    "title": "Chia Seed Pudding with Mixed Berries",
-    "price": "$38.67",
-    "image": "https://via.placeholder.com/100",
-    "category": "bar bliss"
+    "price": 30.92,
+    "photo_path": "https://obar-service.s3.eu-north-1.amazonaws.com/ChocolateEspressoMartin.png",
+    "weight_grams": 90,
+    "category": "sunrise_specials",
+    "ingredients": [
+      {
+        "title": "Vodka",
+        "is_required": false
+      },
+      {
+        "title": "Coffee liqueur",
+        "is_required": true
+      },
+      {
+        "title": "Espresso",
+        "is_required": true
+      },
+      {
+        "title": "Chocolate shavings",
+        "is_required": false
+      }
+    ]
   }
 ]

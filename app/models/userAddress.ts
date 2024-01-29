@@ -16,4 +16,6 @@ const UserAddress = sequelize.define(
   }
 );
 
+
+
 export default UserAddress;

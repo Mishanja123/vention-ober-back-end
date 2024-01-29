@@ -1,4 +1,3 @@
-// user.ts
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
@@ -45,5 +44,7 @@ const User = sequelize.define(
     modelName: "User",
   }
 );
+
+
 
 export default User;

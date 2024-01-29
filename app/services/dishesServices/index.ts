@@ -10,7 +10,7 @@ import { updateDish } from "./updateDish";
 export interface IDisheshHandlers {
   addDish: (data: any) => Promise<Model<typeof Dish>>;
   getAllDishes: () => Promise<Model<typeof Dish>[]>;
-  getDishById: (dishId: string) => Promise<Model<any, any> | null>;
+  getDishById: (dishId: string) => Promise<Model<typeof Dish> | null>;
   getMatchedDishes: (dishQuery: string) => Promise<Model<typeof Dish>[]>;
   getRecent: () => Promise<Model<typeof Dish>[]>;
   updateDish: (

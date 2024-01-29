@@ -1,6 +1,18 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
+interface UserAttributes {
+  id: number;
+  avatar: string | null;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  userCredentialsId: number;
+}
+
+
+
 const User = sequelize.define(
   "User",
   {

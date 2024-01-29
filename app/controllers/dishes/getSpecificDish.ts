@@ -1,10 +1,11 @@
 import createHttpError from "./../../helpers/createHttpError";
-import Dishes from "../../services/dishesRequests";
+
 import { ControllerFunction } from "../../types/ControllerFunction";
+import { DisheshHandlers } from "../../services/dishesServices";
 
 export const getSpecificDish: ControllerFunction = async (req, res, next) => {
   const { dishId } = req.params;
-  const dish = await Dishes.getById(dishId);
+  const dish = await DisheshHandlers.getDishById(dishId);
 
   if (!dish) {
     throw createHttpError(404, "Dish not found");

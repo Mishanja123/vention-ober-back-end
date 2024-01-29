@@ -86,8 +86,9 @@ const Orders = {
     });
 
     if (existedOrder) {
-      await existedOrder.destroy();
-      return "Order deleted successfully";
+      await existedOrder.update({ status: "canceled" });
+
+      return "Order status updated to canceled";
     } else {
       return "Order not found";
     }

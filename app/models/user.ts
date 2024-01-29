@@ -11,7 +11,7 @@ const User = sequelize.define(
       primaryKey: true,
     },
     avatar: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(500),
     },
     first_name: {
       type: DataTypes.STRING(50),
@@ -44,7 +44,5 @@ const User = sequelize.define(
     modelName: "User",
   }
 );
-
-
 
 export default User;

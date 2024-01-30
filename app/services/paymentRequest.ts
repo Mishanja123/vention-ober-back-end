@@ -1,53 +1,53 @@
-import CreditCard from "../models/credit_card";
+import { PaymentType } from "../constants/payments";
 import Payments from "../models/payment";
 import Order from "../models/order";
 import Cart from "../models/cart";
 
-const Payment = {
-  postCreditCard: async (
-    addressTitle: string,
-    cardNumber: string,
-    cardholder: string,
-    cvvNumber: number,
-    month: number,
-    year: number,
-    userId: number
-  ) => {
-    const res = await CreditCard.create({
-      title: addressTitle,
-      card_number: cardNumber,
-      name_on_card: cardholder,
-      card_code: cvvNumber,
-      expire_month: month,
-      expire_year: year,
-      user_id: userId
-    });
-    return res;
+import CreditCard, { CreditCardAttributes } from "../models/credit_card";
+interface IPaymentDetails {
+  type: PaymentType;
+  orderId: string;
+  paymentId: string;
+  userId: number;
+}
+
+interface PaymentFunctions {
+  postCreditCard: (
+    creditCardInfo: Omit<CreditCardAttributes, "id">
+  ) => Promise<number | undefined>;
+  getPaymentCard: (id: string) => Promise<any>;
+  postPaymentDetails: (params: IPaymentDetails) => Promise<any>;
+}
+
+const payment: PaymentFunctions = {
+  postCreditCard: async (creditCardInfo) => {
+    try {
+      const result = await CreditCard.create({ ...creditCardInfo });
+
+      const plainResult = result.get({ plain: true });
+
+      return plainResult.id!;
+    } catch (error) {
+      console.log(error);
+    }
   },
-  getPaymentCard: async (id: string) => {
+  getPaymentCard: async (id) => {
     const card = await CreditCard.findByPk(id);
     return card;
   },
-  postPaymentDetails: async (
-    type: string,
-    dishId: string,
-    paymentId: string,
-    userId: number
-  ) => {
+  postPaymentDetails: async (params) => {
+    const { type, orderId, paymentId, userId } = params;
     try {
-      const orderPaymentCard = await Order.update(
-        { payment_id: paymentId },
-        { where: { id: dishId } }
-      );
+      await Order.update({ payment_id: paymentId }, { where: { id: orderId } });
 
-      const res = await Payments.create({
+      const result = await Payments.create({
         type,
-        OrderId: dishId,
-        user_card_id: paymentId,
+        // OrderId: orderId,
+        // user_card_id: paymentId,
         status: "pending"
       });
 
-      const userCart = await Cart.update(
+      await Cart.update(
         {
           total: 0,
           subTotal: 0,
@@ -56,7 +56,7 @@ const Payment = {
         { where: { userId } }
       );
 
-      return res;
+      return result;
     } catch (error) {
       console.error("Error in postPaymentDetails:", error);
       return null;
@@ -64,4 +64,4 @@ const Payment = {
   }
 };
 
-export default Payment;
+export default payment;

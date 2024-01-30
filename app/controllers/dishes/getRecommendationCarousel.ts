@@ -1,5 +1,6 @@
 import { ControllerFunction } from "./../../types/ControllerFunction";
-import Dishes from "../../services/dishesRequests";
+import { DisheshHandlers } from "../../services/dishesServices";
+
 
 
 export const getRecommendationCarousel: ControllerFunction = async (
@@ -7,6 +8,6 @@ export const getRecommendationCarousel: ControllerFunction = async (
   res,
   next
 ) => {
-  const dishes = await Dishes.getRecent();
+  const dishes = await DisheshHandlers.getRecent();
   res.status(200).json({ dishes });
 };

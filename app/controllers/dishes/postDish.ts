@@ -1,5 +1,6 @@
 import createHttpError from "./../../helpers/createHttpError";
-import Dishes from "../../services/dishesRequests";
+import { DisheshHandlers } from "../../services/dishesServices";
+
 import { ControllerFunction } from "../../types/ControllerFunction";
 
 export const postDish: ControllerFunction = async (req, res, next) => {
@@ -9,7 +10,7 @@ export const postDish: ControllerFunction = async (req, res, next) => {
     throw createHttpError(400, "Missing required fields");
   }
 
-  const newDish = await Dishes.postDish({ ...req.body });
+  const newDish = await DisheshHandlers.addDish({ ...req.body });
 
   res.status(201).json(newDish);
 };

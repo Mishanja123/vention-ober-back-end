@@ -5,9 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import "./app/models/associations";
 
-import Dish from "./app/models/dish";
-
-import dishData from "./data/menuData/dishMoreInfo.json";
+import { uploadInitialDishes } from "./app/controllers/dishes/uploadInitialDishes";
 import { registerRoutes } from "./app/utils/registerRoutes";
 import { HttpError } from "./app/helpers/createHttpError";
 
@@ -18,7 +16,7 @@ app.use(
   cors({
     exposedHeaders: "Authorization",
     credentials: true,
-    origin: true,
+    origin: true
   })
 );
 app.use(cookieParser());
@@ -38,28 +36,8 @@ export async function connect() {
 
 connect();
 
-//to add all data to db type in terminal:
-//curl -X POST -H "Content-Type: application/json" http://localhost:3000/createTestDish
-app.post("/createTestDish", async (req: Request, res: Response) => {
-  try {
-    await Promise.all(
-      dishData.map(async (dish) => {
-        await Dish.create({
-          ...dish,
-          category: dish.category as
-            | "sunrise_specials"
-            | "chefs_pick"
-            | "culinary_classics"
-            | "bar_bliss",
-        });
-      })
-    );
-
-    res.status(201).json({ message: "Success" });
-  } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+// Initial dishes list
+app.post("/createTestDish", uploadInitialDishes);
 
 // Register routes using the registerRoutes function
 registerRoutes(app);
@@ -76,7 +54,7 @@ app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
 
 const startServer = async () => {
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     app.listen(PORT, () => {
       console.log("Server is running on port " + PORT);
     });

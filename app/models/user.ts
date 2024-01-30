@@ -1,6 +1,18 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
+interface UserAttributes {
+  id: number;
+  avatar: string | null;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  userCredentialsId: number;
+}
+
+
+
 const User = sequelize.define(
   "User",
   {
@@ -11,7 +23,7 @@ const User = sequelize.define(
       primaryKey: true,
     },
     avatar: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(500),
     },
     first_name: {
       type: DataTypes.STRING(50),
@@ -44,7 +56,5 @@ const User = sequelize.define(
     modelName: "User",
   }
 );
-
-
 
 export default User;

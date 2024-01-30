@@ -19,7 +19,7 @@ const Dish = sequelize.define(
       allowNull: false,
     },
     photo_path: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(500),
     },
     ingredients: {
       type: DataTypes.JSONB,

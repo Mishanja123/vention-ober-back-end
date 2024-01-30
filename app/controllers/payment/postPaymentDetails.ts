@@ -6,9 +6,14 @@ export const postPaymentDetails: ControllerFunction = async (
   res,
   next
 ) => {
-  const { type, dishId, paymentId } = req.body;
-  const { id } = req.user;
-  const result = await Payment.postPaymentDetails(type, dishId, paymentId, id);
+  const { type, orderId, paymentId } = req.body;
+  const { id: userId } = req.user;
+  const result = await Payment.postPaymentDetails({
+    type,
+    orderId,
+    paymentId,
+    userId
+  });
 
   res.status(201).json(result);
 };

@@ -1,8 +1,8 @@
-import Authentication from "../../services/authRequests";
+import { AuthHandlers } from "../../services/authServices";
 import { ControllerFunction } from "../../types/ControllerFunction";
 
-export const postSignUp: ControllerFunction = async (req, res, next) => {
-  const result = await Authentication.createUser(req.body);
+export const signUp: ControllerFunction = async (req, res, next) => {
+  const result = await AuthHandlers.createUser(req.body);
 
   res.status(201).json({
     message: result,

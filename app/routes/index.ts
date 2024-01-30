@@ -4,6 +4,7 @@ import * as usersRouter from "./users";
 import * as ordersRouter from "./orders";
 import * as paymentRouter from "./payment";
 import * as cartRouter from "./cart";
+import * as s3Router from "./s3";
 
 import { Express } from "express";
 
@@ -17,7 +18,8 @@ const routes: Routes = {
   usersRouter,
   ordersRouter,
   cartRouter,
-  paymentRouter
+  paymentRouter,
+  s3Router,
 };
 
 export { routes };

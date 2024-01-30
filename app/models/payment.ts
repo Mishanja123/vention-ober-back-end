@@ -1,32 +1,37 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
+
 import Order from "./order";
 
-const Payment = sequelize.define(
+interface PaymentAttributes {
+  id?: number;
+  type: "offline" | "online";
+  status: "pending" | "failed" | "succeed";
+}
+
+const Payment = sequelize.define<Model<PaymentAttributes>>(
   "Payment",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     type: {
       type: DataTypes.ENUM("offline", "online"),
-      allowNull: false,
+      allowNull: false
     },
     status: {
       type: DataTypes.ENUM("pending", "failed", "succeed"),
-      allowNull: false,
+      allowNull: false
     },
   },
   {
-    modelName: "Payment",
+    modelName: "Payment"
   }
 );
 
-
 Payment.belongsTo(Order);
-
 
 export default Payment;

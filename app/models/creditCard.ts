@@ -1,40 +1,51 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-const CreditCard = sequelize.define(
+export interface CreditCardAttributes {
+  id?: number;
+  addressTitle: string;
+  cardNumber: string;
+  month: number;
+  year: number;
+  cvvNumber: number;
+  cardHolder: string;
+  userId: number;
+}
+
+const CreditCard = sequelize.define<Model<CreditCardAttributes>>(
   "CreditCard",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
-    title: {
+    addressTitle: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    card_number: {
+    cardNumber: {
       type: DataTypes.STRING(16),
       allowNull: false
     },
-    expire_month: {
+    month: {
       type: DataTypes.SMALLINT,
       allowNull: false
     },
-    expire_year: {
+    year: {
       type: DataTypes.SMALLINT,
       allowNull: false
     },
-    card_code: {
+    cvvNumber: {
       type: DataTypes.BIGINT,
       allowNull: false
     },
-    name_on_card: {
+    cardHolder: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    user_id: {
+    userId: {
       type: DataTypes.SMALLINT,
       allowNull: false
     }

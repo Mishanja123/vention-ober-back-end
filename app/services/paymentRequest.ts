@@ -2,6 +2,7 @@ import { PaymentType } from "../constants/payments";
 import Payments from "../models/payment";
 import Order from "../models/order";
 import Cart from "../models/cart";
+import paymentMessages from "../messages/paymentMessages";
 
 import CreditCard, { CreditCardAttributes } from "../models/creditCard";
 interface IPaymentDetails {
@@ -58,7 +59,7 @@ const payment: PaymentFunctions = {
 
       return result;
     } catch (error) {
-      console.error("Error in postPaymentDetails:", error);
+      console.error(paymentMessages.ERROR_SAVING_PAYMENT_DATA_MESSAGE, error);
       return null;
     }
   },

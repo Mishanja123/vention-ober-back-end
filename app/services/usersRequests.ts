@@ -1,6 +1,6 @@
 import createHttpError from "../helpers/createHttpError";
 import User from "../models/user";
-import UserCredentials from "../models/user_credentials";
+import UserCredentials from "../models/userCredentials";
 
 const users = {
   getAll: async () => await User.findAll(),

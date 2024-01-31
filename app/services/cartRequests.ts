@@ -1,6 +1,7 @@
 import Cart from "../models/cart";
 import Dish from "../models/dish";
 import createHttpError from "../helpers/createHttpError";
+import cartMessages from "../messages/cartMessages";
 
 const cartService = {
   deleteAllItems: async (userId: number) => {
@@ -25,7 +26,10 @@ const cartService = {
         const dish = await Dish.findByPk(productId);
 
         if (!cart || !dish) {
-          throw createHttpError(404, "Cart or dish not found");
+          throw createHttpError(
+            404,
+            cartMessages.CART_OR_DISH_NOT_FOUND_MESSAGE
+          );
         }
 
         const existingCartItemIndex = cart.dishes.findIndex(
@@ -53,7 +57,7 @@ const cartService = {
       });
     } catch (error) {
       console.log("🚀 : error", error);
-      throw createHttpError(500, "Internal Server Error");
+      throw createHttpError(500, cartMessages.SERVER_ERROR_MESSAGE);
     }
   },
 
@@ -64,7 +68,7 @@ const cartService = {
         const cart = await Cart.findOne({ where: { userId }, transaction });
 
         if (!cart) {
-          throw createHttpError(404, "Cart not found");
+          throw createHttpError(404, cartMessages.CART_NOT_FOUND_MESSAGE);
         }
 
         const existingCartItemIndex = cart.dishes.findIndex(
@@ -82,12 +86,12 @@ const cartService = {
 
           return cart;
         } else {
-          throw createHttpError(404, "Cart item not found");
+          throw createHttpError(404, cartMessages.CART_ITEM_NOT_FOUND_MESSAGE);
         }
       });
     } catch (error) {
       console.log("🚀 : error", error);
-      throw createHttpError(500, "Internal Server Error");
+      throw createHttpError(500, cartMessages.SERVER_ERROR_MESSAGE);
     }
   },
   updateCartItemQuantity: async (
@@ -101,7 +105,7 @@ const cartService = {
         const cart = await Cart.findOne({ where: { userId }, transaction });
 
         if (!cart) {
-          throw createHttpError(404, "Cart not found");
+          throw createHttpError(404, cartMessages.CART_NOT_FOUND_MESSAGE);
         }
 
         const existingCartItemIndex = cart.dishes.findIndex(
@@ -124,12 +128,12 @@ const cartService = {
 
           return cart;
         } else {
-          throw createHttpError(404, "Cart item not found");
+          throw createHttpError(404, cartMessages.CART_ITEM_NOT_FOUND_MESSAGE);
         }
       });
     } catch (error) {
       console.log("🚀 : error", error);
-      throw createHttpError(500, "Internal Server Error");
+      throw createHttpError(500, cartMessages.SERVER_ERROR_MESSAGE);
     }
   },
 

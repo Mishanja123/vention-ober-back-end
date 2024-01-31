@@ -3,24 +3,10 @@ import Payments from "../models/payment";
 import Order from "../models/order";
 import Cart from "../models/cart";
 import paymentMessages from "../messages/paymentMessages";
+import { IPaymentDetails, IPaymentFunctions } from "../interfaces/Payment";
+import CreditCard from "../models/creditCard";
 
-import CreditCard, { CreditCardAttributes } from "../models/creditCard";
-interface IPaymentDetails {
-  type: PaymentType;
-  orderId: string;
-  paymentId: string;
-  userId: number;
-}
-
-interface PaymentFunctions {
-  postCreditCard: (
-    creditCardInfo: Omit<CreditCardAttributes, "id">
-  ) => Promise<number | undefined>;
-  getPaymentCard: (id: string) => Promise<any>;
-  postPaymentDetails: (params: IPaymentDetails) => Promise<any>;
-}
-
-const payment: PaymentFunctions = {
+const payment: IPaymentFunctions = {
   postCreditCard: async (creditCardInfo) => {
     try {
       const result = await CreditCard.create({ ...creditCardInfo });

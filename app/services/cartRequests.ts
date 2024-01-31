@@ -2,6 +2,7 @@ import Cart from "../models/cart";
 import Dish from "../models/dish";
 import createHttpError from "../helpers/createHttpError";
 import cartMessages from "../messages/cartMessages";
+import { ICart } from "../interfaces/Cart";
 
 const cartService = {
   deleteAllItems: async (userId: number) => {
@@ -50,7 +51,7 @@ const cartService = {
             subtotal: Number(dish.price),
           });
         }
-
+        //@ts-expect-error
         await cartService.updateCart(cart, transaction);
 
         return cart;
@@ -81,7 +82,7 @@ const cartService = {
           // @ts-ignore
           cart.total -= cart.dishes[existingCartItemIndex].subtotal;
           cart.dishes.splice(existingCartItemIndex, 1);
-
+          //@ts-expect-error
           await cartService.updateCart(cart, transaction);
 
           return cart;
@@ -123,7 +124,7 @@ const cartService = {
           cart.dishes[existingCartItemIndex].subtotal =
             // @ts-ignore
             dish.price * cart.dishes[existingCartItemIndex].quantity;
-
+          //@ts-expect-error
           await cartService.updateCart(cart, transaction);
 
           return cart;
@@ -138,7 +139,7 @@ const cartService = {
   },
 
   // updateCart to handle any cart updates
-  updateCart: async (cart: any, transaction: any) => {
+  updateCart: async (cart: ICart, transaction: any) => {
     cart.subTotal = cart.dishes.reduce(
       (total: number, item: any) => total + item.subtotal,
       0

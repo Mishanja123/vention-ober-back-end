@@ -7,7 +7,7 @@ const Table = sequelize.define<ITable>(
   "Table",
   {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
       primaryKey: true,

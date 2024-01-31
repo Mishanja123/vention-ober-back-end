@@ -4,11 +4,11 @@ import authenticate from "../middleware/authenticate";
 
 export function router(app: Express) {
   app
-    .post("/api/auth/sign-up", authController.postSignUp)
-    .post("/api/auth/login", authController.postSignIn)
+    .post("/api/auth/sign-up", authController.signUp)
+    .post("/api/auth/login", authController.signIn)
     .get("/api/auth/current-user", authenticate, authController.getCurrentUser)
     .get("/api/auth/refresh", authController.getRefreshTokens)
-    .get("/api/auth/logout", authController.postLogOut);
+    .get("/api/auth/logout", authController.logOut);
 }
 
 export default router;

@@ -1,8 +1,9 @@
 import User from "../../models/user";
-import UserCredentials from "../../models/user_credentials";
+import UserCredentials from "../../models/userCredentials";
 import bcrypt from "bcryptjs";
 import createHttpError from "../../helpers/createHttpError";
 import { IUserData } from "../../interfaces/Auth/Auth";
+import authMessages from "../../messages/authMessages";
 
 export const createUser = async (data: IUserData) => {
   const { first_name, last_name, email, phone, password } = data;
@@ -11,7 +12,7 @@ export const createUser = async (data: IUserData) => {
   const existingUser = await User.findOne({ where: { email: email } });
 
   if (existingUser) {
-    throw createHttpError(409, "Email already exists");
+    throw createHttpError(409, authMessages.EMAIL_ALREADY_EXISTS_MESSAGE);
   }
 
   // Hash the password
@@ -20,7 +21,7 @@ export const createUser = async (data: IUserData) => {
   // Create user credentials
   const userCredentials = await UserCredentials.create({
     password: hashedPassword,
-    role: "user"
+    role: "user",
   });
 
   // Create the user
@@ -30,7 +31,7 @@ export const createUser = async (data: IUserData) => {
     email,
     phone,
     // @ts-ignore
-    userCredentialsId: userCredentials.id
+    userCredentialsId: userCredentials.id,
   });
 
   // Create a cart for the user
@@ -40,10 +41,10 @@ export const createUser = async (data: IUserData) => {
     userId: userCreated.id,
     total: 0,
     subTotal: 0,
-    dishes: []
+    dishes: [],
   });
 
-  return "Signup successful";
+  return authMessages.USER_SUCCESFULLY_CREATED_MESSAGE;
 };
 
 export default createUser;

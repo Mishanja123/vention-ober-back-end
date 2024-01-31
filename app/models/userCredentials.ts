@@ -1,7 +1,20 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../../config/database";
 
-const UserCredentials = sequelize.define(
+interface UserCredentialsAttributes {
+  id: number;
+  password: string;
+  role: "user" | "admin";
+}
+
+interface UserCredentialsCreationAttributes
+  extends Optional<UserCredentialsAttributes, "id"> {}
+
+interface UserCredentialsInstance
+  extends Model<UserCredentialsAttributes, UserCredentialsCreationAttributes>,
+    UserCredentialsAttributes {}
+
+const UserCredentials = sequelize.define<UserCredentialsInstance>(
   "UserCredentials",
   {
     id: {

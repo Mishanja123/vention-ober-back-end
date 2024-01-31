@@ -20,6 +20,7 @@ export const uploadInitialDishes: ControllerFunction = async (req, res) => {
 
     res.status(201).json({ message: "Success" });
   } catch (error) {
+    console.error("Error synchronizing database:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

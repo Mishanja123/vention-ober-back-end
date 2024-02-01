@@ -6,8 +6,8 @@ import { loginUser } from "./loginUser";
 export interface IAuthHandlers {
   createUser: (data: IUserData) => Promise<string | void>;
   loginUser: (
-    data: Pick<IUserData, "email" | "password">
-  ) => Promise<Model<IUserData>>;
+    { email, password }: Pick<IUserData, "email" | "password">
+  ) => Promise<Pick<IUserData, "firstName" | "id">>;
 }
 
 export const AuthHandlers: IAuthHandlers = {

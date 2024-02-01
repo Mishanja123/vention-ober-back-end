@@ -1,5 +1,5 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
-import CartService from "../../services/cartRequests";
+import { CartHandlers } from "../../services/cartServices";
 
 export const deleteAllCartItems: ControllerFunction = async (
   req,
@@ -8,6 +8,6 @@ export const deleteAllCartItems: ControllerFunction = async (
 ) => {
   const { id: userId } = req.user;
 
-  const cart = await CartService.deleteAllItems(userId);
+  const cart = await CartHandlers.deleteAllItems(userId);
   res.status(200).json(...cart);
 };

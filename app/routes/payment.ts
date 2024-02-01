@@ -4,7 +4,7 @@ import paymentController from "../controllers/payment";
 import authenticate from "../middleware/authenticate";
 
 export function router(app: Express) {
-  app.post("/api/payment", paymentController.createCreditCard);
+  app.post("/api/payment", authenticate, paymentController.createCreditCard);
   app.get(
     "/api/payment/:id",
     authenticate,

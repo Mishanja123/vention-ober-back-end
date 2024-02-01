@@ -10,7 +10,8 @@ import { IPayment } from "../../models/payment";
 export interface IPaymentHandlers {
   getPaymentCardById: (id: string) => Promise<ICreditCard | null>;
   createCreditCard: (
-    creditCardInfo: Omit<ICreditCard, "id">
+    creditCardInfo: Omit<ICreditCard, "id">,
+    userId: number
   ) => Promise<number>;
   updatePaymentDetails: (data: IPaymentDetails) => Promise<IPayment>;
 }

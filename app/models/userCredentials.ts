@@ -1,20 +1,15 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-interface UserCredentialsAttributes {
+import { UserRole } from "../enums/User";
+
+export interface IUserUserCredentials extends Model {
   id: number;
   password: string;
-  role: "user" | "admin";
+  role: UserRole;
 }
 
-interface UserCredentialsCreationAttributes
-  extends Optional<UserCredentialsAttributes, "id"> {}
-
-interface UserCredentialsInstance
-  extends Model<UserCredentialsAttributes, UserCredentialsCreationAttributes>,
-    UserCredentialsAttributes {}
-
-const UserCredentials = sequelize.define<UserCredentialsInstance>(
+const UserCredentials = sequelize.define<IUserUserCredentials>(
   "UserCredentials",
   {
     id: {

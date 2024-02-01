@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-export interface CreditCardAttributes {
+export interface ICreditCard extends Model {
   id?: number;
   addressTitle: string;
   cardNumber: string;
@@ -12,7 +12,7 @@ export interface CreditCardAttributes {
   userId: number;
 }
 
-const CreditCard = sequelize.define<Model<CreditCardAttributes>>(
+const CreditCard = sequelize.define<ICreditCard>(
   "CreditCard",
   {
     id: {
@@ -23,35 +23,35 @@ const CreditCard = sequelize.define<Model<CreditCardAttributes>>(
     },
     addressTitle: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     cardNumber: {
       type: DataTypes.STRING(16),
-      allowNull: false
+      allowNull: false,
     },
     month: {
       type: DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
     },
     year: {
       type: DataTypes.SMALLINT,
-      allowNull: false
+      allowNull: false,
     },
     cvvNumber: {
       type: DataTypes.BIGINT,
-      allowNull: false
+      allowNull: false,
     },
     cardHolder: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     userId: {
       type: DataTypes.SMALLINT,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
-    modelName: "CreditCard"
+    modelName: "CreditCard",
   }
 );
 

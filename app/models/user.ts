@@ -1,8 +1,8 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-interface UserAttributes {
-  id?: number;
+export interface IUser extends Model {
+  id: number;
   avatar: string | null;
   firstName: string;
   lastName: string;
@@ -12,7 +12,7 @@ interface UserAttributes {
   orderId: number | null;
 }
 
-const User = sequelize.define<Model<UserAttributes>>(
+const User = sequelize.define<IUser>(
   "User",
   {
     id: {

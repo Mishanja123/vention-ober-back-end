@@ -3,6 +3,7 @@ import UserCredentials from "../../models/userCredentials";
 import bcrypt from "bcryptjs";
 import createHttpError from "../../helpers/createHttpError";
 import { IUserData } from "../../interfaces/Auth/Auth";
+import { UserRole } from "../../enums/User";
 import authMessages from "../../messages/authMessages";
 
 export const createUser = async (data: IUserData) => {
@@ -20,7 +21,7 @@ export const createUser = async (data: IUserData) => {
   // Create user credentials
   const userCredentials = await UserCredentials.create({
     password: hashedPassword,
-    role: "user",
+    role: UserRole.User,
   });
 
   // Create the user
@@ -29,6 +30,7 @@ export const createUser = async (data: IUserData) => {
     lastName,
     email,
     phone,
+    // @ts-ignore
     userCredentialsId: userCredentials.id,
     orderId: null,
     avatar: null,

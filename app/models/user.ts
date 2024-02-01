@@ -1,12 +1,9 @@
 import { DataTypes, Model } from "sequelize";
-import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
 export interface IUser extends Model {
   id: number;
   avatar: string | null;
-  firstName: string;
-  lastName: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -28,11 +25,9 @@ const User = sequelize.define<IUser>(
       type: DataTypes.STRING(500),
     },
     firstName: {
-    firstName: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    lastName: {
     lastName: {
       type: DataTypes.STRING(50),
       allowNull: false,

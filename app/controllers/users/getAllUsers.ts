@@ -1,7 +1,8 @@
 import { ControllerFunction } from "./../../types/ControllerFunction";
-import Users from "../../services/usersRequests";
+
+import { UserHandlers } from "../../services/userService";
 
 export const getAllUsers: ControllerFunction = async (req, res, next) => {
-  const users = await Users.getAll();
+  const users = await UserHandlers.getAllUsers();
   res.status(200).json({ users });
 };

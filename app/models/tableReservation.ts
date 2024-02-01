@@ -1,6 +1,13 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
-import { ITableReservation } from "../interfaces/Table";
+
+export interface ITableReservation extends Model {
+  id: number;
+  guests: number;
+  reservationDate: string;
+  reservationTime: string;
+  withPreorder: boolean;
+}
 
 const TableReservation = sequelize.define<ITableReservation>(
   "TableReservation",

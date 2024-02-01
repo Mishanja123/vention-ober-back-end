@@ -1,13 +1,5 @@
 import { Model } from "sequelize";
 
-export interface ITableReservation extends Model {
-  id: number;
-  guests: number;
-  reservationDate: string;
-  reservationTime: string;
-  withPreorder: boolean;
-}
-
 export type AvailableTime =
   | "09:00"
   | "11:00"

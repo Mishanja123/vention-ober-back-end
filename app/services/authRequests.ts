@@ -2,6 +2,7 @@ import User from "../models/user";
 import UserCredentials from "../models/userCredentials";
 import bcrypt from "bcryptjs";
 import createHttpError from "../helpers/createHttpError";
+import { UserRole } from "../enums/User";
 
 interface UserData {
   first_name: string;
@@ -26,7 +27,7 @@ const authentication = {
     const userCredentials = await UserCredentials.create(
       {
         password: hashedPassword,
-        role: "user",
+        role: UserRole.User,
       },
       { fields: ["password", "role"] }
     );

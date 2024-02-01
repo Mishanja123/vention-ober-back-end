@@ -1,19 +1,17 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-interface UserAttributes {
+export interface IUser extends Model {
   id: number;
   avatar: string | null;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   userCredentialsId: number;
 }
 
-
-
-const User = sequelize.define(
+const User = sequelize.define<IUser>(
   "User",
   {
     id: {
@@ -25,11 +23,11 @@ const User = sequelize.define(
     avatar: {
       type: DataTypes.STRING(500),
     },
-    first_name: {
+    firstName: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    last_name: {
+    lastName: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
@@ -41,7 +39,6 @@ const User = sequelize.define(
     phone: {
       type: DataTypes.STRING(16),
       allowNull: false,
-      // unique: true,
     },
     userCredentialsId: {
       type: DataTypes.INTEGER,

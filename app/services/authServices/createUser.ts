@@ -5,6 +5,7 @@ import createHttpError from "../../helpers/createHttpError";
 import { IUserData } from "../../interfaces/Auth/Auth";
 import { UserRole } from "../../enums/User";
 import authMessages from "../../messages/authMessages";
+import { SESServiceHandlers } from "../SESService/index";
 
 export const createUser = async (data: IUserData) => {
   const { firstName, lastName, email, phone, password } = data;
@@ -44,6 +45,11 @@ export const createUser = async (data: IUserData) => {
     total: 0,
     subTotal: 0,
     dishes: [],
+  });
+
+  await SESServiceHandlers.sendEmail(email, "OceanBar Team", {
+    firstName,
+    lastName,
   });
 
   return authMessages.USER_SUCCESFULLY_CREATED_MESSAGE;

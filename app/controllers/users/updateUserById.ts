@@ -2,7 +2,7 @@ import { ControllerFunction } from "../../types/ControllerFunction";
 import createHttpError from "../../helpers/createHttpError";
 
 import { UserHandlers } from "../../services/userService";
-import S3Service from "../../services/S3Service";
+import { S3ServiceHandlers } from "../../services/S3Services";
 
 import userMesseges from "../../messages/userMessages";
 
@@ -13,7 +13,7 @@ export const updateUserById: ControllerFunction = async (req, res, next) => {
     throw createHttpError(404, userMesseges.USER_NOT_FOUND_MESSAGE);
   }
 
-  const avatar = await S3Service.getUserPresignedUrl(userId);
+  const avatar = await S3ServiceHandlers.getUserPresignedUrlByUserId(userId);
 
   const updatedUser = { avatar, ...req.body };
   Object.assign(user, updatedUser);

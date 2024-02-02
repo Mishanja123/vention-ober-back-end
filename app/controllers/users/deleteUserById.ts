@@ -1,9 +1,10 @@
 import { ControllerFunction } from "./../../types/ControllerFunction";
-import Users from "../../services/usersRequests";
+
+import { UserHandlers } from "../../services/userService";
 
 export const deleteUserById: ControllerFunction = async (req, res, next) => {
-  const userId = parseInt(req.params.id, 10);
-  await Users.deleteById(userId);
-  const users = await Users.getAll();
+  const id = parseInt(req.params.id, 10);
+  await UserHandlers.deleteUserById(id);
+  const users = await UserHandlers.getAllUsers();
   res.status(200).json({ updatedList: users });
 };

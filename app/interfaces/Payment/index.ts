@@ -1,5 +1,4 @@
-import { PaymentType } from "../../constants/payments";
-import { CreditCardAttributes } from "../../models/creditCard";
+import { PaymentType } from "../../enums/Payment";
 
 export interface IPaymentDetails {
   type: PaymentType;

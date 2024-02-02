@@ -5,11 +5,12 @@ import createHttpError from "../../helpers/createHttpError";
 import { IUserData } from "../../interfaces/Auth/Auth";
 import authMessages from "../../messages/authMessages";
 
-export const loginUser = async (
-  data: Pick<IUserData, "email" | "password">
-) => {
-  const { email, password } = data;
-
+export const loginUser = async ({
+  email,
+  password
+}: Pick<IUserData, "email" | "password">): Promise<
+  Pick<IUserData, "firstName" | "id">
+> => {
   const user = await User.findOne({ where: { email } });
 
   if (!user) {
@@ -17,18 +18,25 @@ export const loginUser = async (
   }
 
   const userCredentials = await UserCredentials.findOne({
-    where: { id: user.dataValues.userCredentialsId },
+    where: { id: user.dataValues.userCredentialsId }
   });
 
   if (!userCredentials) {
     throw createHttpError(401, authMessages.NO_CREDENTIALS_FOUND_MESSAGE);
   }
-  // @ts-ignore
+
   const doMatch = await bcrypt.compare(password, userCredentials.password);
 
   if (!doMatch) {
     throw createHttpError(401, authMessages.WRONG_CREDENTIALS_PROVIDED_MESSAGE);
   }
 
-  return user;
+  const { id, firstName } = user.dataValues;
+
+  // Ensure id is not undefined before returning
+  if (id === undefined) {
+    throw new Error("User id is undefined"); // Handle this case appropriately
+  }
+
+  return { firstName, id };
 };

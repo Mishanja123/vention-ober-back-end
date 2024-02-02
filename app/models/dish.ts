@@ -18,7 +18,7 @@ const Dish = sequelize.define(
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    photo_path: {
+    photoPath: {
       type: DataTypes.STRING(500),
     },
     ingredients: {
@@ -34,7 +34,7 @@ const Dish = sequelize.define(
       ),
       allowNull: false,
     },
-    weight_grams: {
+    weightGrams: {
       type: DataTypes.BIGINT,
       allowNull: false,
     },

@@ -13,7 +13,7 @@ export interface IOrderHandlers {
   getAllOrdersByUserId: (userId: number) => Promise<IOrder[]>;
   getAllOrdersAdmin: () => Promise<IOrder[]>;
   deleteOrderById: (id: string) => Promise<void>;
-  createNewOrder: (data: IOrderType) => Promise<void>;
+  createNewOrder: (data: IOrderType) => Promise<IOrder>;
   createTableReservation: (data: IReservationData) => Promise<void>;
 }
 

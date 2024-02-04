@@ -15,15 +15,17 @@ export const createTableReservation: ControllerFunction = async (
     withPreorder: withPreorder,
   } = req.body;
 
-  await OrderHandlers.createTableReservation({
+  const reservation = await OrderHandlers.createTableReservation({
     reservationDate,
     reservationTime,
     guests,
     withPreorder,
     req,
   });
-
   res
     .status(201)
-    .json({ message: orderMesseges.ORDER_SUCCESS_CREATED_MESSAGE });
+    .json({
+      message: orderMesseges.ORDER_SUCCESS_CREATED_MESSAGE,
+      reservation,
+    });
 };

@@ -5,13 +5,14 @@ import { PaymentType } from "../../enums/Payment";
 import { IPaymentDetails } from "../../interfaces/Payment";
 
 export const updatePaymentDetails = async (data: IPaymentDetails) => {
+  console.log(data);
   const { type, orderId, paymentId, userId } = data;
   await Order.update({ paymentId: paymentId }, { where: { id: orderId } });
 
   const result = await Payments.create({
     type,
-    // OrderId: orderId,
-    // user_card_id: paymentId,
+    orderId: orderId,
+    userCardId: paymentId,
     status: PaymentType.Pending,
   });
 

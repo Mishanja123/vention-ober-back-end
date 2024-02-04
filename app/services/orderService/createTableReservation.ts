@@ -32,7 +32,7 @@ export const createTableReservation = async ({
   });
 
   // @ts-ignore
-  await reservation.createOrder({
+  const createdOrder = await reservation.createOrder({
     UserId: req.user.id,
     type: orderType,
     status: OrderStatus.Active,
@@ -46,4 +46,5 @@ export const createTableReservation = async ({
     status: TableStatus.Reserved,
     seats: guestExpected,
   });
+  return createdOrder;
 };

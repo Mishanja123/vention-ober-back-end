@@ -9,6 +9,8 @@ export interface IPayment extends Model {
   id?: number;
   type: PaymentType;
   status: PaymentStatus;
+  orderId?: number;
+  userCardId?: number;
 }
 
 const Payment = sequelize.define<IPayment>(
@@ -27,6 +29,22 @@ const Payment = sequelize.define<IPayment>(
     status: {
       type: DataTypes.ENUM("pending", "failed", "succeed"),
       allowNull: false,
+    },
+    orderId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "Orders",
+        key: "id",
+      },
+    },
+    userCardId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "CreditCards",
+        key: "id",
+      },
     },
   },
   {

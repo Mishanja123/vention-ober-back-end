@@ -2,6 +2,7 @@ import createHttpError from "../../helpers/createHttpError";
 import cartMessages from "../../messages/cartMessages";
 import Cart from "../../models/cart";
 import Dish from "../../models/dish";
+import { updateCart } from "./updateCart";
 
 export const updateCartItemQuantity = async (
   productId: number,
@@ -33,7 +34,7 @@ export const updateCartItemQuantity = async (
           // @ts-ignore
           dish.price * cart.dishes[existingCartItemIndex].quantity;
         //@ts-expect-error
-        await cartService.updateCart(cart, transaction);
+        await updateCart(cart, transaction);
 
         return cart;
       } else {

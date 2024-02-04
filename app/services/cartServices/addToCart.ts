@@ -2,6 +2,7 @@ import Cart from "../../models/cart";
 import Dish from "../../models/dish";
 import createHttpError from "../../helpers/createHttpError";
 import cartMessages from "../../messages/cartMessages";
+import { updateCart } from "./updateCart";
 
 export const addToCart = async (productId: number, userId: number) => {
   try {
@@ -33,7 +34,7 @@ export const addToCart = async (productId: number, userId: number) => {
         });
       }
       //@ts-expect-error
-      await cartService.updateCart(cart, transaction);
+      await updateCart(cart, transaction);
 
       return cart;
     });

@@ -1,6 +1,7 @@
 import createHttpError from "../../helpers/createHttpError";
 import cartMessages from "../../messages/cartMessages";
 import Cart from "../../models/cart";
+import { updateCart } from "./updateCart";
 
 export const deleteCartItem = async (productId: number, userId: number) => {
   try {
@@ -23,7 +24,7 @@ export const deleteCartItem = async (productId: number, userId: number) => {
         cart.total -= cart.dishes[existingCartItemIndex].subtotal;
         cart.dishes.splice(existingCartItemIndex, 1);
         //@ts-expect-error
-        await cartService.updateCart(cart, transaction);
+        await updateCart(cart, transaction);
 
         return cart;
       } else {

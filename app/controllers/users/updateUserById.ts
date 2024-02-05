@@ -14,7 +14,7 @@ export const updateUserById: ControllerFunction = async (req, res, next) => {
   }
 
   const avatar = await S3ServiceHandlers.getUserPresignedUrlByUserId(userId);
-
+  console.log(avatar);
   const updatedUser = { avatar, ...req.body };
   Object.assign(user, updatedUser);
   await user.save();

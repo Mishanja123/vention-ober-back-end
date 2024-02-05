@@ -22,4 +22,5 @@ export const createNewOrder = async ({
     dishes: existedCart?.dishes,
   });
   return createdOrder;
+  [];
 };

@@ -6,7 +6,8 @@ import orderMesseges from "../../messages/orderMessages";
 
 export const deleteOrderById: ControllerFunction = async (req, res, next) => {
   const { id } = req.params;
-  await OrderHandlers.deleteOrderById(id);
+  const { id: userId } = req.user;
+  await OrderHandlers.deleteOrderById(id, userId);
 
   res
     .status(200)

@@ -14,11 +14,13 @@ export const createNewOrder = async ({
     where: { UserId: req.user.id },
   });
 
-  await Order.create({
+  const createdOrder = await Order.create({
     orderDate: orderDate + " " + time,
     type,
     UserId: req.user.id,
     status: OrderStatus.Active,
     dishes: existedCart?.dishes,
   });
+  return createdOrder;
+  [];
 };

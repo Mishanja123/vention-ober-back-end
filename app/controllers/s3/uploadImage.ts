@@ -1,5 +1,5 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
-import S3Service from "../../services/S3Service";
+import { S3ServiceHandlers } from "../../services/S3Services";
 //@ts-ignore
 export const uploadImage: ControllerFunction = async (req, res, next) => {
   const userId = req.headers["x-user-id"];
@@ -7,7 +7,7 @@ export const uploadImage: ControllerFunction = async (req, res, next) => {
   console.log(file, userId);
   if (!file) return res.status(400).json({ message: "Bad request" });
   //@ts-ignore
-  const { error, key } = S3Service.uploadToS3({ file, userId });
+  const { error, key } = S3ServiceHandlers.uploadToS3({ file, userId });
   if (error) return res.status(500).json({ message: error.message });
   return res.status(200).json({ key });
 };

@@ -1,5 +1,5 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
-import S3Service from "../../services/S3Service";
+import { S3ServiceHandlers } from "../../services/S3Services";
 //@ts-ignore
 export const getDishImageByName: ControllerFunction = async (
   req,
@@ -8,7 +8,7 @@ export const getDishImageByName: ControllerFunction = async (
 ) => {
   const name = req.body.name;
   //@ts-ignore
-  const data = await S3Service.getDishesPresignedUrl(name);
+  const data = await S3ServiceHandlers.getDishesPresignedUrl(name);
   if (!data)
     return res.status(500).json({ message: "Server error, failed to fetch" });
   //@ts-ignore

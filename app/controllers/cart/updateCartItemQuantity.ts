@@ -1,5 +1,5 @@
 import { ControllerFunction } from "../../types/ControllerFunction";
-import CartService from "../../services/cartRequests";
+import { CartHandlers } from "../../services/cartServices";
 
 export const updateCartItemQuantity: ControllerFunction = async (
   req,
@@ -9,7 +9,7 @@ export const updateCartItemQuantity: ControllerFunction = async (
   const { productId, quantityModifier } = req.body;
   const { id } = req.user;
 
-  const cart = await CartService.updateCartItemQuantity(
+  const cart = await CartHandlers.updateCartItemQuantity(
     Number(productId),
     id,
     Number(quantityModifier)

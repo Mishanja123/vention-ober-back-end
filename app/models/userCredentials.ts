@@ -1,7 +1,15 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-const UserCredentials = sequelize.define(
+import { UserRole } from "../enums/User";
+
+export interface IUserUserCredentials extends Model {
+  id: number;
+  password: string;
+  role: UserRole;
+}
+
+const UserCredentials = sequelize.define<IUserUserCredentials>(
   "UserCredentials",
   {
     id: {

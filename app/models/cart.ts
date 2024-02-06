@@ -1,25 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 import User from "./user";
-
-interface DishData {
-  id: number;
-  title: string;
-  price: number;
-  photo_path: string | null;
-  ingredients: Record<string, unknown>[];
-  category:
-    | "sunrise_specials"
-    | "culinary_classics"
-    | "bar_bliss"
-    | "chefs_pick";
-  weight_grams: number;
-}
+import { IDish } from "../interfaces/Dish";
 
 class Cart extends Model {
   public id!: number;
   public userId!: number;
-  public dishes!: { dishData: DishData; quantity: number; subtotal: number }[];
+  public dishes!: { dishData: IDish; quantity: number; subtotal: number }[];
 }
 
 Cart.init(
@@ -28,11 +15,11 @@ Cart.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     total: {
       type: DataTypes.DECIMAL(10, 2),
@@ -43,7 +30,7 @@ Cart.init(
       },
       set(value: number) {
         this.setDataValue("total", value.toString());
-      }
+      },
     },
     subTotal: {
       type: DataTypes.DECIMAL(10, 2),
@@ -54,17 +41,17 @@ Cart.init(
       },
       set(value: number) {
         this.setDataValue("subTotal", value.toString());
-      }
+      },
     },
     dishes: {
       type: DataTypes.ARRAY(DataTypes.JSONB),
       allowNull: false,
-      defaultValue: []
-    }
+      defaultValue: [],
+    },
   },
   {
     sequelize,
-    modelName: "Cart"
+    modelName: "Cart",
   }
 );
 

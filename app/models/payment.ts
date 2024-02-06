@@ -3,32 +3,52 @@ import sequelize from "../../config/database";
 
 import Order from "./order";
 
-interface PaymentAttributes {
+import { PaymentStatus, PaymentType } from "../enums/Payment";
+
+export interface IPayment extends Model {
   id?: number;
-  type: "offline" | "online";
-  status: "pending" | "failed" | "succeed";
+  type: PaymentType;
+  status: PaymentStatus;
+  orderId?: number;
+  userCardId?: number;
 }
 
-const Payment = sequelize.define<Model<PaymentAttributes>>(
+const Payment = sequelize.define<IPayment>(
   "Payment",
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     type: {
       type: DataTypes.ENUM("offline", "online"),
-      allowNull: false
+      allowNull: false,
     },
     status: {
       type: DataTypes.ENUM("pending", "failed", "succeed"),
-      allowNull: false
+      allowNull: false,
+    },
+    orderId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "Orders",
+        key: "id",
+      },
+    },
+    userCardId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "CreditCards",
+        key: "id",
+      },
     },
   },
   {
-    modelName: "Payment"
+    modelName: "Payment",
   }
 );
 

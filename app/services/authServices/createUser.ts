@@ -1,17 +1,19 @@
 import User from "../../models/user";
-import UserCredentials from "../../models/user_credentials";
+import UserCredentials from "../../models/userCredentials";
 import bcrypt from "bcryptjs";
 import createHttpError from "../../helpers/createHttpError";
 import { IUserData } from "../../interfaces/Auth/Auth";
+import { UserRole } from "../../enums/User";
+import authMessages from "../../messages/authMessages";
+import { SESServiceHandlers } from "../SESService/index";
 
 export const createUser = async (data: IUserData) => {
-  const { first_name, last_name, email, phone, password } = data;
-
+  const { firstName, lastName, email, phone, password } = data;
   // Check if the user already exists
   const existingUser = await User.findOne({ where: { email: email } });
 
   if (existingUser) {
-    throw createHttpError(409, "Email already exists");
+    throw createHttpError(409, authMessages.EMAIL_ALREADY_EXISTS_MESSAGE);
   }
 
   // Hash the password
@@ -20,17 +22,19 @@ export const createUser = async (data: IUserData) => {
   // Create user credentials
   const userCredentials = await UserCredentials.create({
     password: hashedPassword,
-    role: "user"
+    role: UserRole.User,
   });
 
   // Create the user
   const userCreated = await User.create({
-    first_name,
-    last_name,
+    firstName,
+    lastName,
     email,
     phone,
     // @ts-ignore
-    userCredentialsId: userCredentials.id
+    userCredentialsId: userCredentials.id,
+    orderId: null,
+    avatar: null,
   });
 
   // Create a cart for the user
@@ -40,10 +44,15 @@ export const createUser = async (data: IUserData) => {
     userId: userCreated.id,
     total: 0,
     subTotal: 0,
-    dishes: []
+    dishes: [],
   });
 
-  return "Signup successful";
+  await SESServiceHandlers.sendEmail(email, "OceanBar Team", {
+    firstName,
+    lastName,
+  });
+
+  return authMessages.USER_SUCCESFULLY_CREATED_MESSAGE;
 };
 
 export default createUser;

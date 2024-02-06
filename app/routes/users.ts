@@ -7,7 +7,7 @@ export function router(app: Express) {
 
   app.get("/api/me", authenticate, userController.getUserById);
 
-  app.patch("/api/users/:id", authenticate, userController.updateUser);
+  app.patch("/api/users/:id", authenticate, userController.updateUserById);
 
   app.delete("/api/users/:id", authenticate, userController.deleteUserById);
 }

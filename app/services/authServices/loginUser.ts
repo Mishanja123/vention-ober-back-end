@@ -7,7 +7,7 @@ import authMessages from "../../messages/authMessages";
 
 export const loginUser = async ({
   email,
-  password
+  password,
 }: Pick<IUserData, "email" | "password">): Promise<
   Pick<IUserData, "firstName" | "id">
 > => {
@@ -18,7 +18,7 @@ export const loginUser = async ({
   }
 
   const userCredentials = await UserCredentials.findOne({
-    where: { id: user.dataValues.userCredentialsId }
+    where: { id: user.dataValues.userCredentialsId },
   });
 
   if (!userCredentials) {
@@ -35,7 +35,7 @@ export const loginUser = async ({
 
   // Ensure id is not undefined before returning
   if (id === undefined) {
-    throw new Error("User id is undefined"); // Handle this case appropriately
+    throw new Error("User id is undefined");
   }
 
   return { firstName, id };

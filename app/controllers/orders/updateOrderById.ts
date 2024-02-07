@@ -8,7 +8,6 @@ export const updateOrderById: ControllerFunction = async (req, res, next) => {
   const { id } = req.params;
   const { id: userId } = req.user;
   const { status } = req.body;
-  console.log("statttttttttus", status);
   await OrderHandlers.updateOrderById(id, userId, status);
 
   res

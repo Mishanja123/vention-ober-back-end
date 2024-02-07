@@ -13,7 +13,7 @@ User.hasOne(UserAddress);
 UserAddress.hasMany(User);
 UserAddress.hasMany(Address);
 Address.hasOne(UserAddress);
-User.hasMany(Order);
+User.hasMany(Order, { onDelete: "CASCADE" });
 Order.hasOne(User);
 Order.hasOne(TableReservation, { onDelete: "CASCADE" });
 TableReservation.belongsTo(Order);

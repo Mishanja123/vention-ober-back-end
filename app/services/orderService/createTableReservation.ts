@@ -23,7 +23,7 @@ export const createTableReservation = async ({
 
   const guestExpected = guests <= 4 ? "4" : guests <= 6 ? "6" : "8";
 
-  const orderType = OrderType.WithPreorder
+  const orderType = withPreorder
     ? OrderType.ReservationWithPreorder
     : OrderType.Reservation;
 

@@ -7,6 +7,7 @@ import { createNewOrder } from "./createNewOrder";
 import { createTableReservation } from "./createTableReservation";
 
 import { IOrderType, IReservationData } from "../../interfaces/Order";
+import { OrderStatus } from "../../enums/Order";
 import { IOrder } from "../../models/order";
 
 export interface IOrderHandlers {
@@ -16,7 +17,7 @@ export interface IOrderHandlers {
   updateOrderById: (
     id: string,
     userId: number,
-    status: string
+    status: OrderStatus
   ) => Promise<void>;
   deleteOrderById: (id: string) => Promise<void>;
   createNewOrder: (data: IOrderType) => Promise<IOrder>;

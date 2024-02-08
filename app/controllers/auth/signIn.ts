@@ -1,6 +1,6 @@
 import { AuthHandlers } from "../../services/authServices";
 
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import { generateAccessToken } from "../../utils/auth/generateAccessToken";
 import { generateRefreshToken } from "../../utils/auth/generateRefreshToken";
 
@@ -18,9 +18,9 @@ export const signIn: ControllerFunction = async (req, res, next) => {
     .header("Authorization", `Bearer ${accessToken}`)
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: SEVEN_DAYS_IN_MS
+      maxAge: SEVEN_DAYS_IN_MS,
     })
     .json({
-      message: `Name ${firstName}`
+      message: `Name ${firstName}`,
     });
 };

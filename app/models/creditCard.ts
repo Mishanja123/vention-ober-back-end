@@ -1,16 +1,6 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
-
-export interface ICreditCard extends Model {
-  id?: number;
-  addressTitle: string;
-  cardNumber: string;
-  month: number;
-  year: number;
-  cvvNumber: number;
-  cardHolder: string;
-  userId: number;
-}
+import { ICreditCard } from "../interfaces/CreditCard";
 
 const CreditCard = sequelize.define<ICreditCard>(
   "CreditCard",

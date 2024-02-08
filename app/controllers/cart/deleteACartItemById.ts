@@ -1,4 +1,4 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import { CartHandlers } from "../../services/cartServices";
 
 export const deleteACartItemById: ControllerFunction = async (

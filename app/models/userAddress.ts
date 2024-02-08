@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
 
+//unused
+
 const UserAddress = sequelize.define(
   "UserAddress",
   {
@@ -15,7 +17,5 @@ const UserAddress = sequelize.define(
     modelName: "UserAddress",
   }
 );
-
-
 
 export default UserAddress;

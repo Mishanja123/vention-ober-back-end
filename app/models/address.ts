@@ -1,7 +1,18 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
-const Address = sequelize.define(
+export interface IAddress extends Model {
+  id?: number;
+  title: string;
+  city: string;
+  street: number;
+  house_number: number;
+  unit: number;
+  flat_number: string;
+  userId: number;
+}
+
+const Address = sequelize.define<IAddress>(
   "Address",
   {
     id: {
@@ -37,8 +48,5 @@ const Address = sequelize.define(
     modelName: "Address",
   }
 );
-
-
-
 
 export default Address;

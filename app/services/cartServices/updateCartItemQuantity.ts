@@ -29,11 +29,12 @@ export const updateCartItemQuantity = async (
         // @ts-ignore
         cart.total += quantityModifier * dish.price;
 
+        //@ts-expect-error
         cart.dishes[existingCartItemIndex].quantity += quantityModifier;
+        //@ts-expect-error
         cart.dishes[existingCartItemIndex].subtotal =
           // @ts-ignore
           dish.price * cart.dishes[existingCartItemIndex].quantity;
-        //@ts-expect-error
         await updateCart(cart, transaction);
 
         return cart;

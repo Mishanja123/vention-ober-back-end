@@ -1,7 +1,7 @@
 import createHttpError from "./../../helpers/createHttpError";
 import { DisheshHandlers } from "../../services/dishesServices";
 
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 export const updateDish: ControllerFunction = async (req, res, next) => {
   const { dishId } = req.params;

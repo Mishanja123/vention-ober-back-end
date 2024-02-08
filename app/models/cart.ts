@@ -55,6 +55,6 @@ Cart.init(
   }
 );
 
-Cart.belongsTo(User, { foreignKey: "userId" });
+// Cart.belongsTo(User, { foreignKey: "userId" }); //no need as we already have associations
 
 export default Cart;

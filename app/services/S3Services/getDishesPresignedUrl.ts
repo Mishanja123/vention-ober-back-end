@@ -13,7 +13,7 @@ export const getDishesPresignedUrl = async (name: string) => {
     const key = imageKeys.filter((image) => image?.includes(name))[0];
     const command = new GetObjectCommand({ Bucket: "obar-s3", Key: key });
     const presignedUrl = await getSignedUrl(s3, command, {
-      expiresIn: 900,
+      expiresIn: 518400,
     });
     console.log(presignedUrl);
     return presignedUrl;

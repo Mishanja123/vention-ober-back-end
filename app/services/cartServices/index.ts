@@ -9,16 +9,16 @@ import { ICart } from "../../interfaces/Cart";
 import Cart from "../../models/cart";
 
 export interface ICartHandlers {
-  addToCart: (productId: number, userId: number) => Promise<Cart>;
-  deleteAllItems: (userId: number) => Promise<Cart[]>;
-  deleteCartItem: (productId: number, userId: number) => Promise<Cart>;
-  getCartItems: (userId: number) => Promise<Cart[]>;
+  addToCart: (productId: number, userId: number) => Promise<ICart>;
+  deleteAllItems: (userId: number) => Promise<ICart[]>;
+  deleteCartItem: (productId: number, userId: number) => Promise<ICart>;
+  getCartItems: (userId: number) => Promise<ICart[]>;
   updateCart: (cart: ICart, transaction: any) => Promise<void>;
   updateCartItemQuantity: (
     productId: number,
     userId: number,
     quantityModifier: number
-  ) => Promise<Cart>;
+  ) => Promise<ICart>;
 }
 
 export const CartHandlers: ICartHandlers = {

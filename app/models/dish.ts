@@ -1,7 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../../config/database";
+import { IDish } from "../interfaces/Dish";
 
-const Dish = sequelize.define(
+const Dish = sequelize.define<IDish>(
   "Dish",
   {
     id: {

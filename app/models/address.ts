@@ -1,7 +1,8 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
+import { IAddress } from "../interfaces/Address";
 
-const Address = sequelize.define(
+const Address = sequelize.define<IAddress>(
   "Address",
   {
     id: {
@@ -22,14 +23,14 @@ const Address = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    house_number: {
+    houseNumber: {
       type: DataTypes.STRING(10),
       allowNull: false,
     },
     unit: {
       type: DataTypes.STRING(10),
     },
-    flat_number: {
+    flatNumber: {
       type: DataTypes.STRING(10),
     },
   },
@@ -37,8 +38,5 @@ const Address = sequelize.define(
     modelName: "Address",
   }
 );
-
-
-
 
 export default Address;

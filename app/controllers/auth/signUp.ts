@@ -1,5 +1,5 @@
 import { AuthHandlers } from "../../services/authServices";
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 export const signUp: ControllerFunction = async (req, res, next) => {
   const result = await AuthHandlers.createUser(req.body);

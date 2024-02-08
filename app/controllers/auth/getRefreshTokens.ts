@@ -1,4 +1,4 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import createHttpError from "../../helpers/createHttpError";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { generateAccessToken } from "../../utils/auth/generateAccessToken";
@@ -25,7 +25,7 @@ export const getRefreshTokens: ControllerFunction = async (req, res, next) => {
   res.cookie("refreshToken", newRefreshToken, {
     httpOnly: true,
     sameSite: "strict",
-    maxAge: SEVEN_DAYS_IN_MS
+    maxAge: SEVEN_DAYS_IN_MS,
   });
 
   res

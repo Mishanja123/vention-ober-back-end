@@ -3,8 +3,8 @@ import { getUserById } from "./getUserById";
 import { deleteUserById } from "./deleteUserById";
 import { getUserCredentialsById } from "./getUserCredentialsById";
 
-import { IUser } from "../../models/user";
-import { IUserUserCredentials } from "../../models/userCredentials";
+import { IUser } from "../../interfaces/User";
+import { IUserUserCredentials } from "../../interfaces/UserCredentials";
 
 export interface IUserHandlers {
   getAllUsers: () => Promise<IUser[]>;

@@ -1,4 +1,4 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 export const logOut: ControllerFunction = async (req, res, next) => {
   res.clearCookie("refreshToken", { path: "/" });

@@ -1,5 +1,5 @@
 import Dish from "../../models/dish";
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 import dishData from "../../../data/menuData/dishMoreInfo.json";
 
@@ -13,7 +13,7 @@ export const uploadInitialDishes: ControllerFunction = async (req, res) => {
             | "sunrise_specials"
             | "chefs_pick"
             | "culinary_classics"
-            | "bar_bliss"
+            | "bar_bliss",
         });
       })
     );

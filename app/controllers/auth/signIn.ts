@@ -1,8 +1,9 @@
 import { AuthHandlers } from "../../services/authServices";
 
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import { generateAccessToken } from "../../utils/auth/generateAccessToken";
 import { generateRefreshToken } from "../../utils/auth/generateRefreshToken";
+import { UserHandlers } from "../../services/userService";
 
 const SEVEN_DAYS_IN_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -12,15 +13,15 @@ export const signIn: ControllerFunction = async (req, res, next) => {
 
   const accessToken = generateAccessToken(id);
   const refreshToken = generateRefreshToken(id);
-
+  const user = await UserHandlers.getUserById(id);
   res
     .status(200)
     .header("Authorization", `Bearer ${accessToken}`)
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: SEVEN_DAYS_IN_MS
+      maxAge: SEVEN_DAYS_IN_MS,
     })
     .json({
-      message: `Name ${firstName}`
+      user,
     });
 };

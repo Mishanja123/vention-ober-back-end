@@ -8,7 +8,7 @@ import { createTableReservation } from "./createTableReservation";
 
 import { IOrderType, IReservationData } from "../../interfaces/Order";
 import { OrderStatus } from "../../enums/Order";
-import { IOrder } from "../../models/order";
+import { IOrder } from "../../interfaces/Order";
 
 export interface IOrderHandlers {
   getOrderById: (id: string) => Promise<IOrder | string>;

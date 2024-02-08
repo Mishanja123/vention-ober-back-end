@@ -1,6 +1,7 @@
+import { Model } from "sequelize";
 import { IDish } from "../Dish";
 
-export interface ICart {
+export interface ICart extends Model {
   id: number;
   total: number;
   subTotal: number;

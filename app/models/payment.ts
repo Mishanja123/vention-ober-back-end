@@ -3,15 +3,7 @@ import sequelize from "../../config/database";
 
 import Order from "./order";
 
-import { PaymentStatus, PaymentType } from "../enums/Payment";
-
-export interface IPayment extends Model {
-  id?: number;
-  type: PaymentType;
-  status: PaymentStatus;
-  orderId?: number;
-  userCardId?: number;
-}
+import { IPayment } from "../interfaces/Payment";
 
 const Payment = sequelize.define<IPayment>(
   "Payment",

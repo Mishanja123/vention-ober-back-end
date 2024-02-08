@@ -1,16 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
-
-export interface IUser extends Model {
-  id: number;
-  avatar: string | null;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  userCredentialsId: number;
-  orderId: number | null;
-}
+import { IUser } from "../interfaces/User";
 
 const User = sequelize.define<IUser>(
   "User",

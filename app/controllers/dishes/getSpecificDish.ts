@@ -1,6 +1,6 @@
 import createHttpError from "./../../helpers/createHttpError";
 
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import { DisheshHandlers } from "../../services/dishesServices";
 
 export const getSpecificDish: ControllerFunction = async (req, res, next) => {

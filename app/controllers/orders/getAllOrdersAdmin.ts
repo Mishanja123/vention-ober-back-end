@@ -1,4 +1,4 @@
-import { ControllerFunction } from "./../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 import { OrderHandlers } from "../../services/orderService";
 

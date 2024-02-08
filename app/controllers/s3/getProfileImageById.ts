@@ -1,4 +1,4 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import { S3ServiceHandlers } from "../../services/S3Services";
 //@ts-ignore
 export const getProfileImageById: ControllerFunction = async (

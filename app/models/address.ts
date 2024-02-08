@@ -33,14 +33,14 @@ const Address = sequelize.define<IAddress>(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    house_number: {
+    houseNumber: {
       type: DataTypes.STRING(10),
       allowNull: false,
     },
     unit: {
       type: DataTypes.STRING(10),
     },
-    flat_number: {
+    flatNumber: {
       type: DataTypes.STRING(10),
     },
   },

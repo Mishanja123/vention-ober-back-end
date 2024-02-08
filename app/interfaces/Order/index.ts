@@ -1,5 +1,6 @@
 import { Model } from "sequelize";
 import { AuthenticatedRequest } from "../../interfaces/ControllerFunction";
+import { IDish } from "../Dish";
 
 export interface IOrderType {
   date: string;
@@ -24,5 +25,5 @@ export interface IOrder extends Model {
   paymentId?: string;
   orderDate: string;
   guests?: number;
-  dishes?: any[];
+  dishes?: IDish[];
 }

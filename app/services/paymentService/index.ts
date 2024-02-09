@@ -2,10 +2,10 @@ import { getPaymentCardById } from "./getPaymentCardById";
 import { createCreditCard } from "./createCreditCard";
 import { updatePaymentDetails } from "./updatePaymentDetails";
 
-import { ICreditCard } from "../../interfaces/CreditCard";
+import { ICreditCard } from "../../models/creditCard";
 
 import { IPaymentDetails } from "../../interfaces/Payment";
-import { IPayment } from "../../interfaces/Payment";
+import { IPayment } from "../../models/payment";
 
 export interface IPaymentHandlers {
   getPaymentCardById: (id: string) => Promise<ICreditCard | null>;

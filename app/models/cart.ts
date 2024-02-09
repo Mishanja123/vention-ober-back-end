@@ -1,8 +1,14 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 import User from "./user";
-import { IDish } from "../interfaces/Dish";
-import { ICart } from "../interfaces/Cart";
+import { IDish } from "./dish";
+
+export interface ICart extends Model {
+  id: number;
+  total: number;
+  subTotal: number;
+  dishes: IDish[];
+}
 
 const Cart = sequelize.define<ICart>(
   "Cart",

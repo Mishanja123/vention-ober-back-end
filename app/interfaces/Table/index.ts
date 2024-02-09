@@ -1,4 +1,3 @@
-import { Model } from "sequelize";
 import { WeekDays } from "../../enums/Table";
 
 export type AvailableTime =
@@ -14,10 +13,4 @@ export type AvailableTime =
 export interface ITimeSlot {
   weekDay: WeekDays;
   availableTime: AvailableTime[];
-}
-
-export interface ITable extends Model {
-  id: number;
-  timeSlots: ITimeSlot[];
-  seats: number;
 }

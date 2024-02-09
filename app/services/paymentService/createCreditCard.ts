@@ -1,4 +1,4 @@
-import { ICreditCard } from "../../interfaces/CreditCard";
+import { ICreditCard } from "../../models/creditCard";
 import CreditCard from "../../models/creditCard";
 
 export const createCreditCard = async (

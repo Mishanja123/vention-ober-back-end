@@ -1,6 +1,4 @@
-import { Model } from "sequelize";
 import { AuthenticatedRequest } from "../../interfaces/ControllerFunction";
-import { IDish } from "../Dish";
 
 export interface IOrderType {
   date: string;
@@ -15,15 +13,4 @@ export interface IReservationData {
   guests: number;
   withPreorder: boolean;
   req: AuthenticatedRequest;
-}
-
-export interface IOrder extends Model {
-  id: number;
-  type: string;
-  status: string;
-  userAddressId?: string;
-  paymentId?: string;
-  orderDate: string;
-  guests?: number;
-  dishes?: IDish[];
 }

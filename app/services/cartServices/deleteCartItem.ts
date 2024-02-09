@@ -1,5 +1,5 @@
 import createHttpError from "../../helpers/createHttpError";
-import { IDish } from "../../interfaces/Dish";
+import { IDish } from "../../models/dish";
 import cartMessages from "../../messages/cartMessages";
 import Cart from "../../models/cart";
 import { updateCart } from "./updateCart";

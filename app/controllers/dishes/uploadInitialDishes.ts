@@ -2,6 +2,7 @@ import Dish from "../../models/dish";
 import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 import dishData from "../../../data/menuData/dishMoreInfo.json";
+import { Categories } from "../../enums/Dish";
 
 export const uploadInitialDishes: ControllerFunction = async (req, res) => {
   try {
@@ -9,11 +10,7 @@ export const uploadInitialDishes: ControllerFunction = async (req, res) => {
       dishData.map(async (dish) => {
         await Dish.create({
           ...dish,
-          category: dish.category as
-            | "sunrise_specials"
-            | "chefs_pick"
-            | "culinary_classics"
-            | "bar_bliss",
+          category: dish.category as Categories,
         });
       })
     );

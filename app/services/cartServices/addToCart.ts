@@ -1,8 +1,12 @@
 import Cart from "../../models/cart";
-import Dish from "../../models/dish";
+import Dish, { IDish } from "../../models/dish";
 import createHttpError from "../../helpers/createHttpError";
 import cartMessages from "../../messages/cartMessages";
 import { updateCart } from "./updateCart";
+
+interface IDishData {
+  dishData: IDish;
+}
 
 export const addToCart = async (productId: number, userId: number) => {
   try {
@@ -16,9 +20,9 @@ export const addToCart = async (productId: number, userId: number) => {
       if (!cart || !dish) {
         throw createHttpError(404, cartMessages.CART_OR_DISH_NOT_FOUND_MESSAGE);
       }
-
       const existingCartItemIndex = cart.dishes.findIndex(
-        (item: any) => item.dishData.id == productId
+        //@ts-expect-error
+        (item: IDishData) => item.dishData.id == productId
       );
 
       if (existingCartItemIndex !== -1) {

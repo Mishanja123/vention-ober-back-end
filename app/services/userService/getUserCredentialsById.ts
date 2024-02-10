@@ -1,8 +1,11 @@
 import UserCredentials from "../../models/userCredentials";
 
-import userMesseges from "../../messages/userMessages";
-
-export const getUserCredentialsById = async (id: number) => {
-  const userCredentials = await UserCredentials.findByPk(id);
+export const getUserCredentialsById = async (
+  id: number,
+  attributes: string[] = []
+) => {
+  const userCredentials = await UserCredentials.findByPk(id, {
+    attributes: attributes.length ? attributes : undefined,
+  });
   return userCredentials;
 };

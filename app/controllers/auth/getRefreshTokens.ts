@@ -37,7 +37,7 @@ export const getRefreshTokens: ControllerFunction = async (req, res, next) => {
 
   res.cookie("refreshToken", newRefreshToken, {
     httpOnly: true,
-    sameSite: "strict",
+    sameSite: "none",
     maxAge: SEVEN_DAYS_IN_MS,
   });
 

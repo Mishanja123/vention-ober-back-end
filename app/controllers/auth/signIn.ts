@@ -30,6 +30,7 @@ export const signIn: ControllerFunction = async (req, res, next) => {
     .cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: SEVEN_DAYS_IN_MS,
+      sameSite: "none",
     })
     .json({
       user,

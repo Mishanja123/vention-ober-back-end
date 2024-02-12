@@ -31,6 +31,7 @@ export const signIn: ControllerFunction = async (req, res, next) => {
       httpOnly: true,
       maxAge: SEVEN_DAYS_IN_MS,
       sameSite: "none",
+      secure: true,
     })
     .json({
       user,

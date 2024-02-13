@@ -1,7 +1,12 @@
 import createHttpError from "../../helpers/createHttpError";
+import { IDish } from "../../models/dish";
 import cartMessages from "../../messages/cartMessages";
 import Cart from "../../models/cart";
 import { updateCart } from "./updateCart";
+
+interface IDishData {
+  dishData: IDish;
+}
 
 export const deleteCartItem = async (productId: number, userId: number) => {
   try {
@@ -14,7 +19,8 @@ export const deleteCartItem = async (productId: number, userId: number) => {
       }
 
       const existingCartItemIndex = cart.dishes.findIndex(
-        (item: any) => item.dishData.id == productId
+        //@ts-expect-error
+        (item: IDishData) => item.dishData.id == productId
       );
 
       if (existingCartItemIndex !== -1) {
@@ -23,7 +29,7 @@ export const deleteCartItem = async (productId: number, userId: number) => {
         // @ts-ignore
         cart.total -= cart.dishes[existingCartItemIndex].subtotal;
         cart.dishes.splice(existingCartItemIndex, 1);
-        //@ts-expect-error
+
         await updateCart(cart, transaction);
 
         return cart;
@@ -32,7 +38,7 @@ export const deleteCartItem = async (productId: number, userId: number) => {
       }
     });
   } catch (error) {
-    console.log("🚀 : error", error);
+    console.log("Error occured ", error);
     throw createHttpError(500, cartMessages.SERVER_ERROR_MESSAGE);
   }
 };

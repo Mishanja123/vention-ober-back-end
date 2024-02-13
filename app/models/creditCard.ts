@@ -2,7 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
 
 export interface ICreditCard extends Model {
-  id?: number;
+  id?: string;
   addressTitle: string;
   cardNumber: string;
   month: number;

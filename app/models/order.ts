@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
-
+import { IDish } from "./dish";
 export interface IOrder extends Model {
   id: number;
   type: string;
@@ -9,7 +9,7 @@ export interface IOrder extends Model {
   paymentId?: string;
   orderDate: string;
   guests?: number;
-  dishes?: any[];
+  dishes?: IDish[];
 }
 
 const Order = sequelize.define<IOrder>(

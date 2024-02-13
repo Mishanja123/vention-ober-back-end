@@ -1,4 +1,4 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import { OrderHandlers } from "../../services/orderService";
 
 import orderMesseges from "../../messages/orderMessages";
@@ -14,7 +14,6 @@ export const createTableReservation: ControllerFunction = async (
     guests,
     withPreorder: withPreorder,
   } = req.body;
-
   const reservation = await OrderHandlers.createTableReservation({
     reservationDate,
     reservationTime,
@@ -22,10 +21,8 @@ export const createTableReservation: ControllerFunction = async (
     withPreorder,
     req,
   });
-  res
-    .status(201)
-    .json({
-      message: orderMesseges.ORDER_SUCCESS_CREATED_MESSAGE,
-      reservation,
-    });
+  res.status(201).json({
+    message: orderMesseges.ORDER_SUCCESS_CREATED_MESSAGE,
+    reservation,
+  });
 };

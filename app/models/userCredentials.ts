@@ -1,6 +1,5 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
-
 import { UserRole } from "../enums/User";
 
 export interface IUserUserCredentials extends Model {

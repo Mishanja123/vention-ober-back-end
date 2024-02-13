@@ -1,8 +1,9 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import createHttpError from "../../helpers/createHttpError";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { generateAccessToken } from "../../utils/auth/generateAccessToken";
 import { generateRefreshToken } from "../../utils/auth/generateRefreshToken";
+import { UserHandlers } from "../../services/userService";
 
 // Constant to represent the age of the refresh token cookie in milliseconds (7 days)
 const SEVEN_DAYS_IN_MS = 7 * 24 * 60 * 60 * 1000;
@@ -22,13 +23,26 @@ export const getRefreshTokens: ControllerFunction = async (req, res, next) => {
   const newAccessToken = generateAccessToken(userId);
   const newRefreshToken = generateRefreshToken(userId);
 
+  const user = await UserHandlers.getUserById(userId, [
+    "id",
+    "avatar",
+    "firstName",
+    "lastName",
+    "email",
+    "phone",
+  ]);
+  const userCredentials = await UserHandlers.getUserCredentialsById(userId, [
+    "role",
+  ]);
+
   res.cookie("refreshToken", newRefreshToken, {
     httpOnly: true,
-    sameSite: "strict",
-    maxAge: SEVEN_DAYS_IN_MS
+    maxAge: SEVEN_DAYS_IN_MS,
+    sameSite: "none",
+    secure: true,
   });
 
   res
     .header("Authorization", `Bearer ${newAccessToken}`)
-    .json({ message: "Token refreshed successfully." });
+    .json({ message: "Token refreshed successfully.", user, userCredentials });
 };

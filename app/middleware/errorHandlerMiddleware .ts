@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ControllerFunction } from "../types/ControllerFunction";
+import { ControllerFunction } from "../interfaces/ControllerFunction";
 
 interface MiddlewareFunction {
   (controller: ControllerFunction): (

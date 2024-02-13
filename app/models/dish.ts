@@ -1,7 +1,18 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
+import { Categories } from "../enums/Dish";
 
-const Dish = sequelize.define(
+export interface IDish extends Model {
+  id: number;
+  title: string;
+  price: number;
+  photo_path: string | null;
+  ingredients: Record<string, unknown>[];
+  category: Categories;
+  weight_grams: number;
+}
+
+const Dish = sequelize.define<IDish>(
   "Dish",
   {
     id: {

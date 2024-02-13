@@ -4,5 +4,5 @@ export interface IPaymentDetails {
   type: PaymentType;
   orderId: string;
   paymentId: string;
-  userId: number;
+  userId: string;
 }

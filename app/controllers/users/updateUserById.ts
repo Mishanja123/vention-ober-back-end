@@ -1,4 +1,4 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 import createHttpError from "../../helpers/createHttpError";
 
 import { UserHandlers } from "../../services/userService";

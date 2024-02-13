@@ -1,20 +1,14 @@
-import { OrderStatus } from "../../enums/Order";
-import Cart from "../../models/cart";
 import Order from "../../models/order";
+import Payment from "../../models/payment";
 
-export const deleteOrderById = async (id: string, userId: number) => {
+export const deleteOrderById = async (id: string) => {
   const existedOrder = await Order.findByPk(id);
+  const orderPayment = await Payment.findOne({
+    where: { orderId: id },
+  });
 
-  if (existedOrder) {
-    await existedOrder.update({ status: OrderStatus.Canceled });
+  if (existedOrder && orderPayment) {
+    await orderPayment.destroy();
+    await existedOrder.destroy();
   }
-
-  await Cart.update(
-    {
-      total: 0,
-      subTotal: 0,
-      dishes: [],
-    },
-    { where: { userId } }
-  );
 };

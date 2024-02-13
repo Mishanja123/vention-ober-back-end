@@ -1,13 +1,13 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 import { OrderHandlers } from "../../services/orderService";
 
 import orderMesseges from "../../messages/orderMessages";
 
 export const createNewOrder: ControllerFunction = async (req, res, next) => {
-  const { orderDate, type, time } = req.body;
+  const { date, type, time } = req.body;
   const order = await OrderHandlers.createNewOrder({
-    orderDate,
+    date,
     type,
     time,
     req,

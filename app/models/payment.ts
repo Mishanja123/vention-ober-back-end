@@ -1,8 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../../config/database";
-
 import Order from "./order";
-
 import { PaymentStatus, PaymentType } from "../enums/Payment";
 
 export interface IPayment extends Model {

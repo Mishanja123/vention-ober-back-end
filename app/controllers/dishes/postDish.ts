@@ -1,12 +1,12 @@
 import createHttpError from "./../../helpers/createHttpError";
 import { DisheshHandlers } from "../../services/dishesServices";
 
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 export const postDish: ControllerFunction = async (req, res, next) => {
-  const { title, category, price, weight_grams, ingredients } = req.body;
+  const { title, category, price, weightGrams, ingredients } = req.body;
 
-  if (!title || !category || !price || !weight_grams || !ingredients) {
+  if (!title || !category || !price || !weightGrams || !ingredients) {
     throw createHttpError(400, "Missing required fields");
   }
 

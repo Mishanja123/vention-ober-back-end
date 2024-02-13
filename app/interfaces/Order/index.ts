@@ -1,7 +1,7 @@
-import { AuthenticatedRequest } from "../../types/ControllerFunction";
+import { AuthenticatedRequest } from "../../interfaces/ControllerFunction";
 
 export interface IOrderType {
-  orderDate: string;
+  date: string;
   type: string;
   time: string;
   req: AuthenticatedRequest;

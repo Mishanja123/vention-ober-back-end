@@ -8,9 +8,12 @@ import { IUserUserCredentials } from "../../models/userCredentials";
 
 export interface IUserHandlers {
   getAllUsers: () => Promise<IUser[]>;
-  getUserById: (id: number) => Promise<IUser | null>;
+  getUserById: (id: number, attributes?: string[]) => Promise<IUser | null>;
   deleteUserById: (id: number) => Promise<void>;
-  getUserCredentialsById: (id: number) => Promise<IUserUserCredentials | null>;
+  getUserCredentialsById: (
+    id: number,
+    attributes?: string[]
+  ) => Promise<IUserUserCredentials | null>;
 }
 
 export const UserHandlers: IUserHandlers = {

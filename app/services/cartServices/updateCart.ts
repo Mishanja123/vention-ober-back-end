@@ -1,4 +1,4 @@
-import { ICart } from "../../interfaces/Cart";
+import { ICart } from "../../models/cart";
 import Cart from "../../models/cart";
 
 export const updateCart = async (cart: ICart, transaction: any) => {

@@ -1,4 +1,4 @@
-import { ControllerFunction } from "../../types/ControllerFunction";
+import { ControllerFunction } from "../../interfaces/ControllerFunction";
 
 import { OrderHandlers } from "../../services/orderService";
 
@@ -6,8 +6,7 @@ import orderMesseges from "../../messages/orderMessages";
 
 export const deleteOrderById: ControllerFunction = async (req, res, next) => {
   const { id } = req.params;
-  const { id: userId } = req.user;
-  await OrderHandlers.deleteOrderById(id, userId);
+  await OrderHandlers.deleteOrderById(id);
 
   res
     .status(200)

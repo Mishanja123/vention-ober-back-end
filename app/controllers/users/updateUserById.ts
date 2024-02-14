@@ -12,10 +12,10 @@ export const updateUserById: ControllerFunction = async (req, res, next) => {
   if (!user) {
     throw createHttpError(404, userMesseges.USER_NOT_FOUND_MESSAGE);
   }
-
+  let updatedUser = { ...req.body };
   const avatar = await S3ServiceHandlers.getUserPresignedUrlByUserId(userId);
   console.log(avatar);
-  const updatedUser = { avatar, ...req.body };
+  if (typeof avatar === "string") updatedUser = { avatar, ...req.body };
   Object.assign(user, updatedUser);
   await user.save();
   res.status(200).json(user);

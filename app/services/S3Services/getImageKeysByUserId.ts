@@ -1,11 +1,11 @@
 import { ListObjectsV2Command, S3Client } from "@aws-sdk/client-s3";
-import { REGION } from "../../constants";
+import { REGION, BUCKET } from "../../constants";
 
 const s3 = new S3Client({ region: REGION });
 
 export const getImageKeysByUserId = async (userId: number) => {
   const command = new ListObjectsV2Command({
-    Bucket: "obar-s3",
+    Bucket: BUCKET,
     Prefix: `${userId}`,
   });
 

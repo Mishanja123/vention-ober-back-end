@@ -1,6 +1,6 @@
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { REGION } from "../../constants";
+import { REGION, BUCKET } from "../../constants";
 
 const s3 = new S3Client({ region: REGION });
 
@@ -10,7 +10,7 @@ export const getDishesPresignedUrl = async (name: string) => {
   try {
     const imageKeys = await getImageKeysByName();
     const key = imageKeys.filter((image) => image?.includes(name))[0];
-    const command = new GetObjectCommand({ Bucket: "obar-s3", Key: key });
+    const command = new GetObjectCommand({ Bucket: BUCKET, Key: key });
     const presignedUrl = await getSignedUrl(s3, command, {
       expiresIn: 518400,
     });

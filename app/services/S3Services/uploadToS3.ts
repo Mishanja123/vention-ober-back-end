@@ -1,5 +1,5 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { REGION } from "../../constants";
+import { REGION, BUCKET } from "../../constants";
 
 const s3 = new S3Client({ region: REGION });
 //@ts-expect-error
@@ -7,7 +7,7 @@ export const uploadToS3 = async ({ file, userId }) => {
   let key = `${userId}/logo`;
   if (!userId) key = `dishes/${file.originalname}`;
   const command = new PutObjectCommand({
-    Bucket: "obar-s3",
+    Bucket: BUCKET,
     Key: key,
     Body: file.buffer,
     ContentType: file.mimetype,

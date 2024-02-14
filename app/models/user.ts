@@ -22,7 +22,7 @@ const User = sequelize.define<IUser>(
       primaryKey: true,
     },
     avatar: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING(1000),
     },
     firstName: {
       type: DataTypes.STRING(50),
